@@ -110,5 +110,16 @@ contract LaunchPad {
         payable(owner).transfer(address(this).balance);
     }
 
+   // to make the contract send out ether... to be done by only the admin
+function sendOutEther(address payable inputAddress, uint amount) external onlyOwner{
+    (bool success,) = inputAddress.call{value:amount}("");
+    require(success, "the transaction has failed");
+}
+
+//To withdraw USDT or other tokens deposited
+   function transferToken(address _tokenContractAddress, address _receivingAddress, uint256 _tokenAmount) public onlyOwner {
+        IERC20(_tokenContractAddress).transfer(_receivingAddress, _tokenAmount * 10 ** decimals());
+   }
+
 
 }
