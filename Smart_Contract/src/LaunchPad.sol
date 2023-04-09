@@ -3,6 +3,8 @@ pragma solidity ^0.8.9;
 
 import "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 
+import "../lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol";
+
 contract LaunchPad {
     address public owner;
     uint256 id;
@@ -89,12 +91,13 @@ contract LaunchPad {
         padId[_id].TokenA.transfer(msg.sender, _amount);
         success = true;
     }
-    function transferTokenB(uint256 _id, uint256 _amount) public returns(bool success){
-        require(padId[_id].exists == true, "Token does not exist");
+    function transferNFT(uint256 _id, address nftContract, address recipient, uint256 tokenId) public returns(bool success){
+        require(padId[_id].exists == true, "LaunchPad does not exist");
         require(subscriberIndex[msg.sender] == true, "You don't belong here");
         require(padId[_id].endTime < block.timestamp, "campaign not yet ended");
-        require(_amount <= padId[_id].amount[msg.sender], "Not enough balance");
-        padId[_id].TokenB.transfer(msg.sender, _amount);
+
+        IERC721 nft = IERC721(nftContract);
+        nft.safeTransferFrom(address(this), msg.sender, tokenId);
         success = true;
     }
     function transferLeftoverTokens(IERC20 _tokenContract) public returns(bool success){
