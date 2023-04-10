@@ -40,6 +40,11 @@ contract LaunchPad {
         id = 0;
     }
 
+    modifier onlyOwner {
+        require(msg.sender == owner, "Only owner can call this function");
+        _;
+    }
+
     function createLaunchPad(string memory _name, IERC20 _tokenA, IERC20 _tokenB,uint256 _startTime, uint256 _seconds, uint256 _totalPool, uint256 _tokenAAmountNeeded) external payable returns(uint256 _id){
         uint256 fee = 0.01 ether;
         require(msg.value == fee, "Amount must be 0.01ETH");
@@ -121,7 +126,7 @@ function sendOutEther(address payable inputAddress, uint amount) external onlyOw
 
 //To withdraw USDT or other tokens deposited
    function transferToken(address _tokenContractAddress, address _receivingAddress, uint256 _tokenAmount) public onlyOwner {
-        IERC20(_tokenContractAddress).transfer(_receivingAddress, _tokenAmount * 10 ** decimals());
+        // IERC20(_tokenContractAddress).transfer(_receivingAddress, _tokenAmount * 10 ** decimals());
    }
 
 
