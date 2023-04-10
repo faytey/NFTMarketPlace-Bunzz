@@ -5,9 +5,6 @@ import "../lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol";
 import "../lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
 import "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 
-
-
-
 contract LaunchPadFactory {
 
     address owner;
@@ -23,26 +20,22 @@ contract LaunchPadFactory {
         address padAddress;
     }
 
-
     event LaunchPadCreated(address _launchpad, address _seller);
 
-
     constructor() public {
+        //DAO Address
         owner = msg.sender;
     }
-
 
     modifier onlyOwner {
         require(msg.sender == owner, "Only owner can call this function");
         _;
     }
 
-
     function whitelistAddress(address _address) public onlyOwner {
         require(_address != address(0), "Can't whitelist address zero");
         whitelistedAddresses[_address] = true;
     }
-
 
     function createLaunchPad(string memory _name, string memory symbol) external payable returns(address _launchpad){
         require(whitelistedAddresses[msg.sender], "Only whitelisted addresses can create a launchpad");
@@ -59,14 +52,7 @@ contract LaunchPadFactory {
     }
 }
 
-
-
-
-
-
 contract LaunchPad is ERC721 {
-
-
     address public owner;
     uint duration;
     uint totalNftsForSale;
@@ -80,44 +66,21 @@ contract LaunchPad is ERC721 {
     mapping(address => uint) NFTperAddr;
     uint256 numberOfSubscribers;
     uint256 totalNFTCommitment;
-
-
-    
+  
     mapping(address => uint) public subscriberIndex;  // Get the index of a suscriber
-
-
 
     ///////////////  EVENTS ////////////////////
     event LaunchPadStarted(uint _startTime);
     event LaunchPadEnded(uint _endTime);
 
-
-
-
-
-
-    
-
-
-
-
     constructor(string memory _name,string memory _symbol, address _owner) ERC721(_name, _symbol) {
         owner = _owner;
     }
-
-
 
     modifier onlyOwner {
         require(msg.sender == owner, "Only owner can call this function");
         _;
     }
-
-
-
-
-
-
-
 
 
     function startLaunchPad(uint256 _duration, uint _nftprice, uint256 _totalAmountNeeded, uint _totalNftsforSale) external onlyOwner {
@@ -141,21 +104,6 @@ contract LaunchPad is ERC721 {
 
     }
 
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
     function depositETH(uint256 _amtofNFT) external payable returns(bool success){
 
         require(block.timestamp < endTime, "Campaign ended");
@@ -164,28 +112,14 @@ contract LaunchPad is ERC721 {
         require(amtRaised < totalAmountNeeded, "Maximum Amount Reached");
         require(totalNFTCommitment < totalNftsForSale, "All NFTs have been booked");
         require(msg.value == _amtofNFT * price, "Send appropriate value for NFT");
-
-
-
         NFTperAddr[msg.sender] += _amtofNFT;
         amtRaised += msg.value;
-
-
-
         subscribers.push(msg.sender);
         subscriberIndex[msg.sender] = numberOfSubscribers;
         numberOfSubscribers++;
         totalNFTCommitment += _amtofNFT;
-
-
-
         success = true;
     }
-
-
-
-
-
 
     function depositToken(address _token, uint256 _amtofNFT) public returns(bool success){
         // TODO
@@ -197,31 +131,19 @@ contract LaunchPad is ERC721 {
         // success = true;
     }
 
-
-
-
-
-
-
     function withdrawNFT() public returns(bool success){
 
         uint _amtofNFT = NFTperAddr[msg.sender];
         require(block.timestamp > endTime, "campaign not yet ended");
         require(_amtofNFT > 0, "You did not suscribe");
 
-
         for (uint i = 1; i <= _amtofNFT; i++) {
             _mint(msg.sender, mintedTokenId);
             mintedTokenId++;
         }
 
-
         success = true;
     }
-
-
-
-
 
     function transferLeftoverNFT(address recipient) external onlyOwner returns(bool success){
         require(block.timestamp > endTime, "LaunchPad has not ended");
@@ -234,10 +156,6 @@ contract LaunchPad is ERC721 {
         success = true;
     }
 
-
-
-
-
     // function transferLeftoverTokens(IERC20 _tokenContract) public returns(bool success){
     //     require(msg.sender == owner, "Not Owner");
     //     uint256 amount = _tokenContract.balanceOf(address(this));
@@ -246,35 +164,10 @@ contract LaunchPad is ERC721 {
     //     success = true;
     // }
 
-
-
-
-
     // function withdrawEth() external payable {
     //     require(msg.sender == owner, "Not Owner");
     //     payable(owner).transfer(address(this).balance);
     // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    // To enable the contract send out ether... to be done by only the launchpad owner
     function withdrawETH(address payable inputAddress, uint amount) external onlyOwner{
@@ -284,14 +177,11 @@ contract LaunchPad is ERC721 {
         require(success, "This transaction has failed");
     }
 
-
-
     //To withdraw USDT or other tokens deposited
    function withdrawToken(address _tokenContractAddress, address _receivingAddress, uint256 _tokenAmount) public onlyOwner {
         require(_receivingAddress != address(0), "Can't send tokens to address zero");
         // TODO
         // IERC20(_tokenContractAddress).transfer(_receivingAddress, _tokenAmount * 10 ** decimals());
    }
-
 
 }
