@@ -87,23 +87,6 @@ export const ongoing1 = [
     access: "Private Access",
     scan: "https://www.sepolia.etherscan.io",
   },
-  {
-    img: "image5.png",
-    logo: "image6.png",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Public Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-
-  {
-    img: "image2.jpg",
-    logo: "image1.jpg",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Public Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
 ];
 export const ongoing2 = [
   {
@@ -117,39 +100,6 @@ export const ongoing2 = [
   {
     img: "image2.jpg",
     logo: "image1.jpg",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Public Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-  {
-    img: "image1.jpg",
-    logo: "image2.jpg",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Public Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-  {
-    img: "image3.png",
-    logo: "image4.png",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Private Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-
-  {
-    img: "image5.png",
-    logo: "image6.png",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Public Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-  {
-    img: "image4.png",
-    logo: "image3.png",
     topic: "Awesome Launchpad",
     description: "lorem ipsum dolor sit amet",
     access: "Public Access",
@@ -269,27 +219,12 @@ export default function Launchpad() {
                           <h6>{data.description}</h6>
                         </div>
                       </div>
-                      <div className="py-4 px-2">
-                        <div className="flex justify-between ">
-                          <h4>Total Raised:</h4>
-                          <h4>$450,000 / $500,000</h4>
-                        </div>
-                        <div>
-                          <hr />
-                        </div>
-                      </div>
                       <div className="flex justify-evenly w-full p-4">
                         <div className="flex flex-col items-center">
-                          <p>Valuation</p>
-                          <h6>278K</h6>
-                        </div>
-                        <div className="flex flex-col items-center">
-                          <p>Access</p>
-                          <h6>{data.access}</h6>
-                        </div>
-                        <div className="flex flex-col items-center">
-                          <p>Base Allocation</p>
-                          <h6>$0</h6>
+                          <p className="text-center text-2xl text-bold">
+                            {" "}
+                            Coming Soon ...
+                          </p>
                         </div>
                       </div>
                       <div className="flex justify-center p-4">
@@ -337,7 +272,7 @@ export default function Launchpad() {
                       <div className="py-4 px-2">
                         <div className="flex justify-between ">
                           <h4>Total Raised:</h4>
-                          <h4>$450,000 / $500,000</h4>
+                          <h4>$500,000</h4>
                         </div>
                         <div>
                           <hr />
@@ -345,16 +280,9 @@ export default function Launchpad() {
                       </div>
                       <div className="flex justify-evenly w-full p-4">
                         <div className="flex flex-col items-center">
-                          <p>Valuation</p>
-                          <h6>278K</h6>
-                        </div>
-                        <div className="flex flex-col items-center">
-                          <p>Access</p>
-                          <h6>{data.access}</h6>
-                        </div>
-                        <div className="flex flex-col items-center">
-                          <p>Base Allocation</p>
-                          <h6>$0</h6>
+                          <p className="text-2xl text-bold">
+                            LaunchPad Ended...
+                          </p>
                         </div>
                       </div>
                       <div className="flex justify-center p-4">
@@ -369,6 +297,31 @@ export default function Launchpad() {
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
+        <div className="mt-3 rounded-lg shadow-xl bg-[#3a3a3a] flex justify-center gap-10 items-center p-6">
+          <div className="flex-1">
+            <h1 className="text-2xl px-8">
+              Want to raise funding for your favorite NFT, Create your LaunchPad
+              Now 👉🏼
+            </h1>
+          </div>
+          <div className="flex-1 flex flex-col gap-4 items-center">
+            <Image
+              src="/image1.jpg"
+              alt="icon"
+              width={250}
+              height={200}
+              className="rounded-md"
+            />
+            <Link
+              href="/createlaunchpad"
+              className="w-full flex justify-center"
+            >
+              <button className="bg-green-700 shadow-xl w-[50%] rounded-md py-4">
+                Create LaunchPad Now
+              </button>
+            </Link>
+          </div>
+        </div>
       </main>
     </div>
   );
