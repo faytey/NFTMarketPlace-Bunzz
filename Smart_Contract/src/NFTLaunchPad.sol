@@ -23,9 +23,8 @@ contract LaunchPadFactory {
 
     event LaunchPadCreated(address _launchpad, address _seller);
 
-    constructor() public {
-        //DAO Address
-        owner = msg.sender;
+    constructor(address _DAOAddress){
+        owner = _DAOAddress;
     }
 
     modifier onlyOwner {
@@ -54,7 +53,7 @@ contract LaunchPadFactory {
     }
 }
 
-contract LaunchPad is ERC721, ERC721URIStorage {
+contract LaunchPad is ERC721URIStorage {
     address public owner;
     uint duration;
     uint totalNftsForSale;
@@ -68,6 +67,7 @@ contract LaunchPad is ERC721, ERC721URIStorage {
     mapping(address => uint) NFTperAddr;
     uint256 numberOfSubscribers = 1;
     uint256 totalNFTCommitment;
+    string baseURI;
   
     mapping(address => uint) public subscriberIndex;  // Get the index of a suscriber
 
@@ -77,8 +77,9 @@ contract LaunchPad is ERC721, ERC721URIStorage {
 
     constructor(string memory _name,string memory _symbol, address _owner, string memory _uri) ERC721(_name, _symbol) {
         owner = _owner;
-        _safeMint(owner, mintedTokenId);
-        _setTokenURI(mintedTokenId, _uri);
+        baseURI = _uri;
+        // _safeMint(owner, mintedTokenId);
+        // _setTokenURI(mintedTokenId, _uri);
     }
 
     modifier onlyOwner {
@@ -125,7 +126,7 @@ contract LaunchPad is ERC721, ERC721URIStorage {
         success = true;
     }
 
-    function depositToken(address _token, uint256 _amtofNFT) public returns(bool success){
+    // function depositToken(address _token, uint256 _amtofNFT) public returns(bool success){
         // TODO
         // peg the number of nfts an address can purchase;
         // require(padId[_id].exists == true, "Token does not exist");
@@ -134,7 +135,7 @@ contract LaunchPad is ERC721, ERC721URIStorage {
         // require(msg.sender == creator[_id].creator, "You are not the admin");
         // padId[_id].TokenA.transfer(msg.sender, _amount);
         // success = true;
-    }
+    // }
 
     function withdrawNFT() public returns(bool success){
 
@@ -186,13 +187,21 @@ contract LaunchPad is ERC721, ERC721URIStorage {
     }
 
     //To withdraw USDT or other tokens deposited
-   function withdrawToken(address _tokenContractAddress, address _receivingAddress, uint256 _tokenAmount) public view onlyOwner {
-        require(_receivingAddress != address(0), "Can't send tokens to address zero");
-        // TODO
-        // IERC20(_tokenContractAddress).transfer(_receivingAddress, _tokenAmount * 10 ** decimals());
-   }
+    //function withdrawToken(address _tokenContractAddress, address _receivingAddress, uint256 _tokenAmount) public view onlyOwner {
+    //require(_receivingAddress != address(0), "Can't send tokens to address zero");
+    // TODO
+    // IERC20(_tokenContractAddress).transfer(_receivingAddress, _tokenAmount * 10 ** decimals());
+    //}
 
-   function tokenURI(uint256 tokenId) public view virtual override(ERC721, ERC721URIStorage) returns (string memory) {}
-   function _burn(uint256 tokenId) internal virtual override(ERC721, ERC721URIStorage) {}
+//    function tokenURI(uint256 tokenId) public view virtual override(ERC721URIStorage) returns (string memory) {
+//         // string memory _baseURI = _baseURI();
+//         return(string(abi.encodePacked(baseURI, tokenId)));
+//    }
+   
+   function _baseURI() internal view virtual override(ERC721) returns (string memory) {
+        return baseURI;
+    }
+//    function tokenURI(uint256 tokenId) public view virtual override(ERC721URIStorage) returns (string memory) {}
+//    function _burn(uint256 tokenId) internal virtual override(ERC721URIStorage) {}
 
 }

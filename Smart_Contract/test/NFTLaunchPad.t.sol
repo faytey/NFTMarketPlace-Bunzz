@@ -10,7 +10,7 @@ contract NFTLaunchPadTest is Test {
 
 
     function setUp() public {
-        factory = new LaunchPadFactory();
+        factory = new LaunchPadFactory(address(this));
  
     }
 
@@ -20,25 +20,25 @@ contract NFTLaunchPadTest is Test {
 
     function testFailCreateLaunchPadWithoutFee() public {
         testWhitelistAddress();
-        factory.createLaunchPad("Ogbeni", "OGN");
+        factory.createLaunchPad("Ogbeni", "OGN", "https://localhost.com/");
     }
 
     function testCreateLaunchPad() public {
         testWhitelistAddress();
-        address newlaunchpad = factory.createLaunchPad{value: 0.001 ether}("Ogbeni", "OGN");
+        address newlaunchpad = factory.createLaunchPad{value: 0.001 ether}("Ogbeni", "OGN", "https://localhost.com/");
         launchpad = LaunchPad(newlaunchpad);
     }
 
     function testStartLaunchPad() public {
         testCreateLaunchPad();
-        launchpad.startLaunchPad(5 minutes, 0.0001 ether, 100 ether, 10);
+        launchpad.startLaunchPad(5 minutes, 0.0001 ether, 100 ether);
     }
 
 
     function testFailStartLaunchPad() public {
         testCreateLaunchPad();
         vm.prank(address(0x01));
-        launchpad.startLaunchPad(5 minutes, 0.0001 ether, 100 ether, 50);
+        launchpad.startLaunchPad(5 minutes, 0.0001 ether, 100 ether);
     }
 
     function testFailDepositETH() public {
@@ -104,6 +104,11 @@ contract NFTLaunchPadTest is Test {
     function testWithdrawETH() public {
         testDepositETH();
         launchpad.withdrawETH(payable(address(this)), address(launchpad).balance);
+    }
+
+    function testTokenURI() public {
+        testWithdrawNFT();
+        launchpad.tokenURI(5);
     }
 
 
