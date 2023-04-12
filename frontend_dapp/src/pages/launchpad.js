@@ -122,7 +122,7 @@ export default function Launchpad() {
             </div>
           </Tab.List>
           <Tab.Panels>
-            <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
+            <Tab.Panel className="grid grid-cols-1 md:grid-cols-2 md:gap-10 py-10">
               {ongoing.map((data) => {
                 return (
                   <div
