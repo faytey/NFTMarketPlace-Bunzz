@@ -1,110 +1,88 @@
 import { Inter } from 'next/font/google'
-import {useEffect, useState} from 'react'
 import {Tab} from '@headlessui/react'
-import { erc20ABI, useAccount, useContractRead, useContractReads } from 'wagmi'
-import { azukiAbi, azukiAddr, baycAbi, baycAddr } from '@/utils/utils'
 import Link from 'next/link'
+import { MockData, MockData1 } from '@/utils/mockdata'
+import { erc20ABI, useContractRead, useContractReads } from 'wagmi'
+import { azukiContract, baycContract, marketplaceContract } from '@/utils/contractInfo'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 
 const inter = Inter({ subsets: ['latin'] })
 
 
-const MockData = [
-  {
-    name: 'Magic Mushroom 0325',
-    id: 1,
-    author: "Shroomie",
-    Img: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1583&q=80',
-    authorImg: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1583&q=80',
-    price: "1.03 ETH",
-    highestBid: "0.33 ETH",
-    detailsLink: "/"
-  },
-  {
-    name: 'Magic Mushroom 0325',
-    id: 2,
-    author: "Shroomie",
-    authorImg: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1583&q=80',
-    Img: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1583&q=80',
-    price: "1.03 ETH",
-    highestBid: "0.33 ETH",
-    detailsLink: "/"
-  },
-  {
-    name: 'Magic Mushroom 0325',
-    id: 3,
-    author: "Shroomie",
-    Img: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1583&q=80',
-    authorImg: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1583&q=80',
-    price: "1.03 ETH",
-    highestBid: "0.33 ETH",
-    detailsLink: "/"
-  },
-]
 
+const baseIpfs = "https://ipfs.io/ipfs/";
 
-const MockData1 = [
-  {
-    name: 'Magic Mushroom 0325',
-    id: 1,
-    author: "Shroomie",
-    Img: 'https://ethereum.org/static/9a6e158f4ffd1cb5de246a3ecd0d7f86/9d5bb/hackathon_transparent.webp',
-    authorImg: 'https://ethereum.org/static/9a6e158f4ffd1cb5de246a3ecd0d7f86/9d5bb/hackathon_transparent.webp',
-    price: "1.03 ETH",
-    highestBid: "0.33 ETH",
-    detailsLink: "/"
-  },
-  {
-    name: 'Magic Mushroom 0325',
-    id: 1,
-    author: "Shroomie",
-    Img: 'https://ethereum.org/static/9a6e158f4ffd1cb5de246a3ecd0d7f86/9d5bb/hackathon_transparent.webp',
-    authorImg: 'https://ethereum.org/static/9a6e158f4ffd1cb5de246a3ecd0d7f86/9d5bb/hackathon_transparent.webp',
-    price: "1.03 ETH",
-    highestBid: "0.33 ETH",
-    detailsLink: "/"
-  },
-]
+const getTokenURI = (tokenURI) => {
+  var url = `${baseIpfs}${tokenURI.slice(7)}`
+  return url;
+}
+
 
 
 
 
 export default function MarketPlace() {
 
-  const [info, setInfo] = useState();
+  // const [nftDetails, setNftDetails] = useState([]);
+  // const [nftDetails1, setNftDetails1] = useState([]);
+  const [marketplaceInfo, setMarketPlaceInfo] = useState();
 
 
-  const { data, error, isError, isLoading } = useContractReads(
-    {contracts: [
+  // {
+  //   name: 'token name',
+  //   id: index,
+  //    address: 'tokenAddress'
+  //   author: "author address",
+  //   Img: 'https://ethereum.org/static/9a6e158f4ffd1cb5de246a3ecd0d7f86/9d5bb/hackathon_transparent.webp',
+  //   authorImg: 'https://ethereum.org/static/9a6e158f4ffd1cb5de246a3ecd0d7f86/9d5bb/hackathon_transparent.webp',
+  //   price: "1.03 ETH",
+  //   highestBid: "0.33 ETH",
+  //   detailsLink: "/"
+  // },
+
+
+  const { data: marketplaceData, isError: marketplaceDataError, isLoading: marketplaceDataIsLoading } = useContractReads({
+    contracts: [
       {
-        address: '0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e',
-        abi: erc20ABI,
-        functionName: 'name',
+        ...marketplaceContract,
+        functionName: 'fetchItemListed',
       },
       {
-        address: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-        abi: erc20ABI,
-        functionName: 'name',
+        ...marketplaceContract,
+        functionName: "fetchMarketItems",
       },
-    ],}
-    );
-
-
-
-
-    
-    useEffect(
-      async () => {
-
-        if (isError) {
-          console.log("Error encountered:", error);
-        }
-        setInfo(data?.[1]);
+      {
+        ...marketplaceContract,
+        functionName: 'fetchMyNfts',
       },
-      []
-      )
-      
-      console.log(info);
+      {
+        ...marketplaceContract,
+        functionName: "listingPrice",
+      },
+  ]})
+
+  // const { data: collectionData, isError: collectionDataError, isLoading: collectionDataIsLoading } = useContractReads({
+  //   contracts: [
+  //     {
+  //       ...baycContract,
+  //       functionName: 'name',
+  //     },
+  //     {
+  //       ...azukiContract,
+  //       functionName: "name"
+  //     }
+  // ]})
+
+
+  
+
+  
+  // useEffect(
+
+  // )
+
 
 
   return (
@@ -113,6 +91,9 @@ export default function MarketPlace() {
         <p className='text-3xl'>Browse Marketplace</p>
         <p className='text-sm'>Browse through more than 50k NFTs on the NFT Marketplace.</p>
         <input placeholder='Search your favourite NFTs' className='border rounded-lg p-2 bg-black' />
+      </div>
+      <div>
+        <Link href={"/marketplace/listitem"}>List Item</Link>
       </div>
       <div className="w-full">
           <Tab.Group>
@@ -129,7 +110,7 @@ export default function MarketPlace() {
                       <Link key={item.id} href={item.detailsLink}>
                         <img src={item.Img}/>
                         <div className='m-0 p-3'>
-                          <p className='font-bold'>{item.name}</p>
+                          <p className='font-bold'>{item.author}</p>
                           <div className='flex'>
                             <img src={item.authorImg} className='' width={60} />
                             <p>{item.author}</p>
@@ -159,7 +140,7 @@ export default function MarketPlace() {
                       <Link key={item.id} href={item.detailsLink}>
                         <img src={item.Img}/>
                         <div className='m-0 p-3'>
-                          <p className='font-bold'>{item.name}</p>
+                          <p className='font-bold'>{item.author}</p>
                           <div className='flex'>
                             <img src={item.authorImg} className='' width={60} />
                             <p>{item.author}</p>

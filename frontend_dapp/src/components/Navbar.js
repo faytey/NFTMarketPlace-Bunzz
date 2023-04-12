@@ -10,10 +10,9 @@ export default function Navbar() {
       <div className="text-3xl font-bold">
         <Link href={"/"}>BUNZZ</Link>
       </div>
-      <div>
+      <div className="hidden md:block">
         <ul className="space-x-7 text-lg">
           <Link href={"/"}>Home</Link>
-          <Link href={"/about"}>About</Link>
           <Link href={"/launchpad"}>Launch Pad</Link>
           <Link href={"/marketplace"}>Market Place</Link>
           <Link href={"/profile"}>Profile</Link>
