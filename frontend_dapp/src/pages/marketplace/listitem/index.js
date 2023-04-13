@@ -4,7 +4,8 @@ import { erc721ABI, useContractRead, useContractReads, useContractWrite, usePrep
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { launchpadContract, marketplaceContract } from '@/utils/contractInfo'
+import { azukiContract, launchpadContract, marketplaceContract } from '@/utils/contractInfo'
+import NFTDetailsTemplate1 from '@/components/marketplace/NFTDetailsTemplate1'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -36,17 +37,17 @@ const getTokenURI = (tokenURI) => {
 
 export default function ListItem() {
 
-    const [itemDetails, setItemDetails] = useState([]);
+    const [itemDetails, setItemDetails] = useState();
 
     const handleListItem = () => {}
 
-    const { config } = usePrepareContractWrite({
-        ...marketplaceContract,
-        functionName: 'ListItemForSale',
-        args: itemDetails
-    })
+    // const { config } = usePrepareContractWrite({
+    //     ...marketplaceContract,
+    //     functionName: 'ListItemForSale',
+    //     args: [...itemDetails]
+    // })
 
-    const { data, isError, isLoading } = useContractWrite({config})
+    // const { data, isError, isLoading } = useContractWrite({config})
 
 
 
