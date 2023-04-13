@@ -5,9 +5,9 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <main className="mt-6" style = {{transition:"3s ease-in-out"}}>
-      <div className="grid grid-cols-2 pb-6" id="firstHomeSection" style={{transition:"3s ease-in-out", paddingLeft:"12%", paddingRight:"12%"}}>
-      
+    <main className="mt-6 mb-6" style = {{transition:"3s ease-in-out"}}>
+
+      <div className="grid grid-cols-2 pb-6" id="firstHomeSection" style={{paddingLeft:"12%", paddingRight:"12%"}}>     
       <div className = "grid-cols-1" style={{backgroundColor:"",
       paddingRight:"10%", paddingTop:"5%", paddingBottom:"5%",}}>
       <h1 style={{fontSize:"350%", fontWeight:"bold"}}>Discover Digital Art & Collect Nfts</h1>
@@ -37,7 +37,6 @@ export default function Home() {
       <img src="././assets/benz.jpg" className = "" id="homepagefirstPic" style={{transition:"5s ease-in-out",
        boxShadow:"15px 15px 10px 2px rgba(20,20,20,0.9)", animation:"homepicanimation2 3s alternate infinite",borderRadius:"" }} />
       </div>
-      
       </div>
     
       <div className = "mt-4 pb-8" id="secondHomeSection" style={{paddingLeft:"12%", paddingRight:"12%", fontSize:"120%"}}>
@@ -85,9 +84,156 @@ export default function Home() {
             </div>
             </p>
           </div> 
-       
+         </div>
+      
+      <div className="" id="thirdhomesection" style={{paddingLeft:"12%", paddingRight:"12%", marginTop:"8%"}}>
+      <div className='grid grid-cols-2 mb-10'>
+        <div className='grid-cols-1' style={{fontSize:"120%"}}>
+          <p style={{fontSize:"160%", fontWeight:"bold"}}>Top Creators</p>
+          <p>Checkout Top Rated Creators On The Nft Marketplace</p>
+        </div>
+        <div className='grid-cols-1' style={{}}>
+          <button className='btn float-right py-3 mt-3 rounded-full px-8 font-bold' type="submit" id="homeButton"
+          style={{border:"2px solid #a244ff", transition:"1s ease-in-out"}}>View Rankings</button>
+        </div>
       </div>
 
+      <div className='grid grid-cols-4 gap-8 mb-8'>
+      <p className='grid-cols-1 text-center' id="thirdsectiontopcreators" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"6%"}}>
+        <img src="././assets/firstsetimagesub1.png" className='rounded-full sm:ml-4' style={{transform:"scale3d(0.6,0.6,0.6)",marginTop:"-7%"}}/>
+        <p className="font-bold" style={{fontSize:"130%", marginTop:"-10%"}}>keepitreal</p>
+        <p>Total Sales: 34.53 ETH</p>
+      </p>
+      <p className='grid-cols-1 text-center' id="thirdsectiontopcreators" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"6%"}}>
+        <img src="././assets/firstsetimagesub1.png" className='rounded-full sm:ml-4' style={{transform:"scale3d(0.6,0.6,0.6)",marginTop:"-7%"}}/>
+        <p className="font-bold" style={{fontSize:"130%", marginTop:"-10%"}}>keepitreal</p>
+        <p>Total Sales: 34.53 ETH</p>
+      </p>
+      <p className='grid-cols-1 text-center' id="thirdsectiontopcreators" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"6%"}}>
+        <img src="././assets/firstsetimagesub1.png" className='rounded-full sm:ml-4' style={{transform:"scale3d(0.6,0.6,0.6)",marginTop:"-7%"}}/>
+        <p className="font-bold" style={{fontSize:"130%", marginTop:"-10%"}}>keepitreal</p>
+        <p>Total Sales: 34.53 ETH</p>
+      </p>
+      <p className='grid-cols-1 text-center' id="thirdsectiontopcreators" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"6%"}}>
+        <img src="././assets/firstsetimagesub1.png" className='rounded-full sm:ml-4' style={{transform:"scale3d(0.6,0.6,0.6)",marginTop:"-7%"}}/>
+        <p className="font-bold" style={{fontSize:"130%", marginTop:"-10%"}}>keepitreal</p>
+        <p>Total Sales: 34.53 ETH</p>
+      </p>
+      </div>
+      <div className='grid grid-cols-4 gap-8 mb-8'>
+      <p className='grid-cols-1 text-center' id="thirdsectiontopcreators" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"6%"}}>
+        <img src="././assets/firstsetimagesub1.png" className='rounded-full sm:ml-4' style={{transform:"scale3d(0.6,0.6,0.6)",marginTop:"-7%"}}/>
+        <p className="font-bold" style={{fontSize:"130%", marginTop:"-10%"}}>keepitreal</p>
+        <p>Total Sales: 34.53 ETH</p>
+      </p>
+      <p className='grid-cols-1 text-center' id="thirdsectiontopcreators" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"6%"}}>
+        <img src="././assets/firstsetimagesub1.png" className='rounded-full sm:ml-4' style={{transform:"scale3d(0.6,0.6,0.6)",marginTop:"-7%"}}/>
+        <p className="font-bold" style={{fontSize:"130%", marginTop:"-10%"}}>keepitreal</p>
+        <p>Total Sales: 34.53 ETH</p>
+      </p>
+      <p className='grid-cols-1 text-center' id="thirdsectiontopcreators" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"6%"}}>
+        <img src="././assets/firstsetimagesub1.png" className='rounded-full sm:ml-4' style={{transform:"scale3d(0.6,0.6,0.6)",marginTop:"-7%"}}/>
+        <p className="font-bold" style={{fontSize:"130%", marginTop:"-10%"}}>keepitreal</p>
+        <p>Total Sales: 34.53 ETH</p>
+      </p>
+      <p className='grid-cols-1 text-center' id="thirdsectiontopcreators" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"6%"}}>
+        <img src="././assets/firstsetimagesub1.png" className='rounded-full sm:ml-4' style={{transform:"scale3d(0.6,0.6,0.6)",marginTop:"-7%"}}/>
+        <p className="font-bold" style={{fontSize:"130%", marginTop:"-10%"}}>keepitreal</p>
+        <p>Total Sales: 34.53 ETH</p>
+      </p>
+      </div>
+      <div className='grid grid-cols-4 gap-8 mb-8'>
+      <p className='grid-cols-1 text-center' id="thirdsectiontopcreators" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"6%"}}>
+        <img src="././assets/firstsetimagesub1.png" className='rounded-full sm:ml-4' style={{transform:"scale3d(0.6,0.6,0.6)",marginTop:"-7%"}}/>
+        <p className="font-bold" style={{fontSize:"130%", marginTop:"-10%"}}>keepitreal</p>
+        <p>Total Sales: 34.53 ETH</p>
+      </p>
+      <p className='grid-cols-1 text-center' id="thirdsectiontopcreators" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"6%"}}>
+        <img src="././assets/firstsetimagesub1.png" className='rounded-full sm:ml-4' style={{transform:"scale3d(0.6,0.6,0.6)",marginTop:"-7%"}}/>
+        <p className="font-bold" style={{fontSize:"130%", marginTop:"-10%"}}>keepitreal</p>
+        <p>Total Sales: 34.53 ETH</p>
+      </p>
+      <p className='grid-cols-1 text-center' id="thirdsectiontopcreators" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"6%"}}>
+        <img src="././assets/firstsetimagesub1.png" className='rounded-full sm:ml-4' style={{transform:"scale3d(0.6,0.6,0.6)",marginTop:"-7%"}}/>
+        <p className="font-bold" style={{fontSize:"130%", marginTop:"-10%"}}>keepitreal</p>
+        <p>Total Sales: 34.53 ETH</p>
+      </p>
+      <p className='grid-cols-1 text-center' id="thirdsectiontopcreators" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"6%"}}>
+        <img src="././assets/firstsetimagesub1.png" className='rounded-full sm:ml-4' style={{transform:"scale3d(0.6,0.6,0.6)",marginTop:"-7%"}}/>
+        <p className="font-bold" style={{fontSize:"130%", marginTop:"-10%"}}>keepitreal</p>
+        <p>Total Sales: 34.53 ETH</p>
+      </p>
+      </div>
+      </div>
+
+      <div className='' id ="fourthhomesection" style={{paddingLeft:"12%", paddingRight:"12%", marginTop:"6%"}}>
+      <p className='' style={{fontSize:"180%", fontWeight:"bold"}}>Browse Categories</p>
+      <div className="grid grid-cols-4 gap-8 mb-4" >
+        <p className='grid-cols-1' id="fourthsectioncategories" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
+          <img src="././assets/DistantGalaxy.png" />
+          <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Art</p>
+        </p>
+        <p className='grid-cols-1' id="fourthsectioncategories" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
+          <img src="././assets/DistantGalaxy.png" />
+          <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Collectibles</p>
+        </p>
+        <p className='grid-cols-1' id="fourthsectioncategories" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
+          <img src="././assets/DistantGalaxy.png" />
+          <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Music</p>
+        </p>
+        <p className='grid-cols-1' id="fourthsectioncategories" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
+          <img src="././assets/DistantGalaxy.png" />
+          <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Photography</p>
+        </p>
+      </div>
+      <div className="grid grid-cols-4 gap-8 mb-4" >
+        <p className='grid-cols-1' id="fourthsectioncategories" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
+          <img src="././assets/DistantGalaxy.png" />
+          <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Art</p>
+        </p>
+        <p className='grid-cols-1' id="fourthsectioncategories" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
+          <img src="././assets/DistantGalaxy.png" />
+          <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Collectibles</p>
+        </p>
+        <p className='grid-cols-1' id="fourthsectioncategories" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
+          <img src="././assets/DistantGalaxy.png" />
+          <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Music</p>
+        </p>
+        <p className='grid-cols-1' id="fourthsectioncategories" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
+          <img src="././assets/DistantGalaxy.png" />
+          <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Photography</p>
+        </p>
+      </div>
+      </div>
+
+      <div className='' id="fifthhomesection" style={{paddingLeft:"12%", paddingRight:"12%", marginTop:"6%"}}>
+      <div className='grid grid-cols-2 mb-10'>
+        <div className='grid-cols-1' style={{fontSize:"120%"}}>
+          <p style={{fontSize:"160%", fontWeight:"bold"}}>Discover More Nfts</p>
+          <p>Explore New Trending Nfts</p>
+        </div>
+        <div className='grid-cols-1' style={{}}>
+          <button className='btn float-right py-3 mt-3 rounded-full px-8 font-bold' type="submit" id="homeButton"
+          style={{border:"2px solid #a244ff", transition:"1s ease-in-out"}}>See All</button>
+        </div>
+      </div>
+      <div className="grid grid-cols-3 gap-8 mb-4" >
+        <p className='grid-cols-1' id="fifthsectioncontainers" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
+          <img src="././assets/finegirl.png" />
+          <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Distant Galaxy</p>
+        </p>
+        <p className='grid-cols-1' id="fifthsectioncontainers" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
+          <img src="././assets/SpaceTales.png" />
+          <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Economy</p>
+        </p>
+        <p className='grid-cols-1' id="fifthsectioncontainers" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
+          <img src="././assets/CherryGirl.png" />
+          <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Astrofiction</p>
+        </p>
+      </div>
+     
+      </div>
+   
     </main>
   )
 }
