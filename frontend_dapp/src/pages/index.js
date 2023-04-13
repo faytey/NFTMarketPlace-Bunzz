@@ -39,11 +39,53 @@ export default function Home() {
       </div>
       
       </div>
-
-      <div className = "mt-4" id="secondHomeSection" style={{paddingLeft:"12%", paddingRight:"12%"}}>
-        <h1>Trending Collection</h1>
+    
+      <div className = "mt-4 pb-8" id="secondHomeSection" style={{paddingLeft:"12%", paddingRight:"12%", fontSize:"120%"}}>
+        <h1 style={{fontSize:"160%", fontWeight:"bold"}}>Trending Collection</h1>
         <p>Checkout Our Weekly Updated Trending Collection.</p>
 
+        <div className="mt-10 grid grid-cols-3 gap-8">
+          <p className='grid-col-1' >
+            <img src="././assets/dog1.png" id="firstpicset"/>
+            <div className='grid grid-cols-3 mt-5 gap-5'>
+              <p className='grid-cols-1'><img src="././assets/firstsetimagesub1.png" id="firstpicsetsub"/></p>
+              <p className='grid-cols-1'><img src="././assets/firstsetimagesub2.png" id="firstpicsetsub"/></p>
+              <p className='grid-cols-1 text-center bg-purple' id = "firstpicsetsubtext">1025+</p>
+            </div>
+            <p style={{fontSize:"120%", fontWeight:"bold"}}>Dsgn Animals</p>
+            <div className='grid grid-cols-5'>
+            <p className='grid-col-1'><img src="././assets/finegirl.png" className='rounded-full' id="smallestpics" /></p>
+            <p className='=grid-cols-4' style={{marginLeft:"-30%"}} >MrFox</p>
+            </div>
+            </p>
+          <p className='grid-col-1'>
+            <img src="././assets/standup.png" id="firstpicset"/>
+            <div className='grid grid-cols-3 mt-5 gap-5'>
+              <p className='grid-cols-1'><img src="././assets/firstsetimagesub1.png" id="firstpicsetsub"/></p>
+              <p className='grid-cols-1'><img src="././assets/firstsetimagesub2.png" id="firstpicsetsub"/></p>
+              <p className='grid-cols-1' id = "firstpicsetsubtext">1025+</p>
+            </div>
+            <p style={{fontSize:"120%", fontWeight:"bold"}}>Magic Mushrooms</p>
+            <div className='grid grid-cols-5'>
+            <p className='grid-col-1'><img src="././assets/finegirl.png" className='rounded-full' id="smallestpics"/></p>
+            <p className='=grid-cols-4' style={{marginLeft:"-30%"}} >Shroomie</p>
+            </div>
+            </p>
+          <p className='grid-col-1' >
+            <img src="././assets/mushroom.png" id="firstpicset"/>
+            <div className='grid grid-cols-3 mt-5 gap-5'>
+              <p className='grid-cols-1'><img src="././assets/firstsetimagesub1.png" id="firstpicsetsub"/></p>
+              <p className='grid-cols-1'><img src="././assets/firstsetimagesub2.png" id="firstpicsetsub"/></p>
+              <p className='grid-cols-1' id = "firstpicsetsubtext">1025+</p>
+            </div>
+            <p style={{fontSize:"120%", fontWeight:"bold"}}>Disco Machines</p>
+            <div className='grid grid-cols-5'>
+            <p className='grid-col-1'><img src="././assets/finegirl.png" className='rounded-full' id="smallestpics"/></p>
+            <p className='=grid-cols-4' style={{marginLeft:"-30%"}} >BeKind2Robots</p>
+            </div>
+            </p>
+          </div> 
+       
       </div>
 
     </main>
