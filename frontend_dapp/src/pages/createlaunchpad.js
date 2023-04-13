@@ -18,13 +18,14 @@ export default function createlaunchpad() {
   const handleSubmit = (e) => {
     e.preventDefault();
     write?.();
+    alert("Successful");
   };
   const { config } = usePrepareContractWrite({
     address: launchpadFactoryAddr,
     abi: launchpadFactoryAbi,
     functionName: "createLaunchPad",
     args: [name, symbol, uri],
-    // overrides: { value: ethers.utils.parseEther("0.0006") },
+    overrides: { value: ethers.utils.parseEther("0.0006") },
   });
   const { data, isLoading, isSuccess, write } = useContractWrite(config);
 
