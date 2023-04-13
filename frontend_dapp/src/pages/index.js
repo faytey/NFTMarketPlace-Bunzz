@@ -221,14 +221,36 @@ export default function Home() {
         <p className='grid-cols-1' id="fifthsectioncontainers" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
           <img src="././assets/finegirl.png" />
           <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Distant Galaxy</p>
+          <div className='grid grid-cols-4' style={{marginTop:"2%", paddingLeft:"10%"}} >
+            <p className='grid-cols-1' ><img src="././assets/Avatar.png" className='rounded-full' style={{height:"100%", width:"50%", transform:""}}/></p>
+            <p className='grid-cols-3' style={{marginLeft:"-25%", marginTop:"10%"}}>MoonDancer</p>
+          </div>
+          <div className='grid grid-cols-2'>
+            <p className='grid-cols-1'>
+              <p></p>
+              <p></p>
+            </p>
+            <p className='grid-cols-1'>
+            <p></p>
+            <p></p>
+            </p>
+          </div>
         </p>
         <p className='grid-cols-1' id="fifthsectioncontainers" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
           <img src="././assets/SpaceTales.png" />
           <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Economy</p>
+          <div className='grid grid-cols-4' style={{marginTop:"2%", paddingLeft:"10%"}} >
+            <p className='grid-cols-1' ><img src="././assets/Avatar.png" className='rounded-full' style={{height:"100%", width:"50%", transform:""}}/></p>
+            <p className='grid-cols-3' style={{marginLeft:"-25%", marginTop:"10%"}}>Spaceone</p>
+          </div>
         </p>
         <p className='grid-cols-1' id="fifthsectioncontainers" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
           <img src="././assets/CherryGirl.png" />
           <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Astrofiction</p>
+          <div className='grid grid-cols-4' style={{marginTop:"2%", paddingLeft:"10%"}} >
+            <p className='grid-cols-1' ><img src="././assets/Avatar.png" className='rounded-full' style={{height:"100%", width:"50%", transform:""}}/></p>
+            <p className='grid-cols-3' style={{marginLeft:"-25%", marginTop:"10%"}}>Fantasy</p>
+          </div>
         </p>
       </div>
      
