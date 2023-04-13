@@ -225,14 +225,14 @@ export default function Home() {
             <p className='grid-cols-1' ><img src="././assets/Avatar.png" className='rounded-full' style={{height:"100%", width:"50%", transform:""}}/></p>
             <p className='grid-cols-3' style={{marginLeft:"-25%", marginTop:"10%"}}>MoonDancer</p>
           </div>
-          <div className='grid grid-cols-2'>
+          <div className='grid grid-cols-2' style={{paddingLeft:"10%", paddingRight:"10%", marginTop:"5%"}}>
             <p className='grid-cols-1'>
-              <p></p>
-              <p></p>
+              <p style={{fontSize:"80%", color:"#bbbbbb", fontFamily:"georgia"}}>Price</p>
+              <p>1.63 ETH</p>
             </p>
-            <p className='grid-cols-1'>
-            <p></p>
-            <p></p>
+            <p className='grid-cols-1' >
+            <p style={{float:"right",fontSize:"80%", color:"#aaaaaa", fontFamily:"georgia"}}>Highest Bid</p><br></br>
+            <p style={{float:"right"}}>0.33 wETH</p>
             </p>
           </div>
         </p>
@@ -243,6 +243,16 @@ export default function Home() {
             <p className='grid-cols-1' ><img src="././assets/Avatar.png" className='rounded-full' style={{height:"100%", width:"50%", transform:""}}/></p>
             <p className='grid-cols-3' style={{marginLeft:"-25%", marginTop:"10%"}}>Spaceone</p>
           </div>
+          <div className='grid grid-cols-2' style={{paddingLeft:"10%", paddingRight:"10%", marginTop:"5%"}}>
+            <p className='grid-cols-1'>
+              <p style={{fontSize:"80%", color:"#bbbbbb", fontFamily:"georgia"}}>Price</p>
+              <p>1.63 ETH</p>
+            </p>
+            <p className='grid-cols-1' >
+            <p style={{float:"right",fontSize:"80%", color:"#aaaaaa", fontFamily:"georgia"}}>Highest Bid</p><br></br>
+            <p style={{float:"right"}}>0.33 wETH</p>
+            </p>
+          </div>
         </p>
         <p className='grid-cols-1' id="fifthsectioncontainers" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
           <img src="././assets/CherryGirl.png" />
@@ -250,6 +260,16 @@ export default function Home() {
           <div className='grid grid-cols-4' style={{marginTop:"2%", paddingLeft:"10%"}} >
             <p className='grid-cols-1' ><img src="././assets/Avatar.png" className='rounded-full' style={{height:"100%", width:"50%", transform:""}}/></p>
             <p className='grid-cols-3' style={{marginLeft:"-25%", marginTop:"10%"}}>Fantasy</p>
+          </div>
+          <div className='grid grid-cols-2' style={{paddingLeft:"10%", paddingRight:"10%", marginTop:"5%"}}>
+            <p className='grid-cols-1'>
+              <p style={{fontSize:"80%", color:"#bbbbbb", fontFamily:"georgia"}}>Price</p>
+              <p>1.63 ETH</p>
+            </p>
+            <p className='grid-cols-1' >
+            <p style={{float:"right",fontSize:"80%", color:"#aaaaaa", fontFamily:"georgia"}}>Highest Bid</p><br></br>
+            <p style={{float:"right"}}>0.33 wETH</p>
+            </p>
           </div>
         </p>
       </div>
