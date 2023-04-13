@@ -1,4 +1,4 @@
-const launchpadFactoryAddr = 0x224dd212d00da2b65504728d166efd2d24c088bf;
+const launchpadFactoryAddr = "0x224dd212d00da2b65504728d166efd2d24c088bf";
 
 const marketplaceAddr = 0xf608b2e0f53918d77efbd7b3339d7b61234a4c9e;
 

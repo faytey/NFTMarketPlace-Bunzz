@@ -188,15 +188,15 @@ export default function Launchpad() {
               })}
             </Tab.Panel>
             <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
-              {ongoing1.map((data) => {
+              {ongoing1.map((data1) => {
                 return (
                   <div
-                    key={data}
+                    key={data1}
                     className="rounded-lg shadow-2xl bg-[#3a3a3a] p-5"
                   >
                     <div className="flex justify-center py-2">
                       <Image
-                        src={`/${data.img}`}
+                        src={`/${data1.img}`}
                         alt="image"
                         width={500}
                         height={100}
@@ -207,7 +207,7 @@ export default function Launchpad() {
                       <div className="flex gap-3 p-2 border-b-2">
                         <div>
                           <Image
-                            src={`/${data.logo}`}
+                            src={`/${data1.logo}`}
                             alt="image"
                             width={150}
                             height={200}
@@ -215,8 +215,8 @@ export default function Launchpad() {
                           />
                         </div>
                         <div className="flex flex-col">
-                          <h1 className="text-3xl">{data.topic}</h1>
-                          <h6>{data.description}</h6>
+                          <h1 className="text-3xl">{data1.topic}</h1>
+                          <h6>{data1.description}</h6>
                         </div>
                       </div>
                       <div className="flex justify-evenly w-full p-4">
@@ -238,15 +238,15 @@ export default function Launchpad() {
               })}
             </Tab.Panel>
             <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
-              {ongoing2.map((data) => {
+              {ongoing2.map((data2) => {
                 return (
                   <div
-                    key={data}
+                    key={data2}
                     className="rounded-lg shadow-2xl bg-[#3a3a3a] p-5"
                   >
                     <div className="flex justify-center py-2">
                       <Image
-                        src={`/${data.img}`}
+                        src={`/${data2.img}`}
                         alt="image"
                         width={500}
                         height={100}
@@ -257,7 +257,7 @@ export default function Launchpad() {
                       <div className="flex gap-3 p-2 border-b-2">
                         <div>
                           <Image
-                            src={`/${data.logo}`}
+                            src={`/${data2.logo}`}
                             alt="image"
                             width={150}
                             height={200}
@@ -265,8 +265,8 @@ export default function Launchpad() {
                           />
                         </div>
                         <div className="flex flex-col">
-                          <h1 className="text-3xl">{data.topic}</h1>
-                          <h6>{data.description}</h6>
+                          <h1 className="text-3xl">{data2.topic}</h1>
+                          <h6>{data2.description}</h6>
                         </div>
                       </div>
                       <div className="py-4 px-2">
