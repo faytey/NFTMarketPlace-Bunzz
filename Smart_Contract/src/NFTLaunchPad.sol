@@ -8,11 +8,11 @@ import "../lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721UR
 
 contract LaunchPadFactory {
 
-    address owner;
-    uint totalLaunchPads = 1;
-    uint listingFee = 0.0006 ether;
-    mapping(address => bool) whitelistedAddresses;
-    mapping(uint => PadDetails) LaunchPads;
+    address public owner;
+    uint public totalLaunchPads = 1;
+    uint public listingFee = 0.0006 ether;
+    mapping(address => bool) public whitelistedAddresses;
+    mapping(uint => PadDetails) public LaunchPads;
 
     struct PadDetails {
         string name;
@@ -55,19 +55,19 @@ contract LaunchPadFactory {
 
 contract LaunchPad is ERC721URIStorage {
     address public owner;
-    uint duration;
-    uint totalNftsForSale;
-    uint amtRaised;
-    uint price;
-    uint256 startTime;
-    uint256 endTime;
-    uint256 totalAmountNeeded;
-    uint mintedTokenId;
-    address[] subscribers;
-    mapping(address => uint) NFTperAddr;
-    uint256 numberOfSubscribers = 1;
-    uint256 totalNFTCommitment;
-    string baseURI;
+    uint public duration;
+    uint public totalNftsForSale;
+    uint public amtRaised;
+    uint public price;
+    uint256 public startTime;
+    uint256 public endTime;
+    uint256 public totalAmountNeeded;
+    uint public mintedTokenId;
+    address[] public subscribers;
+    mapping(address => uint) public NFTperAddr;
+    uint256 public numberOfSubscribers = 1;
+    uint256 public totalNFTCommitment;
+    string public baseURI;
   
     mapping(address => uint) public subscriberIndex;  // Get the index of a suscriber
 

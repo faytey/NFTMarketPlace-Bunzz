@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
-        <Layout>
+        <Layout provider={provider}>
           <Component {...pageProps} />
         </Layout>
       </RainbowKitProvider>

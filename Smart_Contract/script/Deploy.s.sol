@@ -15,7 +15,7 @@ contract DeployScript is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         launchpadFactory = new LaunchPadFactory(0xe97a4C739b738e57539566547c3757ecb1bA223a);
-        marketPlace = new NFTMarketplace();
+        // marketPlace = new NFTMarketplace();
 
         vm.stopBroadcast();
     }

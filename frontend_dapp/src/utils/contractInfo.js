@@ -49,6 +49,10 @@ const launchpadContract = {
     },
   ],
 };
+    address: '0xb32dF3e8800d7522C0ffa171F40861389351C9CA',
+    abi: [{"inputs":[{"internalType":"address","name":"_DAOAddress","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_launchpad","type":"address"},{"indexed":false,"internalType":"address","name":"_seller","type":"address"}],"name":"LaunchPadCreated","type":"event"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"LaunchPads","outputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"address","name":"creator","type":"address"},{"internalType":"uint256","name":"timeCreated","type":"uint256"},{"internalType":"address","name":"padAddress","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"symbol","type":"string"},{"internalType":"string","name":"uri","type":"string"}],"name":"createLaunchPad","outputs":[{"internalType":"address","name":"_launchpad","type":"address"}],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"listingFee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalLaunchPads","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"whitelistAddress","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"whitelistedAddresses","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"}],
+}
+01a7966ce10c2fdb8fb5f2bd8c15aeaffdfe0d77
 
 const marketplaceContract = {
   address: "0xf608b2e0f53918d77efbd7b3339d7b61234a4c9e",
