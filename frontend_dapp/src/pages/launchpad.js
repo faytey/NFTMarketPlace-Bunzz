@@ -66,7 +66,7 @@ export const past = [
   },
 ];
 export default function Launchpad() {
-  // const [read, setRead] = useState();
+  const [read, setRead] = useState();
 
   const { address } = useAccount();
   const {
@@ -79,10 +79,10 @@ export default function Launchpad() {
     functionName: "totalLaunchPads",
   });
 
-  // useEffect(() => {
-  //   setRead(reads);
-  //   console.log(read);
-  // }, [read]);
+  useEffect(() => {
+    setRead(reads);
+    console.log(read);
+  }, [read]);
 
   const Reads = Number(reads);
 
@@ -109,9 +109,9 @@ export default function Launchpad() {
         <Tab.Group>
           <Tab.List>
             <div className="flex justify-evenly bg-[#3c3c3c] py-4 rounded-xl">
+              <Tab className="outline-none">HOME</Tab>
               <Tab className="outline-none">ONGOING</Tab>
               <Tab className="outline-none">UPCOMING</Tab>
-              <Tab className="outline-none">PAST</Tab>
             </div>
           </Tab.List>
           <Tab.Panels>
@@ -175,7 +175,7 @@ export default function Launchpad() {
               {past.map((data2) => {
                 return (
                   <Link
-                    href={`/past/${data2.id}`}
+                    href={`/upcoming/${data2.id}`}
                     key={data2.id}
                     className="rounded-lg shadow-2xl bg-[#3a3a3a] p-5"
                   >

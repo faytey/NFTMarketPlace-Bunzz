@@ -1,4 +1,4 @@
-import { launchpadFactory } from "@/utils/contractInfo";
+import { launchpadContract, launchpadFactory } from "@/utils/contractInfo";
 import { ethers } from "ethers";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,9 +18,7 @@ const Deposit = () => {
 
   const { address } = useAccount();
 
-  const [name, setName] = useState("");
-  const [symbol, setSymbol] = useState("");
-  const [uri, setUri] = useState("");
+  const [amount, setAmount] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,11 +26,11 @@ const Deposit = () => {
     alert("Successful");
   };
   const { config } = usePrepareContractWrite({
-    address: launchpadFactory.address,
-    abi: launchpadFactory.abi,
-    functionName: "createLaunchPad",
-    args: [name, symbol, uri],
-    overrides: { value: ethers.utils.parseEther("0.0006") },
+    address: launchpadContract.address,
+    abi: launchpadContract.abi,
+    functionName: "depositETH",
+    args: [amount],
+    overrides: { value: ethers.utils.parseEther(price) * amount },
   });
   const { data, isLoading, isSuccess, write } = useContractWrite(config);
 
@@ -56,7 +54,25 @@ const Deposit = () => {
     console.log("Your wait data is ", sendWaitData);
   }
 
-  return <div>Hello I'm the deposit page</div>;
+  return (
+    <div>
+      <p>Hello I'm the deposit page</p>
+      <h1>Support this Awesome LaunchPad</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="amount">Amount: </label>
+        <input
+          type="number"
+          id="amount"
+          value={amount}
+          placeholder="Enter Amount to Deposit"
+          onChange={(e) => setAmount(e.target.value)}
+        />
+        <button type="submit">
+          {isLoading || loadWaitData ? "Submitting" : "SUBMIT"}
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default Deposit;
