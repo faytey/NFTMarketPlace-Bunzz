@@ -1,3 +1,4 @@
+import { launchpadFactory } from "@/utils/contractInfo";
 import { ethers } from "ethers";
 import React, { useState } from "react";
 import {
@@ -21,8 +22,8 @@ export default function createlaunchpad() {
     alert("Successful");
   };
   const { config } = usePrepareContractWrite({
-    address: launchpadFactoryAddr,
-    abi: launchpadFactoryAbi,
+    address: launchpadFactory.address,
+    abi: launchpadFactory.abi,
     functionName: "createLaunchPad",
     args: [name, symbol, uri],
     overrides: { value: ethers.utils.parseEther("0.0006") },
