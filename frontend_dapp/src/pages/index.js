@@ -305,7 +305,7 @@ export default function Home() {
         </p>
         <p className='grid-cols-1' style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"9%", paddingTop:"3%", textAlign:"center", paddingLeft:"10%", paddingRight:"10%",}}>
           <img src="././assets/icon.svg" className='rounded-full' style={{ transform:"scale3D(0.9,0.9,0.9)",}}/>
-          <p style={{fontSize:"120%", fontWeight:"bold"}}>SCreate Collection</p>
+          <p style={{fontSize:"120%", fontWeight:"bold"}}>Create Collection</p>
           <p style={{paddingTop:"3%"}}>Upload your work and setup your collection. Add a description, social links and floor price.</p>
         </p>
         <p className='grid-cols-1' style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"9%", paddingTop:"3%", textAlign:"center", paddingLeft:"10%", paddingRight:"10%",}}>
