@@ -10,6 +10,7 @@ import { Suspense, useEffect, useState } from 'react'
 import MarketPlaceHeaderTemplate from '@/components/marketplace/MarketPlaceHeaderTemplate'
 import NFTCollectionTemplate1 from '@/components/marketplace/NFTCollectionTemplate1'
 import NFTDetailsTemplate1 from '@/components/marketplace/NFTDetailsTemplate1'
+import NFTSpecs from "@/components/nftdetailing/NFTSpecs";
 
 
 
@@ -125,13 +126,16 @@ const ArtistPage = () => {
         </Tab.List>
         <Tab.Panels>
           <Tab.Panel>
-            <div className="self-stretch bg-background-secondary flex flex-col py-20 px-0 items-center justify-start gap-[30px]">
-              <NFTContainer
-                  NFTURI={nameAndURI?.[1]}
-                  NFTName={nameAndURI?.[0]}
-                  onNFTCardContainerClick={onNFTCardContainerClick}
-                />
-              <p>1</p>
+            <div className="grid grid-cols-3 gap-5">
+              <div className="self-stretch bg-background-secondary flex flex-col py-20 px-0 items-center justify-start gap-[30px]">
+                {<NFTContainer
+                    NFTURI={nameAndURI?.[1]}
+                    NFTName={nameAndURI?.[0]}
+                    onNFTCardContainerClick={onNFTCardContainerClick}
+                  /> ?? <p>Loading...</p>}
+                <p>1</p>
+              </div>
+
             </div>
           </Tab.Panel>
           <Tab.Panel>
@@ -142,6 +146,7 @@ const ArtistPage = () => {
                 onNFTCardContainerClick={onNFTCardContainerClick}
               />
               <p>2</p>
+              {<NFTSpecs tokenURI={nameAndURI?.[1]} /> ?? <p>Loading...</p>}
             </div>
           </Tab.Panel>
           <Tab.Panel>

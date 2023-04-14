@@ -1,6 +1,37 @@
-import React from 'react'
+import axios from 'axios';
+import React, { memo, useEffect, useState } from 'react'
 
-const NFTSpecs = () => {
+const NFTSpecs = memo((
+    {
+        tokenURI
+    }
+) => {
+
+
+    const [tokenMetadata, setTokenMetadata] = useState();
+    const [nftImgUrl, setNftImgUrl] = useState();
+
+    const baseIpfs = "https://ipfs.io/ipfs/";
+
+    async function getMetadata(tokenURI) {
+        var metadataurl = `${baseIpfs}${tokenURI?.slice(7)}`
+        var res = await axios.get(metadataurl).then((res) => {return(res.data)})
+        setTokenMetadata(res)
+        var imgURI = tokenMetadata?.image
+        var imgurl = `${baseIpfs}${imgURI?.slice(7)}`
+        setNftImgUrl(imgurl)
+    }
+
+    useEffect(
+      () => {
+        getMetadata(tokenURI);
+        console.log(tokenMetadata)
+        console.log(nftImgUrl)
+      },
+      [tokenMetadata]
+    )
+
+
   return (
     <div>
         <div className="flex-1 flex flex-col py-[100px] px-0 items-start justify-start gap-[40px]">
@@ -10,15 +41,15 @@ const NFTSpecs = () => {
             <img
                 className="relative w-7 h-7 shrink-0 rounded-lg"
                 alt=""
-                src="assets/CherryGirl.png"
+                src={nftImgUrl ?? "assets/CherryGirl.png"}
             />
             <div className="flex-1 relative leading-[110%] capitalize font-semibold">
-            CherryGirl
+            {tokenMetadata?.name ?? <p>Loading...</p>}
             </div>
             </div>
             <div className="self-stretch flex flex-col items-start justify-start text-3xl">
             <div className="self-stretch relative leading-[160%] capitalize font-bold">
-            CherryGirl
+            {tokenMetadata?.description ?? <p>Loading...</p>}
             </div>
             </div>
         </div>
@@ -29,7 +60,7 @@ const NFTSpecs = () => {
             <img
                 className="relative w-7 h-7 shrink-0 rounded-full"
                 alt=""
-                src="assets/CherryGirl.png"
+                src={nftImgUrl ?? "assets/CherryGirl.png"}
             />
             <div className="flex-1 flex-col relative leading-[140%]">
                 <span className="leading-3 font-light text-slate-400">Current owner</span>
@@ -91,6 +122,6 @@ const NFTSpecs = () => {
     </div>
     </div>
   )
-}
+})
 
 export default NFTSpecs
