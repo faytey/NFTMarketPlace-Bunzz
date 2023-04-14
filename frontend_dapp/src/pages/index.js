@@ -273,9 +273,24 @@ export default function Home() {
           </div>
         </p>
       </div>
-     
       </div>
    
+     <div className='' id="sixthhomesection" style={{marginTop:"5%", backgroundImage:"url(././assets/mushroom2.png)",
+      paddingTop:"20%", paddingBottom:"5%", backgroundSize:"100%"}}>
+       <div className='grid grid-cols-2' style={{paddingRight:"12%", paddingLeft:"12%"}}>
+        <p className='grid-cols-1'>
+        <button className='btn py-3 mt-3 px-10 rounded-full font-bold' type="submit"
+          style={{transition:"1s ease-in-out",color:"white", background:"#444444"}}>David</button>
+        <p className='mt-3' style={{fontSize:"300%", fontWeight:"bold"}}>Magic Mashrooms Auction</p>
+        <button className='btn py-3 mt-3 px-12 rounded-full font-bold' type="submit" id="homeButton"
+          style={{transition:"1s ease-in-out",color:"black", background:"white"}}>See NFT</button>
+        </p>
+        <p className='grid-cols-1'>
+          <p className='float-right'>To Do</p>
+        </p>
+      </div>
+     </div>
+
     </main>
   )
 }
