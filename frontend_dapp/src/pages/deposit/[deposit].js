@@ -1,4 +1,5 @@
 import { launchpadFactory } from "@/utils/contractInfo";
+import { ethers } from "ethers";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -55,7 +56,7 @@ const Deposit = () => {
     console.log("Your wait data is ", sendWaitData);
   }
 
-  return <div>{info?.description}</div>;
+  return <div>Hello I'm the deposit page</div>;
 };
 
 export default Deposit;
