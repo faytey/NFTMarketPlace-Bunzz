@@ -6,6 +6,7 @@ const NFTHeader = memo((
   {
     collectionName,
     collectionAddress,
+    tokenId
   }
 ) => {
   const onGlobeIconClick = useCallback(() => {
@@ -32,19 +33,14 @@ const NFTHeader = memo((
     <div className="self-stretch bg-background flex flex-col py-10 px-0 items-center text-2xl font-h5-space-mono">
       <div className="flex flex-row gap-[100px]">
         <div className="shrink-0 flex flex-col  gap-[30px]">
-          <div className="relative text-32xl leading-[110%] capitalize font-semibold font-caption-work-sans flex items-center">
-            {collectionName}
-          </div>
-          <div className="rounded-xl flex flex-row gap-16 text-7xl">
-            <div className="flex-1 rounded-xl flex flex-col items-start">
+            <div className="flex-1 rounded-xl flex flex-col items-start text-7xl">
               <b className="self-stretch relative leading-[140%] capitalize">
-                250k+
+                {collectionName}
               </b>
               <div className="self-stretch relative text-3xl leading-[160%] capitalize font-caption-work-sans">
-                Volume
+                {tokenId}
               </div>
             </div>
-          </div>
           <div className="self-stretch flex flex-col items-start justify-start gap-[8px] text-caption-label-text">
             <b className="self-stretch relative leading-[100%] capitalize">
               About

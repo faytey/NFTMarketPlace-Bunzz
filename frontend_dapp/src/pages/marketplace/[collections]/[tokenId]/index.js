@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import NFTDetailsTemplate1 from '@/components/marketplace/NFTDetailsTemplate1'
 import NFTHeader from '@/components/marketplace/NFTHeader'
 import NFTMetadataTemplate from '@/components/marketplace/NFTMetadataTemplate'
+import ImageInfoTemplate from '@/components/marketplace/ImageInfoTemplate'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -52,11 +53,11 @@ export default function Nft() {
   return (
     <div>
         <Suspense fallback={<p>Loading...</p>}>
-            <NFTHeader collectionName={collectionDetails?.[0]} collectionAddress={collections}/>
+            <NFTHeader collectionName={collectionDetails?.[0]} collectionAddress={collections} tokenId={tokenId}/>
         </Suspense>
         <Suspense fallback={<p>Loading...</p>}>
             <div className='md:grid md:grid-cols-2 gap-10 space-y-5 m-0 p-8'>
-                <NFTDetailsTemplate1 contractAddress={collections} tokenID={tokenId} />
+                <ImageInfoTemplate tokenURI={collectionDetails?.[1]} />
                 <NFTMetadataTemplate tokenURI={collectionDetails?.[1]}/>
             </div>
             <div>

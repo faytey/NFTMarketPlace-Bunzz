@@ -17,8 +17,8 @@ export default function MarketPlace() {
 
   const [marketplaceInfo, setMarketPlaceInfo] = useState();
 
-  const nftCollectionsAddress = [azukiContract.address, baycContract.address, "0x96626598cE58c4174295025857106cb8e7Ac81C4"];
-  const nftTokenDetails = [{address: azukiContract.address, tokenID: 5}, {address: baycContract.address, tokenID: 8}, {address: "0x96626598cE58c4174295025857106cb8e7Ac81C4", tokenID: 1}];
+  const nftCollectionsAddress = ["0x85E302Eb913125C9c053257B0A2b878B89388013", "0xdcFe1dBeFE3d795176785a0c7cf0518AD7908429", "0x9c2f220a005a22C38AFc073eBa3390fbF579A0A5"];
+  const nftTokenDetails = [{address: '0x85E302Eb913125C9c053257B0A2b878B89388013', tokenID: 5}, {address: '0xdcFe1dBeFE3d795176785a0c7cf0518AD7908429', tokenID: 8}, {address: "0x9c2f220a005a22C38AFc073eBa3390fbF579A0A5", tokenID: 1}];
 
 
 
