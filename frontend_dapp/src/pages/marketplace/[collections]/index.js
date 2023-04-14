@@ -43,20 +43,20 @@ export default function Collection() {
 
   return (
     <div>
-      <Suspense fallback={<p>Loading...</p>}>
-        <CollectionInfoTemplate collectionName={collectionName} collectionAddress={collections}/>
-      </Suspense>
-      <Suspense fallback={<p>Loading...</p>}>
-        <div className='md:grid md:grid-cols-3 gap-10 space-y-5 m-0 p-14'>
-          {
-            tokenIDs.map((item) => {
-              return (
-                    <NFTDetailsTemplate1 contractAddress={collections} tokenID={item} />
-                    )
-                  })
-                }
-        </div>
-      </Suspense>
+      <div>
+        {<CollectionInfoTemplate collectionName={collectionName} collectionAddress={collections}/> ?? <p>Loading...</p>}
+      </div>
+      <div className='md:grid md:grid-cols-3 gap-10 space-y-5 m-0 p-14'>
+        {
+          tokenIDs.map((item) => {
+            return (
+              <div>
+                {<NFTDetailsTemplate1 contractAddress={collections} tokenID={item} /> ?? <p>Loading...</p>}
+              </div>
+                  )
+                })
+              }
+      </div>
     </div>
   )
 }

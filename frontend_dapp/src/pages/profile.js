@@ -146,7 +146,6 @@ const ArtistPage = () => {
                 onNFTCardContainerClick={onNFTCardContainerClick}
               />
               <p>2</p>
-              {<NFTSpecs tokenURI={nameAndURI?.[1]} /> ?? <p>Loading...</p>}
             </div>
           </Tab.Panel>
           <Tab.Panel>

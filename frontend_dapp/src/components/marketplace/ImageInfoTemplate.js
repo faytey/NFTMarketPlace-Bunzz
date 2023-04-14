@@ -35,9 +35,7 @@ const ImageInfoTemplate = memo(
     return (
       <div >
         <div className="self-stretch relative rounded-t-xl rounded-b-none max-w-full overflow-hidden h-[295px] shrink-0 object-cover">
-          <Suspense fallback={<p>Loading...</p>}>
-            <NFTImageTemplate imageURL={nftMetadata?.image}/>
-          </Suspense>
+          {<NFTImageTemplate imageURL={nftMetadata?.image}/> ?? <p>Loading...</p>}
         </div>
       </div>
     );

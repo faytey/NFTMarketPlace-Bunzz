@@ -33,7 +33,7 @@ const CollectionInfoTemplate = memo((
       <div className="flex flex-row gap-[100px]">
         <div className="shrink-0 flex flex-col  gap-[30px]">
           <div className="relative text-32xl leading-[110%] capitalize font-semibold font-caption-work-sans flex items-center">
-            {collectionName}
+            {collectionName ?? <p>Loading...</p>}
           </div>
           <div className="rounded-xl flex flex-row gap-16 text-7xl">
             <div className="flex-1 rounded-xl flex flex-col items-start">

@@ -15,7 +15,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 
-export default function Nft() {
+const Nft = () => {
 
   const router = useRouter();
 
@@ -52,19 +52,15 @@ export default function Nft() {
 
   return (
     <div>
-        <Suspense fallback={<p>Loading...</p>}>
-            <NFTHeader collectionName={collectionDetails?.[0]} collectionAddress={collections} tokenId={tokenId}/>
-        </Suspense>
-        <Suspense fallback={<p>Loading...</p>}>
-            <div className='md:grid md:grid-cols-2 gap-10 space-y-5 m-0 p-8'>
-                <ImageInfoTemplate tokenURI={collectionDetails?.[1]} />
-                <NFTMetadataTemplate tokenURI={collectionDetails?.[1]}/>
-            </div>
-            <div>
-                <p>{collectionDetails?.[0]}</p>
-                <p>{collectionDetails?.[1]}</p>
-            </div>
-        </Suspense>
+        {/* {<NFTHeader collectionName={collectionDetails?.[0]} collectionAddress={collections} tokenId={tokenId}/> ?? <p>Loading...</p>} */}
+        <div className='md:grid md:grid-cols-2 gap-10 space-y-5 m-0 p-8'>
+            {/* {<ImageInfoTemplate tokenURI={collectionDetails?.[1]} /> ?? <p>Loading...</p>} */}
+            {<NFTMetadataTemplate tokenURI={collectionDetails?.[1]}/> ?? <p>Loading...</p>}
+        </div>
     </div>
   )
 }
+
+
+
+export default Nft

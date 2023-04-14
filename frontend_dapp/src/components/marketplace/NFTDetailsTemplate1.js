@@ -34,7 +34,7 @@ const NFTDetailsTemplate1 = memo(
           href={`/marketplace/${contractAddress}/${tokenID}`}
         >
           <div className="self-stretch rounded-t-xl rounded-b-none flex flex-col items-start justify-start">
-            <ImageInfoTemplate tokenURI={data?.[1]} />
+            {<ImageInfoTemplate tokenURI={data?.[1]} /> ?? <p>Loading...</p>}
           </div>
           <div className="self-stretch flex flex-col pt-5 px-[30px] pb-[25px] items-start justify-start gap-[25px]">
             <div className="flex justify-between w-full">

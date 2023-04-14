@@ -42,12 +42,12 @@ const NFTCollectionTemplate1 = memo(
           href={`/marketplace/${contractAddress}`}
         >
           <div className="self-stretch rounded-t-xl rounded-b-none flex flex-col items-start justify-start">
-            <ImageInfoTemplate tokenURI={data?.[3]} />
+            {<ImageInfoTemplate tokenURI={data?.[3]} /> ?? <p>Loading...</p>}
           </div>
           <div className="self-stretch flex flex-col pt-5 px-[30px] pb-[25px] items-start justify-start gap-[25px]">
             <div className="self-stretch flex flex-col items-start justify-start gap-[5px]">
               <div className="self-stretch relative leading-[140%] capitalize font-semibold">
-                {data?.[0]}
+                {data?.[0] ?? <p>Loading...</p>}
               </div>
               <div className="self-stretch flex flex-row items-start justify-start gap-[12px] text-base font-h5-space-mono">
                 <div className="flex flex-row items-start justify-start">
@@ -59,7 +59,7 @@ const NFTCollectionTemplate1 = memo(
                     />
                   </div>
                 </div>
-                <div className="flex-1 relative leading-[140%]">Token Supply: {data?.[2]?.toString()}</div>
+                <div className="flex-1 relative leading-[140%]">Token Supply: {data?.[2]?.toString() ?? <p>Loading...</p>}</div>
               </div>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start text-xs text-caption-label-text font-h5-space-mono">

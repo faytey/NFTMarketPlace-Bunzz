@@ -33,9 +33,9 @@ const NFTImageTemplate = memo(
 
     return (
       <div >
-        <Suspense fallback={<p>Loading...</p>}>
-        <img src={nftImageURL ?? 'assets/DistantGalaxy.png'} />
-        </Suspense>
+        <div>
+        {<img src={nftImageURL ?? 'assets/DistantGalaxy.png'} /> ?? <p>Loading...</p>}
+        </div>
       </div>
     );
   }

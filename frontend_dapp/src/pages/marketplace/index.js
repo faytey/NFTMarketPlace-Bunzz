@@ -71,9 +71,9 @@ export default function MarketPlace() {
                 <div className='md:grid md:grid-cols-3 gap-10 space-y-5'>
                   { nftTokenDetails.map((item) => {
                     return (
-                       <Suspense fallback={<p>Loading...</p>}>
-                          <NFTDetailsTemplate1 contractAddress={item.address} tokenID={item.tokenID} />
-                       </Suspense>
+                        <div>
+                          {<NFTDetailsTemplate1 contractAddress={item.address} tokenID={item.tokenID} /> ?? <p>Loading..</p>}
+                        </div>
                         )
                       })}
                 </div>
@@ -83,7 +83,9 @@ export default function MarketPlace() {
                 <div className='md:grid md:grid-cols-3 gap-10 space-y-5'>
                   { nftCollectionsAddress.map((item) => {
                     return (
-                      <NFTCollectionTemplate1 contractAddress={item} />
+                      <div>
+                        {<NFTCollectionTemplate1 contractAddress={item} /> ?? <p>Loading...</p>}
+                      </div>
                       )
                     })}
                 </div>
