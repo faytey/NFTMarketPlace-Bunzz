@@ -31,8 +31,8 @@ const StartLaunchPad = () => {
   const { address } = useAccount();
 
   const [duration, setDuration] = useState();
-  const [price, setPrice] = useState();
-  const [totalAmountNeeded, setTotalAmountNeeded] = useState();
+  const [price, setPrice] = useState("");
+  const [totalAmountNeeded, setTotalAmountNeeded] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ const StartLaunchPad = () => {
     alert("Successful");
   };
   const { config } = usePrepareContractWrite({
-    address: launchpadContract.address,
+    address: String(readData?.[3]),
     abi: launchpadContract.abi,
     functionName: "startLaunchPad",
     args: [duration, price, totalAmountNeeded],
@@ -72,6 +72,14 @@ const StartLaunchPad = () => {
     console.log("Your wait data is ", sendWaitData);
   }
 
+  const date = (x) => {
+    let myDate = new Date(x * 1000);
+    return myDate;
+  };
+
+  const today = date(readData?.[2]).toDateString();
+  console.log(today);
+
   return (
     <div className="flex flex-col gap-8 items-center h-auto">
       <h1>Start LaunchPad</h1>
@@ -86,7 +94,7 @@ const StartLaunchPad = () => {
         <div className="flex flex-col gap-2 items-center">
           <p>Name: {readData?.[0]}</p>
           <p>Creator: {readData?.[1]}</p>
-          <p>Access: {String(readData?.[2])}</p>
+          <p>Created: {today}</p>
           <Link
             href={`/www.sepolia.io/${readData?.[3]}`}
             className="border px-4 py-2 rounded-md"

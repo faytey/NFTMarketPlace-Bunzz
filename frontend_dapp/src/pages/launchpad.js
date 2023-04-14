@@ -157,12 +157,12 @@ export default function Launchpad() {
                         <div className="flex flex-col items-center">
                           <p className="text-center text-2xl text-bold">
                             {" "}
-                            Coming Soon ...
+                            Don't Miss This ...
                           </p>
                         </div>
                       </div>
                       <div className="flex justify-center p-4">
-                        <Link href="www.sepolia.etherscan.io">
+                        <Link href="www.sepolia.etherscan.io" passHref={true}>
                           View on Etherscan
                         </Link>
                       </div>
@@ -215,13 +215,11 @@ export default function Launchpad() {
                       </div>
                       <div className="flex justify-evenly w-full p-4">
                         <div className="flex flex-col items-center">
-                          <p className="text-2xl text-bold">
-                            LaunchPad Ended...
-                          </p>
+                          <p className="text-2xl text-bold">Coming Soon...</p>
                         </div>
                       </div>
                       <div className="flex justify-center p-4">
-                        <Link href="www.sepolia.etherscan.io">
+                        <Link href="www.sepolia.etherscan.io" passHref={true}>
                           View on Etherscan
                         </Link>
                       </div>
