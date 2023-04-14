@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
   return (
     <main className="mt-6 mb-6" style = {{transition:"3s ease-in-out"}}>
 
@@ -286,9 +287,33 @@ export default function Home() {
           style={{transition:"1s ease-in-out",color:"black", background:"white"}}>See NFT</button>
         </p>
         <p className='grid-cols-1'>
-          <p className='float-right'>To Do</p>
+          <p className='float-right' id="timerparagraph"><div id="countdown"></div></p>
         </p>
       </div>
+     </div>
+
+     <div className='' id="seventhhomesection" style={{paddingLeft:"12%", paddingRight:"12%", marginTop:"5%", marginBottom:"5%"}}>
+     <div className='' style={{fontSize:"120%"}}>
+          <p style={{fontSize:"160%", fontWeight:"bold"}}>How It Works</p>
+          <p>Find Out How To Get Started</p>
+        </div>
+      <div className='grid grid-cols-3 gap-8' style={{marginTop:"4%"}} >
+        <p className='grid-cols-1' style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"9%", paddingTop:"3%", textAlign:"center", paddingLeft:"10%", paddingRight:"10%",}}>
+          <img src="././assets/icon.svg" className='rounded-full' style={{ transform:"scale3D(0.9,0.9,0.9)",}}/>
+          <p style={{fontSize:"120%", fontWeight:"bold"}}>Setup Your Wallet</p>
+          <p style={{paddingTop:"3%"}}>Set up your wallet of choice. Connect it to the Animarket by clicking the wallet icon in the top right corner.</p>
+        </p>
+        <p className='grid-cols-1' style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"9%", paddingTop:"3%", textAlign:"center", paddingLeft:"10%", paddingRight:"10%",}}>
+          <img src="././assets/icon.svg" className='rounded-full' style={{ transform:"scale3D(0.9,0.9,0.9)",}}/>
+          <p style={{fontSize:"120%", fontWeight:"bold"}}>SCreate Collection</p>
+          <p style={{paddingTop:"3%"}}>Upload your work and setup your collection. Add a description, social links and floor price.</p>
+        </p>
+        <p className='grid-cols-1' style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"9%", paddingTop:"3%", textAlign:"center", paddingLeft:"10%", paddingRight:"10%",}}>
+          <img src="././assets/icon.svg" className='rounded-full' style={{ transform:"scale3D(0.9,0.9,0.9)",}}/>
+          <p style={{fontSize:"120%", fontWeight:"bold"}}>Start Earning</p>
+          <p style={{paddingTop:"3%"}}>Choose between auctions and fixed-price listings. Start earning by selling your NFTs or trading others.</p>
+        </p>
+       </div>
      </div>
 
     </main>

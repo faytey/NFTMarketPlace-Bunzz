@@ -24,3 +24,26 @@ body{background-image:linear-gradient(60deg, blue, green, red); transition:3s ea
 #thirdsectiontopcreators:hover{transform:scale3D(0.9,0.9,0.9)}
 #fourthsectioncategories:hover{transform:scale3D(0.9,0.9,0.9)}
 #fifthsectioncontainers:hover{transform:scale3D(0.9,0.9,0.9)}
+
+#countdown {margin-left:20%;
+  font-size: 3em;
+  font-weight: 100;
+  color: white;
+  width: 700px;
+text-align: center;
+  color: white;
+margin-right:20;}
+
+#countdown div {   display: inline-block;
+  min-width: 90px;
+  padding: 15px;
+  background: grey;
+  border-radius: 10px;
+  border: 2px solid #030d52;
+  margin: 15px;}
+
+#countdown div span { color: #ffffff;
+  display: block;
+  margin-top: 15px;
+  font-size: .35em;
+  font-weight: 400;}
