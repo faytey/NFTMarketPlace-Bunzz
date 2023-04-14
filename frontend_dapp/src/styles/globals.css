@@ -7,8 +7,8 @@ body {
   color: #ffffff;
 }
 @keyframes homepicanimation2{0%{ transform:scale3D(0.9,0.9,0.9)} 100%{transform:scale3D(1,1,1)}}
-body{background-image:linear-gradient(20deg, blue, green, red); transition:3s ease-in-out}
-body:hover{background-image:linear-gradient(20deg, yellow, indigo, maroon); transition:3s ease-in-out}
+body{background-image:linear-gradient(60deg, blue, green, red); transition:3s ease-in-out}
+/* body:hover{background-image:linear-gradient(20deg, yellow, indigo, maroon); transition:3s ease-in-out} */
 #homeButton:hover{transform:scale3d(0.9,0.9,0.9);}
 #homepagefirstPic:hover{transform:rotate3D(2,1,1,40deg)}
 #firstpicset{transition:1s ease-in-out;width:100%; height:70%; border-radius: 7%;}
