@@ -3,37 +3,24 @@ import ArtistInfo from "../components/profile/ArtistInfo";
 import NFTContainer from "../components/profile/NFTContainer";
 import { useRouter } from "next/router";
 
-import { erc721ABI, useContractRead, useContractReads, useProvider } from 'wagmi'
-import { useState, useEffect } from "react";
+import {Tab} from '@headlessui/react'
+import { useContractReads } from 'wagmi'
+import { azukiContract, baycContract, marketplaceContract } from '@/utils/contractInfo'
+import { Suspense, useEffect, useState } from 'react'
+import MarketPlaceHeaderTemplate from '@/components/marketplace/MarketPlaceHeaderTemplate'
+import NFTCollectionTemplate1 from '@/components/marketplace/NFTCollectionTemplate1'
+import NFTDetailsTemplate1 from '@/components/marketplace/NFTDetailsTemplate1'
 
 
-const ArtistPageDesktop = () => {
 
-  const router = useRouter();
 
-  //const router = useRouter();
+const ArtistPage = () => {
 
-  const { collections } = router.query;
 
-  const tokenIDs = [4, 8, 4, 25]
+  const [artistInfo, setArtistInfo] = useState();
 
-  const [contractDetails, setContractDetails] = useState();
-  
-  
-  useEffect(() => {
-    setTimeout(()=> {
-      setContractDetails({
-        address: collections,
-        abi: erc721ABI,
-      })
-    }, (3000))
-  },
-  [contractDetails])
-
-  const { data: collectionName, isError: collectionDataError, isLoading: collectionDataIsLoading } = useContractRead({
-      ...contractDetails,
-      functionName: 'name',
-    })
+  const nftCollectionsAddress = ["0x85E302Eb913125C9c053257B0A2b878B89388013", "0xdcFe1dBeFE3d795176785a0c7cf0518AD7908429", "0x9c2f220a005a22C38AFc073eBa3390fbF579A0A5"];
+  const nftTokenDetails = [{address: '0x85E302Eb913125C9c053257B0A2b878B89388013', tokenID: 5}, {address: '0xdcFe1dBeFE3d795176785a0c7cf0518AD7908429', tokenID: 8}, {address: "0x9c2f220a005a22C38AFc073eBa3390fbF579A0A5", tokenID: 1}];
 
 
   const onNFTCardContainerClick = useCallback(() => {
@@ -193,4 +180,4 @@ const ArtistPageDesktop = () => {
   );
 };
 
-export default ArtistPageDesktop;
+export default ArtistPage;
