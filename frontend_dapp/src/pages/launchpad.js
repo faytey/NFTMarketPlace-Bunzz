@@ -6,6 +6,7 @@ import Layout from "../components/Layout.js";
 
 export const ongoing = [
   {
+    id: 1,
     img: "image1.jpg",
     logo: "image2.jpg",
     topic: "Awesome Launchpad",
@@ -14,6 +15,7 @@ export const ongoing = [
     scan: "https://www.sepolia.etherscan.io",
   },
   {
+    id: 2,
     img: "image3.png",
     logo: "image4.png",
     topic: "Awesome Launchpad",
@@ -22,6 +24,7 @@ export const ongoing = [
     scan: "https://www.sepolia.etherscan.io",
   },
   {
+    id: 3,
     img: "image5.png",
     logo: "image6.png",
     topic: "Awesome Launchpad",
@@ -30,6 +33,7 @@ export const ongoing = [
     scan: "https://www.sepolia.etherscan.io",
   },
   {
+    id: 4,
     img: "image4.png",
     logo: "image3.png",
     topic: "Awesome Launchpad",
@@ -38,6 +42,7 @@ export const ongoing = [
     scan: "https://www.sepolia.etherscan.io",
   },
   {
+    id: 5,
     img: "image6.png",
     logo: "image5.png",
     topic: "Awesome Launchpad",
@@ -46,6 +51,7 @@ export const ongoing = [
     scan: "https://www.sepolia.etherscan.io",
   },
   {
+    id: 6,
     img: "image2.jpg",
     logo: "image1.jpg",
     topic: "Awesome Launchpad",
@@ -54,8 +60,9 @@ export const ongoing = [
     scan: "https://www.sepolia.etherscan.io",
   },
 ];
-export const ongoing1 = [
+export const upcoming = [
   {
+    id: 1,
     img: "image4.png",
     logo: "image3.png",
     topic: "Awesome Launchpad",
@@ -64,6 +71,7 @@ export const ongoing1 = [
     scan: "https://www.sepolia.etherscan.io",
   },
   {
+    id: 2,
     img: "image6.png",
     logo: "image5.png",
     topic: "Awesome Launchpad",
@@ -72,6 +80,7 @@ export const ongoing1 = [
     scan: "https://www.sepolia.etherscan.io",
   },
   {
+    id: 3,
     img: "image1.jpg",
     logo: "image2.jpg",
     topic: "Awesome Launchpad",
@@ -80,6 +89,7 @@ export const ongoing1 = [
     scan: "https://www.sepolia.etherscan.io",
   },
   {
+    id: 4,
     img: "image3.png",
     logo: "image4.png",
     topic: "Awesome Launchpad",
@@ -88,8 +98,9 @@ export const ongoing1 = [
     scan: "https://www.sepolia.etherscan.io",
   },
 ];
-export const ongoing2 = [
+export const past = [
   {
+    id: 1,
     img: "image6.png",
     logo: "image5.png",
     topic: "Awesome Launchpad",
@@ -98,6 +109,7 @@ export const ongoing2 = [
     scan: "https://www.sepolia.etherscan.io",
   },
   {
+    id: 2,
     img: "image2.jpg",
     logo: "image1.jpg",
     topic: "Awesome Launchpad",
@@ -125,8 +137,9 @@ export default function Launchpad() {
             <Tab.Panel className="grid grid-cols-1 md:grid-cols-2 md:gap-10 py-10">
               {ongoing.map((data) => {
                 return (
-                  <div
-                    key={data}
+                  <Link
+                    href={`/ongoing/${data.id}`}
+                    key={data.id}
                     className="rounded-lg shadow-2xl bg-[#3a3a3a] p-5"
                   >
                     <div className="flex justify-center py-2">
@@ -178,25 +191,24 @@ export default function Launchpad() {
                         </div>
                       </div>
                       <div className="flex justify-center p-4">
-                        <Link href="www.sepolia.etherscan.io">
-                          View on Etherscan
-                        </Link>
+                        <a href="www.sepolia.etherscan.io">View on Etherscan</a>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </Tab.Panel>
             <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
-              {ongoing1.map((data) => {
+              {upcoming.map((data1) => {
                 return (
-                  <div
-                    key={data}
+                  <Link
+                    href={`/upcoming/${data1.id}`}
+                    key={data1.id}
                     className="rounded-lg shadow-2xl bg-[#3a3a3a] p-5"
                   >
                     <div className="flex justify-center py-2">
                       <Image
-                        src={`/${data.img}`}
+                        src={`/${data1.img}`}
                         alt="image"
                         width={500}
                         height={100}
@@ -207,7 +219,7 @@ export default function Launchpad() {
                       <div className="flex gap-3 p-2 border-b-2">
                         <div>
                           <Image
-                            src={`/${data.logo}`}
+                            src={`/${data1.logo}`}
                             alt="image"
                             width={150}
                             height={200}
@@ -215,8 +227,8 @@ export default function Launchpad() {
                           />
                         </div>
                         <div className="flex flex-col">
-                          <h1 className="text-3xl">{data.topic}</h1>
-                          <h6>{data.description}</h6>
+                          <h1 className="text-3xl">{data1.topic}</h1>
+                          <h6>{data1.description}</h6>
                         </div>
                       </div>
                       <div className="flex justify-evenly w-full p-4">
@@ -233,20 +245,21 @@ export default function Launchpad() {
                         </Link>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </Tab.Panel>
             <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
-              {ongoing2.map((data) => {
+              {past.map((data2) => {
                 return (
-                  <div
-                    key={data}
+                  <Link
+                    href={`/past/${data2.id}`}
+                    key={data2.id}
                     className="rounded-lg shadow-2xl bg-[#3a3a3a] p-5"
                   >
                     <div className="flex justify-center py-2">
                       <Image
-                        src={`/${data.img}`}
+                        src={`/${data2.img}`}
                         alt="image"
                         width={500}
                         height={100}
@@ -257,7 +270,7 @@ export default function Launchpad() {
                       <div className="flex gap-3 p-2 border-b-2">
                         <div>
                           <Image
-                            src={`/${data.logo}`}
+                            src={`/${data2.logo}`}
                             alt="image"
                             width={150}
                             height={200}
@@ -265,8 +278,8 @@ export default function Launchpad() {
                           />
                         </div>
                         <div className="flex flex-col">
-                          <h1 className="text-3xl">{data.topic}</h1>
-                          <h6>{data.description}</h6>
+                          <h1 className="text-3xl">{data2.topic}</h1>
+                          <h6>{data2.description}</h6>
                         </div>
                       </div>
                       <div className="py-4 px-2">
@@ -291,7 +304,7 @@ export default function Launchpad() {
                         </Link>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </Tab.Panel>

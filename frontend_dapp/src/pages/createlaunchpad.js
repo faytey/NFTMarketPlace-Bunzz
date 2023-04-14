@@ -1,19 +1,24 @@
 import { ethers } from "ethers";
 import React, { useState } from "react";
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
+import {
+  useAccount,
+  useContractWrite,
+  usePrepareContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
 import { launchpadFactoryAddr, launchpadFactoryAbi } from "../utils/utils";
 
 export default function createlaunchpad() {
+  const { address } = useAccount();
+
   const [name, setName] = useState("");
   const [symbol, setSymbol] = useState("");
   const [uri, setUri] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    name == "" || symbol == "" || uri == ""
-      ? alert("Please Input All Fields")
-      : alert("Successfully Submitted");
     write?.();
+    alert("Successful");
   };
   const { config } = usePrepareContractWrite({
     address: launchpadFactoryAddr,
@@ -24,16 +29,25 @@ export default function createlaunchpad() {
   });
   const { data, isLoading, isSuccess, write } = useContractWrite(config);
 
-  return (
-    <div>
-      <button disabled={!write} onClick={() => write?.()}>
-        Feed
-      </button>
-      {isLoading && <div>Check Wallet</div>}
-      {isSuccess && <div>Transaction: {JSON.stringify(data)}</div>}
-    </div>
-  );
+  const {
+    data: sendWaitData,
+    isError: errorWaitData,
+    isLoading: loadWaitData,
+  } = useWaitForTransaction({
+    hash: data?.hash,
 
+    onError(error) {
+      console.log("Error Message: ", error);
+    },
+
+    onSuccess(data) {
+      console.log("Success: ", data);
+    },
+  });
+
+  if (sendWaitData) {
+    console.log("Your wait data is ", sendWaitData);
+  }
   return (
     <div>
       <form
@@ -87,7 +101,7 @@ export default function createlaunchpad() {
           />
         </div>
         <button type="submit" className="border rounded-md p-3 w-[53%]">
-          CREATE
+          {isLoading || loadWaitData ? "Creating" : "CREATE"}
         </button>
       </form>
     </div>
