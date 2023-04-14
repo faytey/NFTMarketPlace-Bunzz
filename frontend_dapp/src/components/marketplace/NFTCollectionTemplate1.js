@@ -34,7 +34,7 @@ const NFTCollectionTemplate1 = memo(
         ]
     })
     return (
-      // <div className="w-[1050px] flex flex-row items-start justify-start gap-[30px] text-left text-3xl text-text font-caption-work-sans">
+      // <div className="w-[1050px] flex flex-row items-start justify-start gap-[30px] text-left text-3xl text-text font-sans">
       <div >
 
         <Link

@@ -16,7 +16,7 @@ import Layout from '@/components/Layout';
 const { chains, provider } = configureChains(
   [mainnet, polygon, optimism, arbitrum, sepolia],
   [
-    // alchemyProvider({ apiKey: process.env.ALCHEMY_ID }),
+    //alchemyProvider({ apiKey: process.env.ALCHEMY_ID }),
     alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID1 }),
     publicProvider()
   ],

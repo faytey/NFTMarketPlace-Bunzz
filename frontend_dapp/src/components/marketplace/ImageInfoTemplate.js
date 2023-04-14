@@ -43,5 +43,6 @@ const ImageInfoTemplate = memo(
     );
   }
 );
+    
 
 export default ImageInfoTemplate;

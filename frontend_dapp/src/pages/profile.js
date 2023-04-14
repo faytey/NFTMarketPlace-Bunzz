@@ -1,44 +1,103 @@
 import { useCallback } from "react";
 import ArtistInfo from "../components/profile/ArtistInfo";
 import NFTContainer from "../components/profile/NFTContainer";
+import { useRouter } from "next/router";
+
+import { erc721ABI, useContractRead, useContractReads, useProvider } from 'wagmi'
+import { useState, useEffect } from "react";
 
 
 const ArtistPageDesktop = () => {
+
+  const router = useRouter();
+
+  //const router = useRouter();
+
+  const { collections } = router.query;
+
+  const tokenIDs = [4, 8, 4, 25]
+
+  const [contractDetails, setContractDetails] = useState();
+  
+  
+  useEffect(() => {
+    setTimeout(()=> {
+      setContractDetails({
+        address: collections,
+        abi: erc721ABI,
+      })
+    }, (3000))
+  },
+  [contractDetails])
+
+  const { data: collectionName, isError: collectionDataError, isLoading: collectionDataIsLoading } = useContractRead({
+      ...contractDetails,
+      functionName: 'name',
+    })
+
+
   const onNFTCardContainerClick = useCallback(() => {
-    // Please sync "NFT Page (Desktop)" to the project
-  }, []);
+    router.push({
+      pathname: "/nftdetail",
+      query: { imageIds: "assets/DistantGalaxy.png", imageTitles:"Distant Galaxy" }
+    });
+  }, [router]);
 
   const onNFTCardContainer1Click = useCallback(() => {
-    // Please sync "NFT Page (Desktop)" to the project
-  }, []);
+    router.push({
+      pathname: "/nftdetail",
+      query: { imageIds: "assets/LifeEdena.png", imageTitles:"Life On Edena" }
+    });
+  }, [router]);
 
   const onNFTCardContainer2Click = useCallback(() => {
-    // Please sync "NFT Page (Desktop)" to the project
-  }, []);
+    router.push({
+      pathname: "/nftdetail",
+      query: { imageIds: "assets/AstroFiction.png", imageTitles: "AstroFiction"}
+    });
+  }, [router]);
 
   const onNFTCardContainer3Click = useCallback(() => {
-    // Please sync "NFT Page (Desktop)" to the project
-  }, []);
+    router.push({
+      pathname: "/nftdetail",
+      query: { imageIds: "assets/CryptoCity.png", imageTitles: "CryptoCity" }
+    });
+  }, [router]);
 
   const onNFTCardContainer4Click = useCallback(() => {
-    // Please sync "NFT Page (Desktop)" to the project
-  }, []);
+    router.push({
+      pathname: "/nftdetail",
+      query: { imageIds: "assets/ColorfulDog.png", imageTitles:"ColorfulDog" }
+    });
+  }, [router]);
 
   const onNFTCardContainer5Click = useCallback(() => {
-    // Please sync "NFT Page (Desktop)" to the project
-  }, []);
+    router.push({
+      pathname: "/nftdetail",
+      query: { imageIds: "assets/DistantGalaxy.png", imageTitles:"Distant Galaxy" }
+    });
+  }, [router]);
 
   const onNFTCardContainer6Click = useCallback(() => {
-    // Please sync "NFT Page (Desktop)" to the project
-  }, []);
+    router.push({
+      pathname: "/nftdetail",
+      query: { imageIds: "assets/DistantGalaxy.png", imageTitles:"Distant Galaxy" }
+    });
+  }, [router]);
 
   const onNFTCardContainer7Click = useCallback(() => {
-    // Please sync "NFT Page (Desktop)" to the project
-  }, []);
+    router.push({
+      pathname: "/nftdetail",
+      query: { imageIds: "assets/DistantGalaxy.png", imageTitles:"Distant Galaxy" }
+    });
+  }, [router]);
 
   const onNFTCardContainer8Click = useCallback(() => {
-    // Please sync "NFT Page (Desktop)" to the project
-  }, []);
+    router.push({
+      pathname: "/nftdetail",
+      query: { imageIds: "assets/DistantGalaxy.png", imageTitles:"Distant Galaxy" }
+    });
+  }, [router]);
 
   return (
     <div className="relative bg-background w-full flex flex-col items-start justify-start text-center text-3xl text-caption-label-text font-caption-work-sans">
