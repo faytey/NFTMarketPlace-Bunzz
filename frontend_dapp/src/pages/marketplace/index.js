@@ -6,6 +6,7 @@ import { Suspense, useEffect, useState } from 'react'
 import MarketPlaceHeaderTemplate from '@/components/marketplace/MarketPlaceHeaderTemplate'
 import NFTCollectionTemplate1 from '@/components/marketplace/NFTCollectionTemplate1'
 import NFTDetailsTemplate1 from '@/components/marketplace/NFTDetailsTemplate1'
+import MarketItemTemplate from '@/components/marketplace/MarketItemTemplate'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -15,16 +16,28 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function MarketPlace() {
 
-  const [marketplaceInfo, setMarketPlaceInfo] = useState();
+  const [itemListed, setItemListed] = useState();
+  const [marketItems, setMarketItems] = useState();
+  // const [marketplaceInfo, setMarketPlaceInfo] = useState();
 
 
+  const MarketItem = {
+    itemId:"5",
+    nftContract : "0x85E302Eb913125C9c053257B0A2b878B89388013",
+    tokenId : "2",
+    seller : "0x85E302Eb913125C9c053257B0A2b878B89388013",
+    owner : "0x85E302Eb913125C9c053257B0A2b878B89388013",
+    price : "3",
+    sold : false,
+}
 
+const MarketItemArray = [MarketItem,MarketItem,MarketItem]
 
   const { data: marketplaceData, isError: marketplaceDataError, isLoading: marketplaceDataIsLoading } = useContractReads({
     contracts: [
       {
-        ...azukiContract,
-        functionName: 'name',
+        ...marketplaceContract,
+        functionName: 'fetchItemListed',
       },
       {
         ...marketplaceContract,
@@ -34,17 +47,14 @@ export default function MarketPlace() {
         ...marketplaceContract,
         functionName: 'fetchMyNfts',
       },
-      {
-        ...marketplaceContract,
-        functionName: "listingPrice",
-      },
   ]})
 
 
 
   useEffect(() => {
-    setMarketPlaceInfo(marketplaceData?.[0])
-    console.log(marketplaceInfo)
+    setItemListed(marketplaceData?.[0])
+    setMarketItems(marketplaceData?.[1])
+    // console.log(marketplaceInfo)
   },
   [marketplaceData]
   )
@@ -59,17 +69,17 @@ export default function MarketPlace() {
           <Tab.Group>
             <Tab.List >
               <div className='flex text-2xl font-bold w-full gap-10 py-8 justify-center'>
-                <Tab>NFTs</Tab>
-                <Tab>Collections</Tab>
+                <Tab>Listed Items</Tab>
+                <Tab>Market Place Items</Tab>
               </div>
             </Tab.List>
             <Tab.Panels>
               <Tab.Panel>
                 <div className='md:grid md:grid-cols-3 gap-10 space-y-5'>
-                  { nftTokenDetails.map((item) => {
+                  { MarketItemArray?.map((item) => {
                     return (
                         <div>
-                          {<NFTDetailsTemplate1 contractAddress={item.address} tokenID={item.tokenID} /> ?? <p>Loading..</p>}
+                          {<MarketItemTemplate marketItem={item}/>}
                         </div>
                         )
                       })}
@@ -78,10 +88,10 @@ export default function MarketPlace() {
               </Tab.Panel>
               <Tab.Panel>
                 <div className='md:grid md:grid-cols-3 gap-10 space-y-5'>
-                  { nftCollectionsAddress.map((item) => {
+                  { MarketItemArray?.map((item) => {
                     return (
                       <div>
-                        {<NFTCollectionTemplate1 contractAddress={item} /> ?? <p>Loading...</p>}
+                        {<MarketItemTemplate marketItem={item}/>}
                       </div>
                       )
                     })}
