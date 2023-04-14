@@ -221,19 +221,76 @@ export default function Home() {
         <p className='grid-cols-1' id="fifthsectioncontainers" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
           <img src="././assets/finegirl.png" />
           <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Distant Galaxy</p>
+          <div className='grid grid-cols-4' style={{marginTop:"2%", paddingLeft:"10%"}} >
+            <p className='grid-cols-1' ><img src="././assets/Avatar.png" className='rounded-full' style={{height:"100%", width:"50%", transform:""}}/></p>
+            <p className='grid-cols-3' style={{marginLeft:"-25%", marginTop:"10%"}}>MoonDancer</p>
+          </div>
+          <div className='grid grid-cols-2' style={{paddingLeft:"10%", paddingRight:"10%", marginTop:"5%"}}>
+            <p className='grid-cols-1'>
+              <p style={{fontSize:"80%", color:"#bbbbbb", fontFamily:"georgia"}}>Price</p>
+              <p>1.63 ETH</p>
+            </p>
+            <p className='grid-cols-1' >
+            <p style={{float:"right",fontSize:"80%", color:"#aaaaaa", fontFamily:"georgia"}}>Highest Bid</p><br></br>
+            <p style={{float:"right"}}>0.33 wETH</p>
+            </p>
+          </div>
         </p>
         <p className='grid-cols-1' id="fifthsectioncontainers" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
           <img src="././assets/SpaceTales.png" />
           <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Economy</p>
+          <div className='grid grid-cols-4' style={{marginTop:"2%", paddingLeft:"10%"}} >
+            <p className='grid-cols-1' ><img src="././assets/Avatar.png" className='rounded-full' style={{height:"100%", width:"50%", transform:""}}/></p>
+            <p className='grid-cols-3' style={{marginLeft:"-25%", marginTop:"10%"}}>Spaceone</p>
+          </div>
+          <div className='grid grid-cols-2' style={{paddingLeft:"10%", paddingRight:"10%", marginTop:"5%"}}>
+            <p className='grid-cols-1'>
+              <p style={{fontSize:"80%", color:"#bbbbbb", fontFamily:"georgia"}}>Price</p>
+              <p>1.63 ETH</p>
+            </p>
+            <p className='grid-cols-1' >
+            <p style={{float:"right",fontSize:"80%", color:"#aaaaaa", fontFamily:"georgia"}}>Highest Bid</p><br></br>
+            <p style={{float:"right"}}>0.33 wETH</p>
+            </p>
+          </div>
         </p>
         <p className='grid-cols-1' id="fifthsectioncontainers" style={{backgroundColor:"#444444", borderRadius:"8%", paddingBottom:"10%", marginTop:"10%", transition:"1s ease-in-out"}}>
           <img src="././assets/CherryGirl.png" />
           <p style={{fontSize:"130%", fontWeight:"bold", marginTop:"5%", paddingLeft:"10%"}}>Astrofiction</p>
+          <div className='grid grid-cols-4' style={{marginTop:"2%", paddingLeft:"10%"}} >
+            <p className='grid-cols-1' ><img src="././assets/Avatar.png" className='rounded-full' style={{height:"100%", width:"50%", transform:""}}/></p>
+            <p className='grid-cols-3' style={{marginLeft:"-25%", marginTop:"10%"}}>Fantasy</p>
+          </div>
+          <div className='grid grid-cols-2' style={{paddingLeft:"10%", paddingRight:"10%", marginTop:"5%"}}>
+            <p className='grid-cols-1'>
+              <p style={{fontSize:"80%", color:"#bbbbbb", fontFamily:"georgia"}}>Price</p>
+              <p>1.63 ETH</p>
+            </p>
+            <p className='grid-cols-1' >
+            <p style={{float:"right",fontSize:"80%", color:"#aaaaaa", fontFamily:"georgia"}}>Highest Bid</p><br></br>
+            <p style={{float:"right"}}>0.33 wETH</p>
+            </p>
+          </div>
         </p>
       </div>
-     
       </div>
    
+     <div className='' id="sixthhomesection" style={{marginTop:"5%", backgroundImage:"url(././assets/mushroom2.png)",
+      paddingTop:"20%", paddingBottom:"5%", backgroundSize:"100%"}}>
+       <div className='grid grid-cols-2' style={{paddingRight:"12%", paddingLeft:"12%"}}>
+        <p className='grid-cols-1'>
+        <button className='btn py-3 mt-3 px-10 rounded-full font-bold' type="submit"
+          style={{transition:"1s ease-in-out",color:"white", background:"#444444"}}>David</button>
+        <p className='mt-3' style={{fontSize:"300%", fontWeight:"bold"}}>Magic Mashrooms Auction</p>
+        <button className='btn py-3 mt-3 px-12 rounded-full font-bold' type="submit" id="homeButton"
+          style={{transition:"1s ease-in-out",color:"black", background:"white"}}>See NFT</button>
+        </p>
+        <p className='grid-cols-1'>
+          <p className='float-right'>To Do</p>
+        </p>
+      </div>
+     </div>
+
     </main>
   )
 }
