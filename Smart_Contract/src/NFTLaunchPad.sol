@@ -184,12 +184,17 @@ contract LaunchPad is ERC721URIStorage {
         //write test for this function
         require(totalNFTCommitment < totalNftsForSale, "All NFTs has been minted");
 
-        for (totalNFTCommitment; totalNFTCommitment < totalNftsForSale; totalNFTCommitment++) {
+        uint totalLeft = totalNftsForSale - totalNFTCommitment;
+
+        for (uint i = 0; i < totalLeft; i++) {
             _mint(recipient, mintedTokenId);
             mintedTokenId++;
         }
         success = true;
     }
+
+
+
 
     // function transferLeftoverTokens(IERC20 _tokenContract) public returns(bool success){
     //     require(msg.sender == owner, "Not Owner");
@@ -199,10 +204,14 @@ contract LaunchPad is ERC721URIStorage {
     //     success = true;
     // }
 
+
+
     // function withdrawEth() external payable {
     //     require(msg.sender == owner, "Not Owner");
     //     payable(owner).transfer(address(this).balance);
     // }
+
+
 
    // To enable the contract send out ether... to be done by only the launchpad owner
     function withdrawETH(address payable inputAddress, uint amount) external onlyOwner{
@@ -220,7 +229,7 @@ contract LaunchPad is ERC721URIStorage {
     //}
 
 //    function tokenURI(uint256 tokenId) public view virtual override(ERC721URIStorage) returns (string memory) {
-//         // string memory _baseURI = _baseURI();
+//         string memory _baseURI = _baseURI();
 //         return(string(abi.encodePacked(baseURI, tokenId)));
 //    }
    
