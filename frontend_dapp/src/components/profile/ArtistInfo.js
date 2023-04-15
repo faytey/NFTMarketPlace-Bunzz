@@ -24,7 +24,7 @@ const ArtistInfo = memo(() => {
   }, []);
 
   return (
-    <div className="self-stretch bg-background flex flex-col py-10 px-0 items-center justify-start text-left text-3xl text-text font-h5-space-mono">
+    <div className="self-stretch bg-[#2B2B2B] flex flex-col py-10 px-0 items-center justify-start text-left text-3xl text-text font-h5 font-space-mono">
       <div className="w-[1050px] flex flex-col items-start justify-start">
         <div className="flex flex-row items-start justify-start gap-[100px]">
           <div className="w-[599px] shrink-0 flex flex-col items-start justify-start gap-[30px]">

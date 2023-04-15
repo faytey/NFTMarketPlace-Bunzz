@@ -45,12 +45,7 @@ export default function Footer() {
                   <BsDiscord className="relative w-8 h-8 shrink-0 cursor-pointer" onClick={onDiscordLogoIconClick} />
                   <BsYoutube className="relative w-8 h-8 shrink-0 cursor-pointer" onClick={onYoutubeLogoIconClick} />
                   <BsTwitter className="relative w-8 h-8 shrink-0 cursor-pointer" onClick={onTwitterLogoIconClick} />
-                  <img
-                    className="relative w-8 h-8 shrink-0 cursor-pointer"
-                    alt=""
-                    src="/instagramlogo.svg"
-                    onClick={onInstagramLogoIconClick}
-                  />
+                  <BsInstagram className="relative w-8 h-8 shrink-0 cursor-pointer" onClick={onInstagramLogoIconClick} />
                 </div>
               </div>
             </div>
