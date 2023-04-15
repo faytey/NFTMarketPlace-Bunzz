@@ -121,29 +121,7 @@ const LaunchPads = ({ arg }) => {
             <h6>LaunchPad Address: {read?.[3]}</h6>
           </div>
         </div>
-        <div className="py-4 px-2">
-          <div className="flex justify-between ">
-            <h4>Total Raised:</h4>
-            <h4>$450,000 / $500,000</h4>
-          </div>
-          <div>
-            <hr />
-          </div>
-        </div>
-        <div className="flex justify-evenly w-full p-4">
-          <div className="flex flex-col items-center">
-            <p>Valuation</p>
-            <h6>278K</h6>
-          </div>
-          <div className="flex flex-col items-center">
-            <p>Access</p>
-            <h6>{today}</h6>
-          </div>
-          <div className="flex flex-col items-center">
-            <p>Base Allocation</p>
-            <h6>$0</h6>
-          </div>
-        </div>
+
         <div className="flex justify-center p-4">
           <a href="www.sepolia.etherscan.io">View on Etherscan</a>
         </div>

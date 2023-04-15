@@ -24,7 +24,9 @@ const Upcoming = () => {
           <p>Name: {info?.topic}</p>
           <p>Description: {info?.description}</p>
           <p>Access: {info?.access}</p>
-          <p className="text-xl italic font-bold">...UPCOMING...</p>
+          <Link href={`/startLaunchPad/${id}`}>
+            <button type="submit">START</button>
+          </Link>
         </div>
       </span>
     </div>
