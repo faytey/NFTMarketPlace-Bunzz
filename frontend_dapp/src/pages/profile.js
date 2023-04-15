@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import ArtistInfo from "../components/profile/ArtistInfo";
 import NFTContainer from "../components/profile/NFTContainer";
 import { useRouter } from "next/router";
+import axios from 'axios';
 
 import {Tab} from '@headlessui/react'
 import { erc721ABI, useContractReads } from 'wagmi'
@@ -22,6 +23,7 @@ const ArtistPage = () => {
 
 
   const [artistInfo, setArtistInfo] = useState();
+
 
   const nftCollectionsAddress = ["0x85E302Eb913125C9c053257B0A2b878B89388013", "0xdcFe1dBeFE3d795176785a0c7cf0518AD7908429", "0x9c2f220a005a22C38AFc073eBa3390fbF579A0A5"];
   const nftTokenDetails = [{address: '0x85E302Eb913125C9c053257B0A2b878B89388013', tokenID: 5}, {address: '0xdcFe1dBeFE3d795176785a0c7cf0518AD7908429', tokenID: 8}, {address: "0x9c2f220a005a22C38AFc073eBa3390fbF579A0A5", tokenID: 1}];
@@ -54,7 +56,34 @@ const ArtistPage = () => {
 
   useEffect(() => {
     setArtistInfo(nameAndURI)
-  }, [artistInfo])
+  }, [nameAndURI])
+
+  console.log(artistInfo)
+
+  const tokenURI = artistInfo?.[1]
+
+  const [tokenMetadata, setTokenMetadata] = useState();
+    const [nftImgUrl, setNftImgUrl] = useState();
+
+    const baseIpfs = "https://ipfs.io/ipfs/";
+
+    async function getMetadata(tokenURI) {
+        var metadataurl = `${baseIpfs}${tokenURI?.slice(7)}`
+        var res = await axios.get(metadataurl).then((res) => {return(res.data)})
+        setTokenMetadata(res)
+        var imgURI = tokenMetadata?.image
+        var imgurl = `${baseIpfs}${imgURI?.slice(7)}`
+        setNftImgUrl(imgurl)
+    }
+
+    useEffect(
+      () => {
+        getMetadata(tokenURI);
+        console.log(tokenMetadata)
+        console.log(nftImgUrl)
+      },
+      [tokenMetadata]
+    )
 
 
 
@@ -129,20 +158,21 @@ const ArtistPage = () => {
             <div className="grid grid-cols-3 gap-5">
               <div className="self-stretch bg-background-secondary flex flex-col py-20 px-0 items-center justify-start gap-[30px]">
                 {<NFTContainer
-                    NFTURI={nameAndURI?.[1]}
-                    NFTName={nameAndURI?.[0]}
+                    NFTURI={nftImgUrl ?? "assets/CherryGirl.png"}
+                    NFTName={tokenMetadata?.name ?? <p>Loading...</p>}
                     onNFTCardContainerClick={onNFTCardContainerClick}
                   /> ?? <p>Loading...</p>}
                 <p>1</p>
               </div>
+              {<NFTSpecs tokenURI={artistInfo?.[1]} />}
 
             </div>
           </Tab.Panel>
           <Tab.Panel>
             <div className="self-stretch bg-background-secondary flex flex-col py-20 px-0 items-center justify-start gap-[30px]">
               <NFTContainer
-                NFTURI={nameAndURI?.[1]}
-                NFTName={nameAndURI?.[0]}
+                NFTURI={nftImgUrl ?? "assets/CherryGirl.png"}
+                NFTName={tokenMetadata?.name ?? <p>Loading...</p>}
                 onNFTCardContainerClick={onNFTCardContainerClick}
               />
               <p>2</p>
@@ -151,8 +181,8 @@ const ArtistPage = () => {
           <Tab.Panel>
             <div className="self-stretch bg-background-secondary flex flex-col py-20 px-0 items-center justify-start gap-[30px]">
               <NFTContainer
-                NFTURI={nameAndURI?.[1]}
-                NFTName={nameAndURI?.[0]}
+                NFTURI={nftImgUrl ?? "assets/CherryGirl.png"}
+                NFTName={tokenMetadata?.name ?? <p>Loading...</p>}
                 onNFTCardContainerClick={onNFTCardContainerClick}
               />
               <p>3</p>
@@ -166,3 +196,7 @@ const ArtistPage = () => {
 };
 
 export default ArtistPage;
+
+
+
+

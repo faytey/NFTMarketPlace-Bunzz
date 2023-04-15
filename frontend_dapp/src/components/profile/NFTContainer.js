@@ -6,6 +6,9 @@ const NFTContainer = memo(
     NFTName,
     onNFTCardContainerClick,
   }) => {
+
+    console.log(NFTName)
+    console.log(NFTURI)
     return (
       <div className="w-[1050px] flex flex-row items-start justify-start gap-[30px] text-left text-3xl text-text font-sans">
         <div
