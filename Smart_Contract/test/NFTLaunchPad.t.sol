@@ -26,7 +26,7 @@ contract NFTLaunchPadTest is Test {
     function testCreateLaunchPad() public {
         testWhitelistAddress();
         address newlaunchpad = factory.createLaunchPad{value: 0.001 ether}("Ogbeni", "OGN", "https://localhost.com/");
-        launchpad = LaunchPad(newlaunchpad);
+        launchpad = LaunchPad(payable(newlaunchpad));
     }
 
     function testStartLaunchPad() public {

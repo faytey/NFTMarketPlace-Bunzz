@@ -55,28 +55,54 @@ const NFTMetadataTemplate = memo(
     )
 
 
+    // return (
+    //   <div className="flex" >
+    //     <div >
+    //       {<img src={nftImgUrl} /> ?? <p>Loading...</p>}
+    //     </div>
+    //     <div>
+    //       <div>
+    //         {tokenMetadata?.name ?? <p>Loading...</p>}
+    //       </div>
+    //       <div>
+    //         {
+    //           tokenMetadata?.attributes.map((item) => {
+    //             return (
+    //               <div>
+    //                 <div>{item.trait_type ?? <p>Loading...</p>}</div>
+    //                 <div>{item.value ?? <p>Loading...</p>}</div>
+    //                 <p>1</p>
+    //               </div>
+    //             )
+    //           })
+    //         }
+    //       </div>
+    //     </div>
+    //   </div>
+    // );
+
+
     return (
-      <div className="flex" >
-        <div >
-          {<img src={nftImgUrl} /> ?? <p>Loading...</p>}
-        </div>
-        <div>
-          <div>
-            {tokenMetadata?.name ?? <p>Loading...</p>}
+      <div className="relative bg-background w-full h-[1125px] flex flex-col items-start justify-start text-left text-base text-text font-h3-work-sans">
+        <div className="self-stretch bg-background flex items-center justify-start gap-[60px] text-32xl pl-14">
+          <div >
+           {<img src={nftImgUrl} /> ?? <p>Loading...</p>}
           </div>
           <div>
             {
               tokenMetadata?.attributes.map((item) => {
                 return (
-                  <div>
-                    <div>{item.trait_type ?? <p>Loading...</p>}</div>
-                    <div>{item.value ?? <p>Loading...</p>}</div>
-                    <p>1</p>
+                  <div className="flex w-full justify-between gap-16 m-0 p-3 place-items-center">
+                    <div className="text-2xl font-bold text-right">{item.trait_type ?? <p>Loading...</p>}:</div>
+                    <div className="text-left font-bold">{item.value ?? <p>Loading...</p>}</div>
                   </div>
                 )
               })
             }
-          </div>
+            <button className="font-2xl text-center w-full border rounded-lg m-0 p-2">Buy</button>
+         </div>
+        </div>
+        <div className="self-stretch bg-background-secondary flex flex-col py-10 px-[195px] items-center justify-start gap-[30px] text-3xl font-caption-space-mono">
         </div>
       </div>
     );
