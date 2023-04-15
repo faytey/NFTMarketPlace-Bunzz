@@ -21,13 +21,14 @@ const NFTImage = memo(
       [nftImgUrl]
     )
 
+    
 
   return (
     <div>
         <img
-        className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover rounded-lg"
+        className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full h-[330px] object-cover rounded-3xl"
         alt=""
-        src={ nftImgUrl ?? "assets/CherryGirl.png"}
+        src= "assets/CherryGirl.png"
          />
     </div>
   )

@@ -13,6 +13,8 @@ contract LaunchPadFactory {
     uint public listingFee = 0.0006 ether;
     mapping(address => bool) public whitelistedAddresses;
     mapping(uint => PadDetails) public LaunchPads;
+    mapping(address => bool) public Admins;
+
 
     struct PadDetails {
         string name;
@@ -25,16 +27,34 @@ contract LaunchPadFactory {
 
     constructor(address _DAOAddress){
         owner = _DAOAddress;
+        Admins[msg.sender] = true;
     }
 
     modifier onlyOwner {
-        require(msg.sender == owner, "Only owner can call this function");
+        require(Admins[msg.sender], "Only Admins can call this function");
         _;
+    }
+
+
+    function setListingFee(uint _fee) external onlyOwner {
+        require(_fee != 0, "Can't set fee to zero");
+        listingFee = _fee;
     }
 
     function whitelistAddress(address _address) public onlyOwner {
         require(_address != address(0), "Can't whitelist address zero");
         whitelistedAddresses[_address] = true;
+    }
+
+    function removeAdmin(address _address) external onlyOwner{
+        require(_address != address(0), "Address zero is not Admin");
+        Admins[_address] = false;
+    }
+
+
+    function setAdmin(address _address) external onlyOwner{
+        require(_address != address(0), "Cant make address zero Admin");
+        Admins[_address] = true;
     }
 
     function createLaunchPad(string memory _name, string memory symbol, string memory uri) external payable returns(address _launchpad){
@@ -51,6 +71,12 @@ contract LaunchPadFactory {
         whitelistedAddresses[msg.sender] = false;
         emit LaunchPadCreated(_launchpad, msg.sender);
     }
+
+    function withdraw() external onlyOwner returns(bool success) {
+        (success,) = payable(owner).call{value: address(this).balance}("");
+    }
+
+    receive() external payable{}
 }
 
 contract LaunchPad is ERC721URIStorage {
@@ -158,12 +184,17 @@ contract LaunchPad is ERC721URIStorage {
         //write test for this function
         require(totalNFTCommitment < totalNftsForSale, "All NFTs has been minted");
 
-        for (totalNFTCommitment; totalNFTCommitment < totalNftsForSale; totalNFTCommitment++) {
+        uint totalLeft = totalNftsForSale - totalNFTCommitment;
+
+        for (uint i = 0; i < totalLeft; i++) {
             _mint(recipient, mintedTokenId);
             mintedTokenId++;
         }
         success = true;
     }
+
+
+
 
     // function transferLeftoverTokens(IERC20 _tokenContract) public returns(bool success){
     //     require(msg.sender == owner, "Not Owner");
@@ -173,10 +204,14 @@ contract LaunchPad is ERC721URIStorage {
     //     success = true;
     // }
 
+
+
     // function withdrawEth() external payable {
     //     require(msg.sender == owner, "Not Owner");
     //     payable(owner).transfer(address(this).balance);
     // }
+
+
 
    // To enable the contract send out ether... to be done by only the launchpad owner
     function withdrawETH(address payable inputAddress, uint amount) external onlyOwner{
@@ -194,7 +229,7 @@ contract LaunchPad is ERC721URIStorage {
     //}
 
 //    function tokenURI(uint256 tokenId) public view virtual override(ERC721URIStorage) returns (string memory) {
-//         // string memory _baseURI = _baseURI();
+//         string memory _baseURI = _baseURI();
 //         return(string(abi.encodePacked(baseURI, tokenId)));
 //    }
    
@@ -203,5 +238,11 @@ contract LaunchPad is ERC721URIStorage {
     }
 //    function tokenURI(uint256 tokenId) public view virtual override(ERC721URIStorage) returns (string memory) {}
 //    function _burn(uint256 tokenId) internal virtual override(ERC721URIStorage) {}
+
+    function withdraw() external onlyOwner returns(bool success){
+        (success,) = payable(owner).call{value: address(this).balance}("");
+    }
+
+    receive() external payable{}
 
 }

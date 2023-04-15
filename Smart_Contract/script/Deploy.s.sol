@@ -17,9 +17,9 @@ contract DeployScript is Script {
 
         launchpadFactory = new LaunchPadFactory(0xe97a4C739b738e57539566547c3757ecb1bA223a);
         launchpadFactory.whitelistAddress(0xe97a4C739b738e57539566547c3757ecb1bA223a);
-        address _launchpad = launchpadFactory.createLaunchPad{value: 0.006 ether}("Benz", "BNZ","ipfs://Qmd9FE1XKkdpddUUG9nUkgQruVV2B8aE2cuCayS1QcWRTS");
-        launchpad = LaunchPad(_launchpad);
-        // marketPlace = new NFTMarketplace();
+        address _launchpad = launchpadFactory.createLaunchPad{value: 0.006 ether}("Benz", "BNZ","ipfs://Qmd9FE1XKkdpddUUG9nUkgQruVV2B8aE2cuCayS1QcWRTS/");
+        launchpad = LaunchPad(payable(_launchpad));
+        marketPlace = new NFTMarketplace();
 
         vm.stopBroadcast();
     }

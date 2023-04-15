@@ -59,7 +59,7 @@ const NFTCollectionTemplate1 = memo(
                     />
                   </div>
                 </div>
-                <div className="flex-1 relative leading-[140%]">Token Supply: {data?.[2]?.toString() ?? <p>Loading...</p>}</div>
+                <div className="flex-1 relative leading-[140%]">Token Supply: {data?.[2]?.toString() ?? <p></p>}</div>
               </div>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start text-xs text-caption-label-text font-h5-space-mono">
