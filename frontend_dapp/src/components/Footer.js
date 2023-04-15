@@ -29,7 +29,8 @@ export default function Footer() {
   }, []);
 
   return (
-      <div className="self-stretch bg-background-secondary flex flex-col py-10 px-[195px] items-center justify-start gap-[30px] text-3xl font-h5-space-mono">
+      <div className="self-stretch bg-background-secondary flex flex-col py-10 px-[195px] items-center justify-start gap-[30px] text-3xl font-h5-space-mono"
+      style={{boxShadow:"2px -2px 5px 1px #ccc", marginLeft:"1%",marginRight:"1%" }}>
         <div className="flex flex-row items-start justify-between">
           <div className="w-[327.41px] shrink-0 flex flex-col py-0 pr-[84px] pl-0 box-border items-start justify-start gap-[30px] text-base text-lightgray font-caption-work-sans">
           <Link href={"/"}>BUNZZ</Link>
