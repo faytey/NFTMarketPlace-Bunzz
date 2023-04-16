@@ -12,6 +12,7 @@ import {
 } from "wagmi";
 import React, { useState } from "react";
 import { ongoing, arr } from "../launchpad";
+import { ethers } from "ethers";
 
 const StartLaunchPad = () => {
   const { query } = useRouter();
@@ -31,8 +32,8 @@ const StartLaunchPad = () => {
   const { address } = useAccount();
 
   const [duration, setDuration] = useState();
-  const [price, setPrice] = useState("");
-  const [totalAmountNeeded, setTotalAmountNeeded] = useState("");
+  const [price, setPrice] = useState("0");
+  const [totalAmountNeeded, setTotalAmountNeeded] = useState("0");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,7 +44,11 @@ const StartLaunchPad = () => {
     address: String(readData?.[3]),
     abi: launchpadContract.abi,
     functionName: "startLaunchPad",
-    args: [duration, price, totalAmountNeeded],
+    args: [
+      duration,
+      ethers.utils.parseUnits(price, 18),
+      ethers.utils.parseUnits(totalAmountNeeded, 18),
+    ],
   });
   const {
     data,
@@ -115,7 +120,7 @@ const StartLaunchPad = () => {
           <label htmlFor="price">Price: </label>
           <input
             className="text-black p-2 rounded-md"
-            type="number"
+            type="text"
             id="price"
             placeholder="Enter Price of the NFT"
             value={price}
@@ -124,7 +129,7 @@ const StartLaunchPad = () => {
           <label htmlFor="amount">Total Amount Needed: </label>
           <input
             className="text-black p-2 rounded-md"
-            type="number"
+            type="text"
             id="amount"
             placeholder="Enter Total Amount Needed to be raised"
             value={totalAmountNeeded}

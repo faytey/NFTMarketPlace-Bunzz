@@ -94,7 +94,7 @@ const LaunchPads = ({ arg }) => {
     <Link
       href={`/ongoing/${arg}`}
       key={arg}
-      className="rounded-lg shadow-2xl bg-[#3a3a3a] p-5"
+      className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-5"
     >
       <div className="flex justify-center py-2">
         {/* <Image

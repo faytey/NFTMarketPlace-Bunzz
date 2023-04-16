@@ -3,9 +3,10 @@ import { ethers } from "ethers";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useAccount,
+  useContractRead,
   useContractWrite,
   usePrepareContractWrite,
   useWaitForTransaction,
@@ -13,12 +14,51 @@ import {
 
 const Deposit = () => {
   const { deposit } = useRouter().query;
-  console.log(useRouter().query);
-  const id = Number(deposit - 1);
+  // console.log(useRouter().query);
+  const id = Number(deposit);
 
   const { address } = useAccount();
 
   const [amount, setAmount] = useState("");
+  const [price, setPrice] = useState("");
+
+  const {
+    data: reads,
+    isError,
+    isLoading: loading,
+  } = useContractRead({
+    address: launchpadFactory.address,
+    abi: launchpadFactory.abi,
+    functionName: "LaunchPads",
+    args: [id],
+  });
+
+  const {
+    data: prices,
+    isError: errors,
+    isLoading: loads,
+  } = useContractRead({
+    address: reads?.[3],
+    abi: launchpadContract.abi,
+    functionName: "price",
+  });
+
+  console.log(reads);
+
+  const tryouts = () => {
+    const string = prices / ethers.utils.parseEther("1");
+    const total = string * amount;
+    const totals = ethers.utils.parseEther(total) ?? "0";
+    console.log(string);
+    console.log(total);
+    console.log(totals);
+    return totals;
+  };
+
+  useEffect(() => {
+    setPrice(string);
+    console.log(price);
+  }, [price]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,12 +66,13 @@ const Deposit = () => {
     alert("Successful");
   };
   const { config } = usePrepareContractWrite({
-    address: launchpadContract.address,
+    address: reads?.[3],
     abi: launchpadContract.abi,
     functionName: "depositETH",
     args: [amount],
-    overrides: { value: ethers.utils.parseEther(price) * amount },
+    overrides: { value: tryouts() },
   });
+
   const { data, isLoading, isSuccess, write } = useContractWrite(config);
 
   const {
@@ -61,6 +102,7 @@ const Deposit = () => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="amount">Amount: </label>
         <input
+          className="text-black"
           type="number"
           id="amount"
           value={amount}
