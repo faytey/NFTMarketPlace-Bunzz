@@ -21,7 +21,7 @@ contract NFTMarketPlaceTest is Test {
         marketplace.ListItemForSale{value: 0.00067 ether}(address(testnft), 0, 1 ether);
     }
 
-    function testGetNarketItem() public {
+    function testGetMarketItem() public {
         testListItem();
         marketplace.marketItems(1);
     }

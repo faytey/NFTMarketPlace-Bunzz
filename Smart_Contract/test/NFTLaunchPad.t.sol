@@ -31,7 +31,7 @@ contract NFTLaunchPadTest is Test {
 
     function testStartLaunchPad() public {
         testCreateLaunchPad();
-        launchpad.startLaunchPad(5 minutes, 0.0001 ether, 100 ether);
+        launchpad.startLaunchPad(5 minutes, 0.0001 ether, 0.002 ether);
     }
 
 
@@ -49,7 +49,6 @@ contract NFTLaunchPadTest is Test {
     function testDepositETH() public {
         testStartLaunchPad();
         vm.warp(block.timestamp + 1 minutes);
-        //TODO: Discuss if to allow sending more ether than price of NFT
         launchpad.depositETH{value: 0.0003 ether}(3);
         vm.deal(address(0x03), 100 ether);
         vm.prank(address(0x03));
@@ -92,10 +91,20 @@ contract NFTLaunchPadTest is Test {
 
 
     // TODO: Work on this test
-    // function testTransferLeftoverNFT() public {
-    //     testWithdrawNFT();
-    //     launchpad.transferLeftoverNFT(address(this));
-    // }
+    function testTransferLeftoverNFT() public {
+        testWithdrawNFT();
+        launchpad.transferLeftoverNFT(address(this));
+    }
+
+
+    function testTransferLeftoverNFTBeforeWithdraw() public {
+        testDepositETH();
+        vm.warp(block.timestamp + 5 minutes);
+        launchpad.transferLeftoverNFT(address(this));
+        launchpad.withdrawNFT();
+        vm.prank(address(0x03));
+        launchpad.withdrawNFT();
+    }
 
 
     // TODO: write test for withdraw token
