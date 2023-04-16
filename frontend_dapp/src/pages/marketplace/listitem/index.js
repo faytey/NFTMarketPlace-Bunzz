@@ -8,6 +8,7 @@ import { azukiContract, launchpadContract, marketplaceContract } from '@/utils/c
 import NFTDetailsTemplate1 from '@/components/marketplace/NFTDetailsTemplate1'
 import ImageInfoTemplate from '@/components/marketplace/ImageInfoTemplate'
 import { ethers } from 'ethers'
+import ListItemHeaderTemplate from '@/components/marketplace/ListItemHeaderTemplate'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -72,7 +73,11 @@ export default function ListItem() {
 
     return (
         <div>
-            <p>Listing Price: {listingPrice?.toString()} Ether</p>
+            <ListItemHeaderTemplate />
+            <div className="self-stretch flex flex-col items-start justify-start gap-[8px] text-caption-label-text">
+          </div>
+            <b className="relative leading-[100%] capitalize">Listing Price</b>
+            <p>{listingPrice?.toString()} Ether</p>
             <div className='flex m-0 p-16  justify-between'>
                 {/* <ImageInfoTemplate tokenURI={nftTokenURI}/> */}
                 <form className='flex flex-col m-0 p-10 border rounded-lg justify-between gap-5'>

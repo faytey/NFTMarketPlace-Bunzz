@@ -50,15 +50,27 @@ const Nft = () => {
 
 
 
+  // return (
+  //   <div>
+  //       {/* {<NFTHeader collectionName={collectionDetails?.[0]} collectionAddress={collections} tokenId={tokenId}/> ?? <p>Loading...</p>} */}
+  //       <div className='md:grid md:grid-cols-2 gap-10 space-y-5 m-0 p-8'>
+  //           {/* {<ImageInfoTemplate tokenURI={collectionDetails?.[1]} /> ?? <p>Loading...</p>} */}
+  //           {<NFTMetadataTemplate tokenURI={collectionDetails?.[1]}/> ?? <p>Loading...</p>}
+  //       </div>
+  //   </div>
+  // )
+
+
   return (
-    <div>
-        {/* {<NFTHeader collectionName={collectionDetails?.[0]} collectionAddress={collections} tokenId={tokenId}/> ?? <p>Loading...</p>} */}
-        <div className='md:grid md:grid-cols-2 gap-10 space-y-5 m-0 p-8'>
-            {/* {<ImageInfoTemplate tokenURI={collectionDetails?.[1]} /> ?? <p>Loading...</p>} */}
-            {<NFTMetadataTemplate tokenURI={collectionDetails?.[1]}/> ?? <p>Loading...</p>}
+    <div className="relative bg-background w-full h-[1125px] flex flex-col items-start justify-start text-left text-base text-text font-h3-work-sans">
+        {<NFTHeader collectionName={collectionDetails?.[0]} collectionAddress={collections} tokenId={tokenId}/> ?? <p>Loading...</p>}
+        <div className="self-stretch bg-background flex flex-row items-center justify-start gap-[60px] text-32xl pl-14">
+          {<NFTMetadataTemplate tokenURI={collectionDetails?.[1]}/> ?? <p>Loading...</p>}
         </div>
+      {/* <div className="self-stretch bg-background-secondary flex flex-col py-10 px-[195px] items-center justify-start gap-[30px] text-3xl font-caption-space-mono">
+      </div> */}
     </div>
-  )
+  );
 }
 
 
