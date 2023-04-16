@@ -91,7 +91,7 @@ const NFTSpecs = memo((
                 </div>
                 
             </div>
-            <div className="self-stretch rounded-2xl bg-[#A259FF] max-h-full py-[10px] box-border text-center font-semibold">
+            <div className="self-stretch rounded-2xl bg-[#A259FF] max-h-full py-[10px] box-border text-center font-semibold cursor-pointer">
                 Buy
             </div>
             </div>

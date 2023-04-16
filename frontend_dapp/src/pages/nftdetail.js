@@ -19,8 +19,8 @@ const NFTDetail = () => {
   }, []);
 
   return (
-    <div className="relative bg-background w-full h-[1125px] flex flex-col items-start justify-start text-left text-base text-text font-h3-work-sans">
-      <div className="self-stretch bg-background flex flex-row items-center justify-start gap-[60px] text-32xl pl-14">
+    <div className="relative w-full h-[1125px] flex flex-col items-start justify-start text-left text-base font-sans">
+      <div className="self-stretch flex flex-row items-center justify-start space-x-20 text-32xl pl-14">
         <NFTImage />
         <NFTSpecs />
       </div>
