@@ -48,17 +48,17 @@ const Deposit = () => {
   const tryouts = () => {
     const string = prices / ethers.utils.parseEther("1");
     const total = string * amount;
-    const totals = ethers.utils.parseEther(total) ?? "0";
+    const totals = String(total) ?? "0";
     console.log(string);
     console.log(total);
     console.log(totals);
     return totals;
   };
 
-  useEffect(() => {
-    setPrice(string);
-    console.log(price);
-  }, [price]);
+  // useEffect(() => {
+  //   setPrice(string);
+  //   console.log(price);
+  // }, [price]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -96,14 +96,17 @@ const Deposit = () => {
   }
 
   return (
-    <div>
+    <div className="w-[40%] mx-auto p-[2rem] bg-[rgba(0,0,0,0.4)] rounded-lg border border-black">
       <p>Hello I'm the deposit page</p>
       <h1>Support this Awesome LaunchPad</h1>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center gap-2 width-[40%]"
+      >
         <label htmlFor="amount">Amount: </label>
         <input
-          className="text-black"
-          type="number"
+          className="text-black w-[60%]"
+          type="text"
           id="amount"
           value={amount}
           placeholder="Enter Amount to Deposit"

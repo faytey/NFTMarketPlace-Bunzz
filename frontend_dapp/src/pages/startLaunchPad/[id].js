@@ -86,9 +86,9 @@ const StartLaunchPad = () => {
   console.log(today);
 
   return (
-    <div className="flex flex-col gap-8 items-center h-auto">
+    <div className="flex flex-col gap-8 items-center h-auto mb-[2rem]">
       <h1>Start LaunchPad</h1>
-      <span className="bg-[#3a3a3a] rounded-md shadow-xl p-8">
+      <span className="bg-[rgba(0,0,0,0.4)] rounded-md shadow-xl p-8">
         {/* <Image
           className="shadow-lg mb-4 rounded-md"
           src={`/${info?.img}`}
