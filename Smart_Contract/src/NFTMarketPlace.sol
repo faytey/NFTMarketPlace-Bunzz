@@ -106,14 +106,14 @@ contract NFTMarketplace is ReentrancyGuard {
         _itemIds.increment();
         uint256 itemIds = _itemIds.current();
         MarketItem memory _m = marketItems[itemIds];
-        _m.itemId = itemIds;
+        {_m.itemId = itemIds;
         _m.nftContract = _nftcontract;
         _m.tokenId = _tokenId;
         _m.seller = payable(msg.sender);
         _m.owner = payable(address(0));
         _m.price = _price;
         _m.sold = false;
-        marketItems[itemIds] = _m;
+        marketItems[itemIds] = _m;}
 
         IERC721(_nftcontract).transferFrom(msg.sender, address(this), _tokenId);
 

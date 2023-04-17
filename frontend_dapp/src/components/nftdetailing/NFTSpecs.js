@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { memo, useEffect, useState } from 'react';
 import NFTImage from "@/components/nftdetailing/NFTImage";
-
+import { ethers } from "ethers";
+import { erc721ABI, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
+import { marketplaceContract } from "@/utils/contractInfo";
 const NFTSpecs = memo((
     {
         tokenURI
@@ -23,6 +25,22 @@ const NFTSpecs = memo((
         setNftImgUrl(imgurl)
     }
 
+    const { config } = usePrepareContractWrite({
+        ...marketplaceContract,
+        functionName: "buyAsset",
+        args: [itemId],
+        overrides: {
+          value: data?.price
+        }
+      })
+
+
+      const { data: buyData, isLoading, isSuccess, write } = useContractWrite(config)
+
+      const { data: buyResult } = useWaitForTransaction({
+        hash: buyData?.hash
+      })
+
     useEffect(
       () => {
         getMetadata(tokenURI);
@@ -38,7 +56,7 @@ const NFTSpecs = memo((
 
 
         <div className="self-stretch flex flex-row items-center justify-start space-x-20 text-32xl pl-14">
-        
+            
             <NFTImage imageURI= {nftImgUrl} />
             <div className="flex-1 flex flex-col py-[100px] px-0 items-start justify-start gap-[40px]">
             <div className="w-[460px] flex flex-col items-start justify-start">
@@ -88,12 +106,10 @@ const NFTSpecs = memo((
                             return (
                                 <div className="flex w-full justify-between gap-16 m-0 p-3 place-items-center">
                                 <div className="flex-1 relative leading-[140%]">
-                                    Description:
                                   <div className="text-2xl font-bold text-right">{item.trait_type ?? <p>Loading...</p>}:</div>
                                 </div>
                                 <div className="flex-1 relative leading-[140%]">
-                                Value:
-                                  <div className="text-left font-bold">{item.value ?? <p>Loading...</p>}</div>
+                                  <div className="text-left font-semibold">{item.value ?? <p>Loading...</p>}</div>
                                 </div>
                                 </div>
                               )
@@ -102,7 +118,10 @@ const NFTSpecs = memo((
 
                 </div>
             </div>
-            <button className="self-stretch rounded-2xl bg-[#A259FF] max-h-full py-[10px] box-border text-center font-semibold cursor-pointer">
+            <button className="self-stretch rounded-2xl bg-[#A259FF] max-h-full py-[10px] box-border text-center font-semibold cursor-pointer" onClick={(e) => {
+                e.preventDefault();
+                write?.()
+                }}>
                 Buy
             </button>
             </div>

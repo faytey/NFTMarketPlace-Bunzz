@@ -47,7 +47,7 @@ const NFTContainer = memo(
   const onNFTCardContainerClick = useCallback(() => {
     router.push({
       pathname: "/nftdetail",
-      query: { item: marketItem.nftContract, id: marketItem.tokenId }
+      query: { object: marketItem.itemId, item: marketItem.nftContract, id: marketItem.tokenId }
     });
   }, [router]);
 
