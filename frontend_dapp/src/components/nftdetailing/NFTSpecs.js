@@ -6,7 +6,8 @@ import { erc721ABI, useContractRead, useContractWrite, usePrepareContractWrite, 
 import { marketplaceContract } from "@/utils/contractInfo";
 const NFTSpecs = memo((
     {
-        tokenURI
+        tokenURI,
+        object
     }
 ) => {
 
@@ -25,30 +26,43 @@ const NFTSpecs = memo((
         setNftImgUrl(imgurl)
     }
 
+    const { data, isError, isLoading } = useContractRead({
+      ...marketplaceContract,
+      functionName: "marketItems",
+      args: [object]
+    })
+
+
     const { config } = usePrepareContractWrite({
-        ...marketplaceContract,
-        functionName: "buyAsset",
-        args: [itemId],
-        overrides: {
-          value: data?.price
-        }
-      })
+      ...marketplaceContract,
+      functionName: "buyAsset",
+      args: [object],
+      overrides: {
+        value: data?.price
+      }
+    })
 
 
-      const { data: buyData, isLoading, isSuccess, write } = useContractWrite(config)
+    console.log(data?.price)
 
-      const { data: buyResult } = useWaitForTransaction({
-        hash: buyData?.hash
-      })
+
+    
+    const { data: buyData, write } = useContractWrite(config)
+
+    const { data: buyResult } = useWaitForTransaction({
+      hash: buyData?.hash
+    })
 
     useEffect(
       () => {
         getMetadata(tokenURI);
-        console.log(tokenMetadata)
-        console.log(nftImgUrl)
       },
-      [tokenMetadata]
+      [tokenMetadata, nftImgUrl]
     )
+
+
+
+
 
 
     return (
@@ -95,7 +109,7 @@ const NFTSpecs = memo((
                 <div className="self-stretch bg-text box-border h-[65px] shrink-0 flex  py-4 px-5 items-center justify-start gap-[12px] border-b-2 border-solid">
                 <div className=" flex flex-1 relative leading-[140%] flex-col items-start gap-3">
                 <span className='leading-3 font-light text-slate-400 tracking-wide'>Price:</span>
-                <span className=' leading-4 font-semibold text-2xl tracking-wide'> 0.006 eth</span>
+                <span className=' leading-4 font-semibold text-2xl tracking-wide'> {data?.price.toString()/ethers.utils.parseEther ?? <p>Loading....</p>} eth</span>
                 </div>
     
                 </div>

@@ -140,7 +140,7 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
         <Tab.Panels>
           <div className="self-stretch bg-[#2B2B2B]-secondary flex flex-col py-20 px-0 items-center justify-start gap-[30px]">
           <Tab.Panel>
-              { itemListed?.map((item) => {
+              { marketItems?.map((item) => {
                 return (
                     <div>
                       {<NFTContainer 
@@ -153,7 +153,7 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
             </Tab.Panel>
 
           <Tab.Panel>
-          { MarketItemArray?.map((item) => {
+          { marketItems?.map((item) => {
             return (
                 <div>
                   {<NFTContainer 
@@ -166,7 +166,7 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
           </Tab.Panel>
 
           <Tab.Panel>
-            { MarketItemArray?.map((item) => {
+            { marketItems?.map((item) => {
               return (
                   <div>
                     {<NFTContainer 
