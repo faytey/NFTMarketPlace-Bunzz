@@ -3,7 +3,9 @@ import axios from "axios";
 import Link from "next/link";
 import ButtonTemplate from "./ButtonTemplate";
 import NFTMetadataTemplate from "./NFTMetadataTemplate";
-import { erc721ABI, useContractRead } from "wagmi";
+import { erc721ABI, useContractRead, useContractWrite, usePrepareContractWrite } from "wagmi";
+import { ethers } from "ethers";
+import { marketplaceContract } from "@/utils/contractInfo";
 
 
 const MarketItemTemplate = memo(
@@ -22,6 +24,7 @@ const MarketItemTemplate = memo(
         functionName: 'tokenURI',
         args: [marketItem.tokenId]
     })
+
  
 
     const baseIpfs = "https://ipfs.io/ipfs/";
@@ -38,9 +41,9 @@ const MarketItemTemplate = memo(
     useEffect(
       () => {
         getMetadata(tokenURI);
-        console.log(tokenMetadata)
-        console.log(nftImgUrl)
-        console.log(tokenURI)
+        // console.log(tokenMetadata)
+        // console.log(nftImgUrl)
+        // console.log(tokenURI)
       },
       [tokenMetadata, tokenURI]
     )
@@ -78,7 +81,7 @@ const MarketItemTemplate = memo(
   
           <Link
             className="flex-1 rounded-xl bg-[#1C1C1C] h-[469px] flex flex-col items-center justify-start cursor-pointer"
-            href={`/marketplace/${marketItem?.nftContract}/${marketItem?.tokenId}`}
+            href={`/marketplace/${marketItem?.itemId}`}
           >
             <div className="self-stretch rounded-t-xl rounded-b-none flex flex-col items-start justify-start">
               {/* {<NFTMetadataTemplate tokenURI={data?.[1]} /> ?? <p>Loading...</p>} */}
@@ -100,10 +103,10 @@ const MarketItemTemplate = memo(
                         />
                       </div>
                     </div>
-                    <div className="flex-1 relative leading-[140%]">Token ID: {marketItem?.tokenId}</div>
+                    <div className="flex-1 relative leading-[140%]">Token ID: {marketItem?.tokenId.toString()}</div>
                   </div>
                 </div>
-                <ButtonTemplate ButtonName="Buy" onButtonClick={""} ButtonLink=""/>
+                {/* <Link href={`/marketplace/${marketItem.nftContract}/${marketItem.tokenId}`}>Buy </Link> */}
               </div>
               <div className="self-stretch flex flex-row items-start justify-start text-xs text-caption-label-text font-h5-space-mono">
                 <div className="flex-1 flex flex-col py-0 pr-[21px] pl-0 items-start justify-start gap-[8px]">
@@ -111,17 +114,17 @@ const MarketItemTemplate = memo(
                     Price
                   </div>
                   <div className="self-stretch relative text-base leading-[140%] text-text">
-                    {marketItem?.price} ETH
+                    {marketItem?.price.toString() / ethers.utils.parseEther("1")} ETH
                   </div>
                 </div>
-                <div className="flex-1 flex flex-col items-end justify-center gap-[8px] text-right">
+                {/* <div className="flex-1 flex flex-col items-end justify-center gap-[8px] text-right">
                   <div className="self-stretch relative leading-[110%]">
                     Highest Bid
                   </div>
                   <div className="self-stretch relative text-base leading-[140%] text-text">
                     {"..."} wETH
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </Link>

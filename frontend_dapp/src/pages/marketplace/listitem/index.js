@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
-import { erc721ABI, useAccount, useContractRead, useContractReads, useContractWrite, usePrepareContractWrite, useProvider } from 'wagmi'
+import { erc721ABI, useAccount, useContractRead, useContractReads, useContractWrite, usePrepareContractWrite, useProvider, useWaitForTransaction } from 'wagmi'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
@@ -48,7 +48,16 @@ export default function ListItem() {
 
 
 
-    const { data: nftTokenURI, isError: collectionDataError, isLoading: collectionDataIsLoading } = useContractReads({
+    // const { data: nftTokenURI, isError: collectionDataError, isLoading: collectionDataIsLoading } = useContractReads({
+    //     address: itemDetails?.address ?? "0x0",
+    //     abi: erc721ABI,
+    //     functionName: 'tokenURI',
+    //     args: [itemDetails?.tokenId ?? 1],
+
+    // })
+
+
+    const { data: nftTokenURI, isError: collectionDataError, isLoading: collectionDataIsLoading } = useContractRead({
         address: itemDetails?.address ?? "0x0",
         abi: erc721ABI,
         functionName: 'tokenURI',
@@ -57,16 +66,39 @@ export default function ListItem() {
     })
 
 
-    const { config } = usePrepareContractWrite({
+    const { config: approveConfig } = usePrepareContractWrite({
+        address: itemDetails?.address,
+        abi: erc721ABI,
+        functionName: 'approve',
+        args: [marketplaceContract?.address, itemDetails?.tokenId],
+    })
+    
+
+    const { data: approveData, write: approveWrite } = useContractWrite({
+        ...approveConfig,
+    })
+
+    const { data: approveDetails } = useWaitForTransaction({
+        hash: approveData?.hash,
+
+        // onSuccess(data) {
+        //     listWrite?.()
+        // }
+    })
+
+
+    const { config: listConfig } = usePrepareContractWrite({
         ...marketplaceContract,
         functionName: 'ListItemForSale',
         args: [itemDetails?.address, itemDetails?.tokenId, itemDetails?.price],
         overrides: {
-            value: ethers.utils.parseEther("0.0006")
+            value: ethers.utils.parseEther("0.00067")
         }
     })
 
-    const { data, isLoading, isSuccess, write } = useContractWrite(config)
+    const { data: listData, write: listWrite } = useContractWrite({
+        ...listConfig
+    })
 
 
 
@@ -74,12 +106,8 @@ export default function ListItem() {
     return (
         <div>
             <ListItemHeaderTemplate />
-            <div className="self-stretch flex flex-col items-start justify-start gap-[8px] text-caption-label-text">
-          </div>
-            <b className="relative leading-[100%] capitalize">Listing Price</b>
-            <p>{listingPrice?.toString()} Ether</p>
             <div className='flex m-0 p-16  justify-between'>
-                {/* <ImageInfoTemplate tokenURI={nftTokenURI}/> */}
+                <p><b className="relative leading-[100%] capitalize">Listing Fee: </b>{listingPrice?.toString()} ETH</p>
                 <form className='flex flex-col m-0 p-10 border rounded-lg justify-between gap-5'>
                     <label>
                         <p>Contract Address</p>
@@ -98,14 +126,20 @@ export default function ListItem() {
                     <label>
                         <p>Price in ETH</p>
                         <input placeholder='1' className='m-0 p-2 text-black rounded-lg w-full' onChange={(e) => {
-                            var val = ethers.utils.parseUnits(e.target.value, "ether").toString()
+                            var val = ethers.utils.parseEther(e.target.value).toString()
                             setItemDetails({...itemDetails, price: val})
                             console.log(itemDetails)}
                         }/>
                     </label>
-                    <button type='submit' onClick={(e) => {
+                    <button type='submit' className='border rounded-lg m-0 p-2' onClick={(e) => {
                         e.preventDefault();
-                        write?.()
+                        approveWrite?.()
+                        }}>
+                            Approve
+                    </button>
+                    <button type='submit' className='border rounded-lg m-0 p-2' onClick={(e) => {
+                        e.preventDefault();
+                        listWrite?.()
                         }}>
                             List Item
                     </button>
