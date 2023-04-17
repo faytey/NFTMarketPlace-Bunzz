@@ -63,8 +63,9 @@ const Deposit = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     write?.();
-    alert("Successful");
+    console.log("Successful");
   };
+
   const { config } = usePrepareContractWrite({
     address: reads?.[3],
     abi: launchpadContract.abi,
@@ -103,13 +104,13 @@ const Deposit = () => {
         onSubmit={handleSubmit}
         className="flex flex-col items-center gap-2 width-[40%]"
       >
-        <label htmlFor="amount">Amount: </label>
+        <label htmlFor="amount">Amount of NFTs: </label>
         <input
           className="text-black w-[60%]"
           type="text"
           id="amount"
           value={amount}
-          placeholder="Enter Amount to Deposit"
+          placeholder="Enter Amount of NFTs to Purchase"
           onChange={(e) => setAmount(e.target.value)}
         />
         <button type="submit">

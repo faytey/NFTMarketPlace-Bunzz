@@ -19,7 +19,6 @@ export default function createlaunchpad() {
   const handleSubmit = (e) => {
     e.preventDefault();
     write?.();
-    alert("Successful");
   };
   const { config } = usePrepareContractWrite({
     address: launchpadFactory.address,

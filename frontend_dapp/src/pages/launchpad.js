@@ -1,4 +1,7 @@
+import EndedPads from "@/components/EndedPads.js";
 import LaunchPads from "@/components/LaunchPads.js";
+import OngoingPads from "@/components/OngoingPads.js";
+import UpcomingPads from "@/components/UpcomingPads.js";
 import { launchpadFactory } from "@/utils/contractInfo.js";
 import { Tab } from "@headlessui/react";
 import Image from "next/image.js";
@@ -106,131 +109,7 @@ export default function Launchpad() {
         <h1>Discover Investment Worthy LaunchPads</h1>
       </header>
       <main className="w-[80%] mx-auto">
-        <Tab.Group>
-          <Tab.List>
-            <div className="flex justify-evenly bg-[rgba(0,0,0,0.4)] border-2 border-black py-4 rounded-xl">
-              <Tab className="outline-none">HOME</Tab>
-              <Tab className="outline-none">ONGOING</Tab>
-              <Tab className="outline-none">UPCOMING</Tab>
-            </div>
-          </Tab.List>
-          <Tab.Panels>
-            <Tab.Panel className="grid grid-cols-1 md:grid-cols-2 md:gap-10 py-10">
-              {arr.map((pad) => {
-                return <LaunchPads arg={pad} />;
-              })}
-            </Tab.Panel>
-            <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
-              {upcoming.map((data1) => {
-                return (
-                  <Link
-                    href={`/upcoming/${data1.id}`}
-                    key={data1.id}
-                    className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-5"
-                  >
-                    <div className="flex justify-center py-2">
-                      <Image
-                        src={`/${data1.img}`}
-                        alt="image"
-                        width={500}
-                        height={100}
-                        className="rounded-lg"
-                      />
-                    </div>
-                    <div>
-                      <div className="flex gap-3 p-2 border-b-2">
-                        <div>
-                          <Image
-                            src={`/${data1.logo}`}
-                            alt="image"
-                            width={150}
-                            height={200}
-                            className="rounded-lg"
-                          />
-                        </div>
-                        <div className="flex flex-col">
-                          <h1 className="text-3xl">{data1.topic}</h1>
-                          <h6>{data1.description}</h6>
-                        </div>
-                      </div>
-                      <div className="flex justify-evenly w-full p-4">
-                        <div className="flex flex-col items-center">
-                          <p className="text-center text-2xl text-bold">
-                            {" "}
-                            Don't Miss This ...
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex justify-center p-4">
-                        <Link href="www.sepolia.etherscan.io" passHref={true}>
-                          View on Etherscan
-                        </Link>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </Tab.Panel>
-            <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
-              {past.map((data2) => {
-                return (
-                  <Link
-                    href={`/upcoming/${data2.id}`}
-                    key={data2.id}
-                    className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-5"
-                  >
-                    <div className="flex justify-center py-2">
-                      <Image
-                        src={`/${data2.img}`}
-                        alt="image"
-                        width={500}
-                        height={100}
-                        className="rounded-lg"
-                      />
-                    </div>
-                    <div>
-                      <div className="flex gap-3 p-2 border-b-2">
-                        <div>
-                          <Image
-                            src={`/${data2.logo}`}
-                            alt="image"
-                            width={150}
-                            height={200}
-                            className="rounded-lg"
-                          />
-                        </div>
-                        <div className="flex flex-col">
-                          <h1 className="text-3xl">{data2.topic}</h1>
-                          <h6>{data2.description}</h6>
-                        </div>
-                      </div>
-                      <div className="py-4 px-2">
-                        <div className="flex justify-between ">
-                          <h4>Total Raised:</h4>
-                          <h4>$500,000</h4>
-                        </div>
-                        <div>
-                          <hr />
-                        </div>
-                      </div>
-                      <div className="flex justify-evenly w-full p-4">
-                        <div className="flex flex-col items-center">
-                          <p className="text-2xl text-bold">Coming Soon...</p>
-                        </div>
-                      </div>
-                      <div className="flex justify-center p-4">
-                        <Link href="www.sepolia.etherscan.io" passHref={true}>
-                          View on Etherscan
-                        </Link>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </Tab.Panel>
-          </Tab.Panels>
-        </Tab.Group>
-        <div className="mt-3 rounded-lg shadow-xl bg-[rgba(0,0,0,0.4)] border-2 border-black flex justify-center gap-10 items-center p-6">
+        <div className="mt-3 mb-[4rem] rounded-lg shadow-xl bg-[rgba(0,0,0,0.4)] border-2 border-black flex justify-center gap-10 items-center p-6">
           <div className="flex-1">
             <h1 className="text-2xl px-8">
               Want to raise funding for your favorite NFT, Create your LaunchPad
@@ -255,6 +134,39 @@ export default function Launchpad() {
             </Link>
           </div>
         </div>
+
+        <Tab.Group>
+          <Tab.List>
+            <div className="flex justify-evenly bg-[rgba(0,0,0,0.4)] border-2 border-black py-4 rounded-xl">
+              <Tab className="outline-none">HOME</Tab>
+              <Tab className="outline-none">ONGOING</Tab>
+              <Tab className="outline-none">UPCOMING</Tab>
+              <Tab className="outline-none">ENDED</Tab>
+            </div>
+          </Tab.List>
+          <Tab.Panels>
+            <Tab.Panel className="grid grid-cols-1 md:grid-cols-2 md:gap-10 py-10">
+              {arr.map((pad) => {
+                return <LaunchPads arg={pad} />;
+              })}
+            </Tab.Panel>
+            <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
+              {arr.map((data1) => {
+                return <OngoingPads arg={data1} />;
+              })}
+            </Tab.Panel>
+            <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
+              {arr.map((data2) => {
+                return <UpcomingPads arg={data2} />;
+              })}
+            </Tab.Panel>
+            <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
+              {arr.map((data3) => {
+                return <EndedPads arg={data3} />;
+              })}
+            </Tab.Panel>
+          </Tab.Panels>
+        </Tab.Group>
       </main>
     </div>
   );
