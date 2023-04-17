@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
-import { erc721ABI, useAccount, useContractRead, useContractReads, useContractWrite, usePrepareContractWrite, useProvider } from 'wagmi'
+import { erc721ABI, useAccount, useContractRead, useContractReads, useContractWrite, usePrepareContractWrite, useProvider, useWaitForTransaction } from 'wagmi'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
@@ -67,22 +67,24 @@ export default function ListItem() {
 
 
     const { config: approveConfig } = usePrepareContractWrite({
-        ...marketplaceContract,
+        address: itemDetails?.address,
+        abi: erc721ABI,
         functionName: 'approve',
-        args: [itemDetails?.address, itemDetails?.tokenId],
+        args: [marketplaceContract?.address, itemDetails?.tokenId],
     })
     
 
     const { data: approveData, write: approveWrite } = useContractWrite({
         ...approveConfig,
-
-        onSuccess(data) {
-            console.log(data);
-            listWrite?.();
-        }
     })
 
+    const { data: approveDetails } = useWaitForTransaction({
+        hash: approveData?.hash,
 
+        // onSuccess(data) {
+        //     listWrite?.()
+        // }
+    })
 
 
     const { config: listConfig } = usePrepareContractWrite({
@@ -94,7 +96,9 @@ export default function ListItem() {
         }
     })
 
-    const { data: listData, write: listWrite } = useContractWrite(listConfig)
+    const { data: listData, write: listWrite } = useContractWrite({
+        ...listConfig
+    })
 
 
 
@@ -103,7 +107,7 @@ export default function ListItem() {
         <div>
             <ListItemHeaderTemplate />
             <div className='flex m-0 p-16  justify-between'>
-                <p><b className="relative leading-[100%] capitalize">Listing Price: </b>{listingPrice?.toString()} ETH</p>
+                <p><b className="relative leading-[100%] capitalize">Listing Fee: </b>{listingPrice?.toString()} ETH</p>
                 <form className='flex flex-col m-0 p-10 border rounded-lg justify-between gap-5'>
                     <label>
                         <p>Contract Address</p>
@@ -122,7 +126,7 @@ export default function ListItem() {
                     <label>
                         <p>Price in ETH</p>
                         <input placeholder='1' className='m-0 p-2 text-black rounded-lg w-full' onChange={(e) => {
-                            var val = ethers.utils.parseUnits(e.target.value, "ether").toString()
+                            var val = ethers.utils.parseEther(e.target.value).toString()
                             setItemDetails({...itemDetails, price: val})
                             console.log(itemDetails)}
                         }/>
@@ -130,6 +134,12 @@ export default function ListItem() {
                     <button type='submit' className='border rounded-lg m-0 p-2' onClick={(e) => {
                         e.preventDefault();
                         approveWrite?.()
+                        }}>
+                            Approve
+                    </button>
+                    <button type='submit' className='border rounded-lg m-0 p-2' onClick={(e) => {
+                        e.preventDefault();
+                        listWrite?.()
                         }}>
                             List Item
                     </button>
