@@ -48,7 +48,7 @@ const Deposit = () => {
   const tryouts = () => {
     const string = prices / ethers.utils.parseEther("1");
     const total = string * amount;
-    const totals = String(total) ?? "0";
+    const totals = total * 10 ** 18 ?? "0";
     console.log(string);
     console.log(total);
     console.log(totals);
