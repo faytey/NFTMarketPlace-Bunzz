@@ -1,11 +1,14 @@
 import { memo, useState, useEffect } from "react";
 import { erc721ABI, useContractRead } from "wagmi";
 import axios from "axios";
+import Link from "next/link";
+import { useCallback } from "react";
+import { useRouter } from "next/router";
 
 const NFTContainer = memo(
   ({
     marketItem,
-    onNFTCardContainerClick,
+    //onNFTCardContainerClick,
   }) => {
 
     const [tokenMetadata, setTokenMetadata] = useState();
@@ -38,7 +41,18 @@ const NFTContainer = memo(
     },
     [tokenMetadata, tokenURI]
   )
+
+  const router = useRouter();
   
+  const onNFTCardContainerClick = useCallback(() => {
+    router.push({
+      pathname: "/nftdetail",
+      query: { item: marketItem.nftContract, id: marketItem.tokenId }
+    });
+  }, [router]);
+
+
+
     return (
       <div className="w-[1050px] flex flex-row items-start justify-start max-w-full m-auto gap-[30px] ml-10 text-left text-3xl mb-10 text-text font-sans">
         <div

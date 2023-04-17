@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react';
+import NFTImage from "@/components/nftdetailing/NFTImage";
 
 const NFTSpecs = memo((
     {
@@ -33,7 +34,12 @@ const NFTSpecs = memo((
 
 
     return (
-        <div>
+        <div className="relative w-full h-[1125px] flex flex-col items-start justify-start text-left text-base font-sans">
+
+
+        <div className="self-stretch flex flex-row items-center justify-start space-x-20 text-32xl pl-14">
+        
+            <NFTImage imageURI= {nftImgUrl} />
             <div className="flex-1 flex flex-col py-[100px] px-0 items-start justify-start gap-[40px]">
             <div className="w-[460px] flex flex-col items-start justify-start">
             <div className="self-stretch flex flex-col items-start justify-start gap-[20px]">
@@ -76,25 +82,32 @@ const NFTSpecs = memo((
     
                 </div>
                 <div className="self-stretch rounded-xl bg-text box-border max-h-full shrink-0 flex flex-col py-4 px-5 items-start justify-start gap-[12px] border-[2px] border-solid">
-                    <div className="flex-1 relative leading-[140%]">
-                    Description:
-                    </div>
-                    <div className="flex-1 relative leading-[140%]">
-                    Description:
-                    </div>
-                    <div className="flex-1 relative leading-[140%]">
-                    Description:
-                    </div>
-                    <div className="flex-1 relative leading-[140%]">
-                    Description:
-                    </div>
+                    
+                    {
+                        tokenMetadata?.attributes.map((item) => {
+                            return (
+                                <div className="flex w-full justify-between gap-16 m-0 p-3 place-items-center">
+                                <div className="flex-1 relative leading-[140%]">
+                                    Description:
+                                  <div className="text-2xl font-bold text-right">{item.trait_type ?? <p>Loading...</p>}:</div>
+                                </div>
+                                <div className="flex-1 relative leading-[140%]">
+                                Value:
+                                  <div className="text-left font-bold">{item.value ?? <p>Loading...</p>}</div>
+                                </div>
+                                </div>
+                              )
+                        })
+                    }
+
                 </div>
-                
             </div>
-            <div className="self-stretch rounded-2xl bg-[#A259FF] max-h-full py-[10px] box-border text-center font-semibold cursor-pointer">
+            <button className="self-stretch rounded-2xl bg-[#A259FF] max-h-full py-[10px] box-border text-center font-semibold cursor-pointer">
                 Buy
+            </button>
             </div>
             </div>
+        
         </div>
         </div>
       )

@@ -64,12 +64,12 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
   const router = useRouter();
 
 
-  const onNFTCardContainerClick = useCallback(() => {
-    router.push({
-      pathname: "/nftdetail",
-      query: { imageIds: "assets/DistantGalaxy.png", imageTitles:"Distant Galaxy" }
-    });
-  }, [router]);
+  // const onNFTCardContainerClick = useCallback(() => {
+  //   router.push({
+  //     pathname: "/nftdetail",
+  //     query: { item: "assets/DistantGalaxy.png", id:"Distant Galaxy" }
+  //   });
+  // }, [router]);
 
   
 
@@ -106,9 +106,9 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
           <Tab>
             <div className="flex-1 box-border h-[60px] flex flex-row py-0 px-[30px] items-center justify-center gap-[16px] text-text border-b-[2px] border-solid border-caption-label-text">
               <div className="relative leading-[140%] capitalize font-semibold">
-                  Created
+                  Owned
                   </div>
-                  <div className="rounded-xl bg-caption-label-text flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base font-h5-space-mono">
+                  <div className="rounded-xl bg-[#1C1C1C] flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base font-h5-space-mono">
                     <div className="relative leading-[140%]">302</div>
                   </div>
                 </div>
@@ -116,9 +116,9 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
               <Tab>
                 <div className="flex-1 h-[60px] flex flex-row py-0 px-[30px] box-border items-center justify-center gap-[16px]">
                   <div className="relative leading-[140%] capitalize font-semibold">
-                    owned
+                    Listed Item
                     </div>
-                    <div className="rounded-xl bg-background-secondary flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base text-text font-h5-space-mono">
+                    <div className="rounded-2xl bg-[#1C1C1C] flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base text-text font-h5-space-mono">
                       <div className="relative leading-[140%]">67</div>
                     </div>
                   </div>
@@ -126,10 +126,10 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
                 <Tab>
                   <div className="flex-1 h-[60px] flex flex-row py-0 px-[30px] box-border items-center justify-center gap-[16px]">
                     <div className="relative leading-[140%] capitalize font-semibold">
-                      Collection
+                      
                     </div>
-                    <div className="rounded-xl bg-background-secondary flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base text-text font-h5-space-mono">
-                    <div className="relative leading-[140%]">4</div>
+                    <div className="rounded-2xl bg-background-secondary flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base text-text font-h5-space-mono">
+                    <div className="relative leading-[140%]"></div>
                   </div>
                 </div>
             </Tab>
@@ -140,12 +140,12 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
         <Tab.Panels>
           <div className="self-stretch bg-[#2B2B2B]-secondary flex flex-col py-20 px-0 items-center justify-start gap-[30px]">
           <Tab.Panel>
-              { MarketItemArray?.map((item) => {
+              { itemListed?.map((item) => {
                 return (
                     <div>
                       {<NFTContainer 
                           marketItem={item}
-                          onNFTCardContainerClick={onNFTCardContainerClick}
+                          //onNFTCardContainerClick={onNFTCardContainerClick}
                           />}
                     </div>
                     )
@@ -158,7 +158,7 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
                 <div>
                   {<NFTContainer 
                       marketItem={item}
-                      onNFTCardContainerClick={onNFTCardContainerClick}
+                      //onNFTCardContainerClick={onNFTCardContainerClick}
                       />}
                 </div>
                 )
@@ -171,7 +171,7 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
                   <div>
                     {<NFTContainer 
                         marketItem={item}
-                        onNFTCardContainerClick={onNFTCardContainerClick}
+                        //onNFTCardContainerClick={onNFTCardContainerClick}
                         />}
                   </div>
                   )

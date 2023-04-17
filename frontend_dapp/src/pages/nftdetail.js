@@ -2,10 +2,19 @@ import { useCallback } from "react";
 import { useRouter } from "next/router";
 import NFTSpecs from "@/components/nftdetailing/NFTSpecs";
 import NFTImage from "@/components/nftdetailing/NFTImage";
+import { erc721ABI, useContractRead } from "wagmi";
 
 const NFTDetail = () => {
   const router = useRouter();
-  const { imageIds, imageTitles } = router.query;
+  const { item, id } = router.query;
+
+  const { data: tokenURI, isError: tokenUriError, isLoading: tokenUriIsLoading } = useContractRead({
+    address: item,
+    abi: erc721ABI,
+    functionName: 'tokenURI',
+    args: [id]
+  })
+
 
   const onNavLogoClick = useCallback(() => {
     router.push("/");
@@ -21,10 +30,8 @@ const NFTDetail = () => {
   return (
     <div className="relative w-full h-[1125px] flex flex-col items-start justify-start text-left text-base font-sans">
       <div className="self-stretch flex flex-row items-center justify-start space-x-20 text-32xl pl-14">
-        <NFTImage />
-        <NFTSpecs />
-      </div>
-      <div className="self-stretch bg-background-secondary flex flex-col py-10 px-[195px] items-center justify-start gap-[30px] text-3xl font-caption-space-mono">
+
+        <NFTSpecs tokenURI ={tokenURI} />
       </div>
     </div>
   );
