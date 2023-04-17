@@ -12,7 +12,7 @@ const Upcoming = () => {
   return (
     <div className="flex flex-col gap-8 items-center h-auto">
       <h1>Upcoming Launchpad</h1>
-      <span className="bg-[#3a3a3a] rounded-md shadow-xl p-8">
+      <span className="bg-[rgba(0,0,0,0.4)] border-2 border-black rounded-md shadow-xl p-8">
         <Image
           className="shadow-lg mb-4"
           src={`/${info?.img}`}

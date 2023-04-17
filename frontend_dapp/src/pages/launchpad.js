@@ -108,7 +108,7 @@ export default function Launchpad() {
       <main className="w-[80%] mx-auto">
         <Tab.Group>
           <Tab.List>
-            <div className="flex justify-evenly bg-[#3c3c3c] py-4 rounded-xl">
+            <div className="flex justify-evenly bg-[rgba(0,0,0,0.4)] border-2 border-black py-4 rounded-xl">
               <Tab className="outline-none">HOME</Tab>
               <Tab className="outline-none">ONGOING</Tab>
               <Tab className="outline-none">UPCOMING</Tab>
@@ -126,7 +126,7 @@ export default function Launchpad() {
                   <Link
                     href={`/upcoming/${data1.id}`}
                     key={data1.id}
-                    className="rounded-lg shadow-2xl bg-[#3a3a3a] p-5"
+                    className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-5"
                   >
                     <div className="flex justify-center py-2">
                       <Image
@@ -157,12 +157,12 @@ export default function Launchpad() {
                         <div className="flex flex-col items-center">
                           <p className="text-center text-2xl text-bold">
                             {" "}
-                            Coming Soon ...
+                            Don't Miss This ...
                           </p>
                         </div>
                       </div>
                       <div className="flex justify-center p-4">
-                        <Link href="www.sepolia.etherscan.io">
+                        <Link href="www.sepolia.etherscan.io" passHref={true}>
                           View on Etherscan
                         </Link>
                       </div>
@@ -177,7 +177,7 @@ export default function Launchpad() {
                   <Link
                     href={`/upcoming/${data2.id}`}
                     key={data2.id}
-                    className="rounded-lg shadow-2xl bg-[#3a3a3a] p-5"
+                    className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-5"
                   >
                     <div className="flex justify-center py-2">
                       <Image
@@ -215,13 +215,11 @@ export default function Launchpad() {
                       </div>
                       <div className="flex justify-evenly w-full p-4">
                         <div className="flex flex-col items-center">
-                          <p className="text-2xl text-bold">
-                            LaunchPad Ended...
-                          </p>
+                          <p className="text-2xl text-bold">Coming Soon...</p>
                         </div>
                       </div>
                       <div className="flex justify-center p-4">
-                        <Link href="www.sepolia.etherscan.io">
+                        <Link href="www.sepolia.etherscan.io" passHref={true}>
                           View on Etherscan
                         </Link>
                       </div>
@@ -232,7 +230,7 @@ export default function Launchpad() {
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
-        <div className="mt-3 rounded-lg shadow-xl bg-[#3a3a3a] flex justify-center gap-10 items-center p-6">
+        <div className="mt-3 rounded-lg shadow-xl bg-[rgba(0,0,0,0.4)] border-2 border-black flex justify-center gap-10 items-center p-6">
           <div className="flex-1">
             <h1 className="text-2xl px-8">
               Want to raise funding for your favorite NFT, Create your LaunchPad

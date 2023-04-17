@@ -53,7 +53,7 @@ export default function createlaunchpad() {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="w-[40%] mx-auto shadow-xl bg-[#2f2f2f] p-8 flex flex-col items-center gap-6"
+        className="w-[40%] mx-auto shadow-xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-8 flex flex-col items-center gap-6"
       >
         <h1 className="text-center text-bold text-2xl">
           Enter Your LaunchPad Details

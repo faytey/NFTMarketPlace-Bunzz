@@ -12,6 +12,7 @@ import {
 } from "wagmi";
 import React, { useState } from "react";
 import { ongoing, arr } from "../launchpad";
+import { ethers } from "ethers";
 
 const StartLaunchPad = () => {
   const { query } = useRouter();
@@ -31,8 +32,8 @@ const StartLaunchPad = () => {
   const { address } = useAccount();
 
   const [duration, setDuration] = useState();
-  const [price, setPrice] = useState();
-  const [totalAmountNeeded, setTotalAmountNeeded] = useState();
+  const [price, setPrice] = useState("0");
+  const [totalAmountNeeded, setTotalAmountNeeded] = useState("0");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,10 +41,14 @@ const StartLaunchPad = () => {
     alert("Successful");
   };
   const { config } = usePrepareContractWrite({
-    address: launchpadContract.address,
+    address: String(readData?.[3]),
     abi: launchpadContract.abi,
     functionName: "startLaunchPad",
-    args: [duration, price, totalAmountNeeded],
+    args: [
+      duration,
+      ethers.utils.parseUnits(price, 18),
+      ethers.utils.parseUnits(totalAmountNeeded, 18),
+    ],
   });
   const {
     data,
@@ -72,10 +77,18 @@ const StartLaunchPad = () => {
     console.log("Your wait data is ", sendWaitData);
   }
 
+  const date = (x) => {
+    let myDate = new Date(x * 1000);
+    return myDate;
+  };
+
+  const today = date(readData?.[2]).toDateString();
+  console.log(today);
+
   return (
-    <div className="flex flex-col gap-8 items-center h-auto">
+    <div className="flex flex-col gap-8 items-center h-auto mb-[2rem]">
       <h1>Start LaunchPad</h1>
-      <span className="bg-[#3a3a3a] rounded-md shadow-xl p-8">
+      <span className="bg-[rgba(0,0,0,0.4)] rounded-md shadow-xl p-8">
         {/* <Image
           className="shadow-lg mb-4 rounded-md"
           src={`/${info?.img}`}
@@ -86,7 +99,7 @@ const StartLaunchPad = () => {
         <div className="flex flex-col gap-2 items-center">
           <p>Name: {readData?.[0]}</p>
           <p>Creator: {readData?.[1]}</p>
-          <p>Access: {String(readData?.[2])}</p>
+          <p>Created: {today}</p>
           <Link
             href={`/www.sepolia.io/${readData?.[3]}`}
             className="border px-4 py-2 rounded-md"
@@ -107,7 +120,7 @@ const StartLaunchPad = () => {
           <label htmlFor="price">Price: </label>
           <input
             className="text-black p-2 rounded-md"
-            type="number"
+            type="text"
             id="price"
             placeholder="Enter Price of the NFT"
             value={price}
@@ -116,7 +129,7 @@ const StartLaunchPad = () => {
           <label htmlFor="amount">Total Amount Needed: </label>
           <input
             className="text-black p-2 rounded-md"
-            type="number"
+            type="text"
             id="amount"
             placeholder="Enter Total Amount Needed to be raised"
             value={totalAmountNeeded}
