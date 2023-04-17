@@ -19,14 +19,8 @@ const NFTImageTemplate = memo(
 
     useEffect(
         () => {
-
-            setTimeout(
-                () => {
-                    getImageURL(imageURL)
-                    console.log(nftImageURL)
-                },
-                (8000)
-            )
+            getImageURL(imageURL)
+            console.log(nftImageURL)
         },
         [nftImageURL]
     )

@@ -19,17 +19,15 @@ const Nft = () => {
 
   const router = useRouter();
 
-  const { collections, tokenId } = router.query;
+  const { collection, tokenId } = router.query;
 
   const [nftDetails, setNftDetails] = useState([]);
 
   useEffect(() => {
-        setTimeout(() => {
-            setNftDetails({
-              address: collections,
-              abi: erc721ABI,
-            })
-        }, (8000))
+    setNftDetails({
+      address: collection,
+      abi: erc721ABI,
+    })
   },
   [nftDetails])
 
@@ -63,12 +61,10 @@ const Nft = () => {
 
   return (
     <div className="relative bg-background w-full h-[1125px] flex flex-col items-start justify-start text-left text-base text-text font-h3-work-sans">
-        {<NFTHeader collectionName={collectionDetails?.[0]} collectionAddress={collections} tokenId={tokenId}/> ?? <p>Loading...</p>}
+        {<NFTHeader collectionName={collectionDetails?.[0]} collectionAddress={collection} tokenId={tokenId}/> ?? <p>Loading...</p>}
         <div className="self-stretch bg-background flex flex-row items-center justify-start gap-[60px] text-32xl pl-14">
           {<NFTMetadataTemplate tokenURI={collectionDetails?.[1]}/> ?? <p>Loading...</p>}
         </div>
-      {/* <div className="self-stretch bg-background-secondary flex flex-col py-10 px-[195px] items-center justify-start gap-[30px] text-3xl font-caption-space-mono">
-      </div> */}
     </div>
   );
 }

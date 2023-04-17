@@ -4,6 +4,8 @@ import { erc721ABI, useContractReads } from "wagmi";
 import NFTMetadataTemplate from "./NFTMetadataTemplate";
 import ImageInfoTemplate from "./ImageInfoTemplate";
 import ButtonTemplate from "./ButtonTemplate";
+import { marketplaceContract } from "@/utils/contractInfo";
+import { ethers } from "ethers";
 
 const NFTDetailsTemplate1 = memo(
   ({
@@ -24,15 +26,18 @@ const NFTDetailsTemplate1 = memo(
                 functionName: "tokenURI",
                 args: [tokenID]
             },
+            {
+                ...marketplaceContract,
+                functionName: "marketItems",
+                args: [tokenID]
+            },
         ]
     })
     return (
       <div >
 
-        <Link
-          className="flex-1 rounded-xl bg-[#1C1C1C] h-[469px] flex flex-col items-center justify-start cursor-pointer"
-          href={`/marketplace/${contractAddress}/${tokenID}`}
-        >
+        <div
+          className="flex-1 rounded-xl bg-[#1C1C1C] h-[469px] flex flex-col items-center justify-start cursor-pointer">
           <div className="self-stretch rounded-t-xl rounded-b-none flex flex-col items-start justify-start">
             {<ImageInfoTemplate tokenURI={data?.[1]} /> ?? <p>Loading...</p>}
           </div>
@@ -55,7 +60,7 @@ const NFTDetailsTemplate1 = memo(
                   <div className="flex-1 relative leading-[140%]">Token ID: {tokenID}</div>
                 </div>
               </div>
-              <ButtonTemplate ButtonName="Buy" onButtonClick={""} ButtonLink=""/>
+              <Link href={`/marketplace/${tokenID}`} className="border m-0 p-5 rounded-lg">Buy</Link>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start text-xs text-caption-label-text font-h5-space-mono">
               <div className="flex-1 flex flex-col py-0 pr-[21px] pl-0 items-start justify-start gap-[8px]">
@@ -63,20 +68,12 @@ const NFTDetailsTemplate1 = memo(
                   Price
                 </div>
                 <div className="self-stretch relative text-base leading-[140%] text-text">
-                  {"..."} ETH
-                </div>
-              </div>
-              <div className="flex-1 flex flex-col items-end justify-center gap-[8px] text-right">
-                <div className="self-stretch relative leading-[110%]">
-                  Highest Bid
-                </div>
-                <div className="self-stretch relative text-base leading-[140%] text-text">
-                  {"..."} wETH
+                  {data?.[2].price.toString() / ethers.utils.parseEther("1")} ETH
                 </div>
               </div>
             </div>
           </div>
-        </Link>
+        </div>
 
       </div>
     );

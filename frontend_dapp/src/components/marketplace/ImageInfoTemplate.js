@@ -16,18 +16,13 @@ const ImageInfoTemplate = memo(
 
     async function getMetadata(uri) {
         var url = `${baseIpfs}${tokenURI?.slice(7)}`
-        var res = await axios.get(url).then((res) => {return(res.data)})
+        var res = await axios.get(url).then((res) => {return(res.data)}).catch((err) => {console.log(err)})
         setNftMetadata(res)
     }
 
     useEffect(
         () => {
-            setTimeout(
-                () => {
-                    getMetadata(tokenURI)
-                },
-                (5000)
-            )
+          getMetadata(tokenURI)
         },
         [nftMetadata]
     )
