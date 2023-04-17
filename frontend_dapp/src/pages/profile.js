@@ -56,7 +56,8 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
   useEffect(() => {
     setItemListed(marketplaceData?.[0])
     setMarketItems(marketplaceData?.[1])
-    // console.log(marketplaceInfo)
+    console.log(marketplaceData)
+    console.log(marketItems)
   },
   [marketplaceData]
   )

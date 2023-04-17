@@ -42,12 +42,14 @@ const NFTContainer = memo(
     [tokenMetadata, tokenURI]
   )
 
+   console.log("token:",tokenMetadata)
+
   const router = useRouter();
   
   const onNFTCardContainerClick = useCallback(() => {
     router.push({
       pathname: "/nftdetail",
-      query: { object: marketItem.itemId, item: marketItem.nftContract, id: marketItem.tokenId }
+      query: { itemId: marketItem.itemId.toString(), item: marketItem.nftContract, id: marketItem.tokenId.toString() }
     });
   }, [router]);
 
@@ -70,6 +72,7 @@ const NFTContainer = memo(
       <div className="self-stretch flex flex-col items-start justify-start gap-[5px]">
         <div className="self-stretch relative leading-[140%] capitalize font-semibold">
           {tokenMetadata?.name ?? <p>Loading...</p>}
+          {console.log("token:",tokenMetadata)}
         </div>
         <div className="self-stretch flex flex-row items-start justify-start gap-[12px] text-base font-h5-space-mono">
           <div className="flex flex-row items-start justify-start">
@@ -86,19 +89,11 @@ const NFTContainer = memo(
     </div>
     <div className="self-stretch flex flex-row items-start justify-start text-xs text-caption-label-text font-h5-space-mono">
       <div className="flex-1 flex flex-col py-0 pr-[21px] pl-0 items-start justify-start gap-[8px]">
-        <div className="self-stretch relative leading-[110%]">
-          {marketItem?.price}
+        <div className="self-stretch relative text-gray-400 leading-[110%]">
+          Price
           </div>
-          <div className="self-stretch relative text-base leading-[140%] text-text">
-          {"..."} ETH
-          </div>
-        </div>
-        <div className="flex-1 flex flex-col items-end justify-center gap-[8px] text-right">
-          <div className="self-stretch relative leading-[110%]">
-            Highest Bid
-          </div>
-          <div className="self-stretch relative text-base leading-[140%] text-text">
-          {"..."}wETH
+          <div className="self-stretch relative text-xl leading-[140%]">
+          {marketItem?.price.toString()} ETH
           </div>
         </div>
             </div>
@@ -135,21 +130,14 @@ const NFTContainer = memo(
           </div>
           <div className="self-stretch flex flex-row items-start justify-start text-xs text-caption-label-text font-h5-space-mono">
             <div className="flex-1 flex flex-col py-0 pr-[21px] pl-0 items-start justify-start gap-[8px]">
-              <div className="self-stretch relative leading-[110%]">
-              {marketItem?.price}
+              <div className="self-stretch relative leading-[110%] text-gray-400">
+              Price
               </div>
-              <div className="self-stretch relative text-base leading-[140%] text-text">
-              {"..."} ETH
-              </div>
-            </div>
-            <div className="flex-1 flex flex-col items-end justify-center gap-[8px] text-right">
-              <div className="self-stretch relative leading-[110%]">
-                Highest Bid
-              </div>
-              <div className="self-stretch relative text-base leading-[140%] text-text">
-              {"..."}wETH
+              <div className="self-stretch relative text-xl leading-[140%]">
+              {marketItem?.price.toString()} ETH
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -184,21 +172,14 @@ const NFTContainer = memo(
           </div>
           <div className="self-stretch flex flex-row items-start justify-start text-xs text-caption-label-text font-h5-space-mono">
             <div className="flex-1 flex flex-col py-0 pr-[21px] pl-0 items-start justify-start gap-[8px]">
-              <div className="self-stretch relative leading-[110%]">
-              {marketItem?.price}
+              <div className="self-stretch relative leading-[110%] text-gray-400">
+              Price
               </div>
-              <div className="self-stretch relative text-base leading-[140%] text-text">
-              {"..."} ETH
-              </div>
-            </div>
-            <div className="flex-1 flex flex-col items-end justify-center gap-[8px] text-right">
-              <div className="self-stretch relative leading-[110%]">
-                Highest Bid
-              </div>
-              <div className="self-stretch relative text-base leading-[140%] text-text">
-              {"..."}wETH
+              <div className="self-stretch relative leading-[140%] text-xl">
+              {marketItem?.price.toString()} ETH
               </div>
             </div>
+            
           </div>
         </div>
       </div>

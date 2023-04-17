@@ -7,7 +7,7 @@ import { marketplaceContract } from "@/utils/contractInfo";
 const NFTSpecs = memo((
     {
         tokenURI,
-        object
+        itemId
     }
 ) => {
 
@@ -29,14 +29,14 @@ const NFTSpecs = memo((
     const { data, isError, isLoading } = useContractRead({
       ...marketplaceContract,
       functionName: "marketItems",
-      args: [object]
+      args: [itemId]
     })
 
 
     const { config } = usePrepareContractWrite({
       ...marketplaceContract,
       functionName: "buyAsset",
-      args: [object],
+      args: [itemId],
       overrides: {
         value: data?.price
       }
@@ -44,6 +44,7 @@ const NFTSpecs = memo((
 
 
     console.log(data?.price)
+    console.log(data)
 
 
     
@@ -88,7 +89,7 @@ const NFTSpecs = memo((
                 <div className="self-stretch flex flex-col items-start justify-start text-3xl">
                 <div className="self-stretch relative leading-[160%] capitalize font-bold">
                     <p>CherryGirl</p>
-                    <span className="self-stretch leading-[160%] font-bold text-xl text-slate-400">#444444</span>
+                    <span className="self-stretch leading-[160%] font-bold text-xl text-slate-400">{data?.tokenId.toString()}</span>
                 </div>
                 </div>
             </div>
@@ -102,16 +103,17 @@ const NFTSpecs = memo((
                     src="assets/CherryGirl.png"
                 />
                 <div className="flex-1 flex-col relative leading-[140%]">
-                    <span className="leading-3 font-light text-slate-400">Current owner</span>
-                    <p className="self-stretch leading-[160%] font-bold text-xl">0x4bb62...48aa</p>
+                    <span className="leading-3 font-light text-slate-400">Seller</span>
+                    <p className="self-stretch leading-[160%] font-bold text-xl">{data?.seller.slice(0,6)+"..."+data?.seller.slice(-6)}</p>
+                    
                 </div>
                 </div>
                 <div className="self-stretch bg-text box-border h-[65px] shrink-0 flex  py-4 px-5 items-center justify-start gap-[12px] border-b-2 border-solid">
                 <div className=" flex flex-1 relative leading-[140%] flex-col items-start gap-3">
                 <span className='leading-3 font-light text-slate-400 tracking-wide'>Price:</span>
-                <span className=' leading-4 font-semibold text-2xl tracking-wide'> {data?.price.toString()/ethers.utils.parseEther ?? <p>Loading....</p>} eth</span>
+                <span className=' leading-4 font-semibold text-2xl tracking-wide'> {data?.price.toString()/ethers.utils.parseEther("1") ?? <p>Loading....</p>} eth</span>
                 </div>
-    
+                    
                 </div>
                 <div className="self-stretch rounded-xl bg-text box-border max-h-full shrink-0 flex flex-col py-4 px-5 items-start justify-start gap-[12px] border-[2px] border-solid">
                     
