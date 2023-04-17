@@ -2,7 +2,7 @@ import { memo, useEffect, useState } from "react";
 import axios from "axios";
 // import NFTImageTemplate from "./NFTImageTemplate";
 import { ethers } from "ethers";
-import { erc721ABI, useContractRead, usePrepareContractWrite } from "wagmi";
+import { erc721ABI, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 import { marketplaceContract } from "@/utils/contractInfo";
 import { useRouter } from "next/router";
 
@@ -49,7 +49,21 @@ const NFTMetadataTemplate = memo(
       args: [data?.tokenId]
     })
 
-    // const nft = new ethers.Contract()
+
+    const { config } = usePrepareContractWrite({
+      ...marketplaceContract,
+      functionName: "buyAsset",
+      args: [itemId],
+      overrides: {
+        value: data?.price
+      }
+    })
+
+    const { data: buyData, write } = useContractWrite(config)
+
+    const { data: buyResult } = useWaitForTransaction({
+      hash: buyData?.hash
+    })
 
 
 
@@ -73,7 +87,7 @@ const NFTMetadataTemplate = memo(
         // console.log(tokenMetadata)
         // console.log(nftImgUrl)
         // console.log(tokenURI)
-        console.log(data)
+        console.log(buyResult)
       },
       [tokenMetadata, tokenURI]
     )
@@ -117,6 +131,14 @@ const NFTMetadataTemplate = memo(
            {<img src={nftImgUrl} /> ?? <p>Loading...</p>}
           </div>
           <div>
+            <p>Token Contract: {data?.nftContract ?? <p>Loading....</p>}</p>
+            <p>Token ID: {data?.tokenId.toString() ?? <p>Loading....</p>}</p>
+            <p>Item ID: {data?.itemId.toString() ?? <p>Loading....</p>}</p>
+            <p>Seller: {data?.seller ?? <p>Loading....</p>}</p>
+            <p>Owner: {data?.owner ?? <p>Loading....</p>}</p>
+            {/* <p>Price: {data?.price.toString() ?? <p>Loading....</p>}</p> */}
+          </div>
+          <div>
             {
               tokenMetadata?.attributes.map((item) => {
                 return (
@@ -128,9 +150,10 @@ const NFTMetadataTemplate = memo(
               })
             }
             <p>Price: {data?.price.toString()/ ethers.utils.parseEther("1")} ETH</p>
-            <button className="font-2xl text-center w-full border rounded-lg m-0 p-2" onClick={() => {
-              e.preventDefault()
-              write?.()}}>
+            <button className="font-2xl text-center w-full border rounded-lg m-0 p-2" onClick={(e) => {
+              e.preventDefault();
+              write?.()
+              }}>
                 Buy
             </button>
          </div>

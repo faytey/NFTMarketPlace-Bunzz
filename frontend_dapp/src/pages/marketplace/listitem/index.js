@@ -102,12 +102,8 @@ export default function ListItem() {
     return (
         <div>
             <ListItemHeaderTemplate />
-            <div className="self-stretch flex flex-col items-start justify-start gap-[8px] text-caption-label-text">
-          </div>
-            <b className="relative leading-[100%] capitalize">Listing Price</b>
-            <p>{listingPrice?.toString()} Ether</p>
             <div className='flex m-0 p-16  justify-between'>
-                {/* <ImageInfoTemplate tokenURI={nftTokenURI}/> */}
+                <p><b className="relative leading-[100%] capitalize">Listing Price: </b>{listingPrice?.toString()} ETH</p>
                 <form className='flex flex-col m-0 p-10 border rounded-lg justify-between gap-5'>
                     <label>
                         <p>Contract Address</p>
@@ -131,7 +127,7 @@ export default function ListItem() {
                             console.log(itemDetails)}
                         }/>
                     </label>
-                    <button type='submit' onClick={(e) => {
+                    <button type='submit' className='border rounded-lg m-0 p-2' onClick={(e) => {
                         e.preventDefault();
                         approveWrite?.()
                         }}>
