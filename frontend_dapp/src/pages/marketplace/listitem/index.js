@@ -48,7 +48,16 @@ export default function ListItem() {
 
 
 
-    const { data: nftTokenURI, isError: collectionDataError, isLoading: collectionDataIsLoading } = useContractReads({
+    // const { data: nftTokenURI, isError: collectionDataError, isLoading: collectionDataIsLoading } = useContractReads({
+    //     address: itemDetails?.address ?? "0x0",
+    //     abi: erc721ABI,
+    //     functionName: 'tokenURI',
+    //     args: [itemDetails?.tokenId ?? 1],
+
+    // })
+
+
+    const { data: nftTokenURI, isError: collectionDataError, isLoading: collectionDataIsLoading } = useContractRead({
         address: itemDetails?.address ?? "0x0",
         abi: erc721ABI,
         functionName: 'tokenURI',
@@ -57,16 +66,35 @@ export default function ListItem() {
     })
 
 
-    const { config } = usePrepareContractWrite({
+    const { config: approveConfig } = usePrepareContractWrite({
+        ...marketplaceContract,
+        functionName: 'approve',
+        args: [itemDetails?.address, itemDetails?.tokenId],
+    })
+    
+
+    const { data: approveData, write: approveWrite } = useContractWrite({
+        ...approveConfig,
+
+        onSuccess(data) {
+            console.log(data);
+            listWrite?.();
+        }
+    })
+
+
+
+
+    const { config: listConfig } = usePrepareContractWrite({
         ...marketplaceContract,
         functionName: 'ListItemForSale',
         args: [itemDetails?.address, itemDetails?.tokenId, itemDetails?.price],
         overrides: {
-            value: ethers.utils.parseEther("0.0006")
+            value: ethers.utils.parseEther("0.00067")
         }
     })
 
-    const { data, isLoading, isSuccess, write } = useContractWrite(config)
+    const { data: listData, write: listWrite } = useContractWrite(listConfig)
 
 
 
@@ -105,7 +133,7 @@ export default function ListItem() {
                     </label>
                     <button type='submit' onClick={(e) => {
                         e.preventDefault();
-                        write?.()
+                        approveWrite?.()
                         }}>
                             List Item
                     </button>

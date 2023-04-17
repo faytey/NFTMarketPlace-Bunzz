@@ -1,14 +1,14 @@
 import { memo, useEffect, useState } from "react";
 import axios from "axios";
-import NFTImageTemplate from "./NFTImageTemplate";
+// import NFTImageTemplate from "./NFTImageTemplate";
 import { ethers } from "ethers";
-import { usePrepareContractWrite } from "wagmi";
+import { erc721ABI, useContractRead, usePrepareContractWrite } from "wagmi";
 import { marketplaceContract } from "@/utils/contractInfo";
+import { useRouter } from "next/router";
 
 
 const NFTMetadataTemplate = memo(
   ({
-    tokenURI,
   }) => {
 
 
@@ -32,6 +32,26 @@ const NFTMetadataTemplate = memo(
     // )
 
 
+    const router = useRouter();
+
+    const { itemId } = router.query
+
+    const { data, isError, isLoading } = useContractRead({
+      ...marketplaceContract,
+      functionName: "marketItems",
+      args: [itemId]
+    })
+
+    const {data: tokenURI, isError: tokenURIisError, isLoading: tokenURIisLoading } = useContractRead({
+      address: data?.nftContract,
+      abi: erc721ABI,
+      functionName: "tokenURI",
+      args: [data?.tokenId]
+    })
+
+    // const nft = new ethers.Contract()
+
+
 
     const [tokenMetadata, setTokenMetadata] = useState();
     const [nftImgUrl, setNftImgUrl] = useState();
@@ -50,9 +70,10 @@ const NFTMetadataTemplate = memo(
     useEffect(
       () => {
         getMetadata(tokenURI);
-        console.log(tokenMetadata)
-        console.log(nftImgUrl)
-        console.log(tokenURI)
+        // console.log(tokenMetadata)
+        // console.log(nftImgUrl)
+        // console.log(tokenURI)
+        console.log(data)
       },
       [tokenMetadata, tokenURI]
     )
@@ -106,6 +127,7 @@ const NFTMetadataTemplate = memo(
                 )
               })
             }
+            <p>Price: {data?.price.toString()/ ethers.utils.parseEther("1")} ETH</p>
             <button className="font-2xl text-center w-full border rounded-lg m-0 p-2" onClick={() => {
               e.preventDefault()
               write?.()}}>
@@ -121,3 +143,16 @@ const NFTMetadataTemplate = memo(
 );
 
 export default NFTMetadataTemplate;
+    
+    
+    // const { config } = usePrepareContractWrite({
+    //   ...marketplaceContract,
+    //   functionName: "buyAsset",
+    //   args: [marketItem.itemId],
+    //   overrides: {
+    //     value: ethers.utils.parseEther()
+    //   }
+    // })
+
+
+    // const { data, write } = useContractWrite(config)

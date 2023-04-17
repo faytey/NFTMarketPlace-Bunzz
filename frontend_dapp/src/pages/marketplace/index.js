@@ -21,17 +21,17 @@ export default function MarketPlace() {
   // const [marketplaceInfo, setMarketPlaceInfo] = useState();
 
 
-  const MarketItem = {
-    itemId:"5",
-    nftContract : "0x85E302Eb913125C9c053257B0A2b878B89388013",
-    tokenId : "2",
-    seller : "0x85E302Eb913125C9c053257B0A2b878B89388013",
-    owner : "0x85E302Eb913125C9c053257B0A2b878B89388013",
-    price : "3",
-    sold : false,
-}
+//   const MarketItem = {
+//     itemId:"5",
+//     nftContract : "0x85E302Eb913125C9c053257B0A2b878B89388013",
+//     tokenId : "2",
+//     seller : "0x85E302Eb913125C9c053257B0A2b878B89388013",
+//     owner : "0x85E302Eb913125C9c053257B0A2b878B89388013",
+//     price : "3",
+//     sold : false,
+// }
 
-const MarketItemArray = [MarketItem,MarketItem,MarketItem]
+// const MarketItemArray = [MarketItem,MarketItem,MarketItem]
 
   const { data: marketplaceData, isError: marketplaceDataError, isLoading: marketplaceDataIsLoading } = useContractReads({
     contracts: [
@@ -43,63 +43,35 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
         ...marketplaceContract,
         functionName: "fetchMarketItems",
       },
-      {
-        ...marketplaceContract,
-        functionName: 'fetchMyNfts',
-      },
   ]})
 
 
 
   useEffect(() => {
-    setItemListed(marketplaceData?.[0])
     setMarketItems(marketplaceData?.[1])
-    // console.log(marketplaceInfo)
+    setItemListed(marketplaceData?.[0])
+    console.log(itemListed)
   },
-  [marketplaceData]
+  [marketplaceData, itemListed, marketItems]
   )
 
 
 
 
   return (
-    <div className='w-full m-0 p-16'>
+    <div className='w-full m-0 p-16 gap-8'>
       <MarketPlaceHeaderTemplate />
       <div className="w-full">
-          <Tab.Group>
-            <Tab.List >
-              <div className='flex text-2xl font-bold w-full gap-10 py-8 justify-center'>
-                <Tab>Listed Items</Tab>
-                <Tab>Market Place Items</Tab>
+        <div className='md:grid md:grid-cols-3 gap-10 space-y-5 m-0 p-8'>
+          { marketItems?.map((item) => {
+            return (
+              <div>
+                {<MarketItemTemplate marketItem={item}/>}
               </div>
-            </Tab.List>
-            <Tab.Panels>
-              <Tab.Panel>
-                <div className='md:grid md:grid-cols-3 gap-10 space-y-5'>
-                  { MarketItemArray?.map((item) => {
-                    return (
-                        <div>
-                          {<MarketItemTemplate marketItem={item}/>}
-                        </div>
-                        )
-                      })}
-                </div>
-
-              </Tab.Panel>
-              <Tab.Panel>
-                <div className='md:grid md:grid-cols-3 gap-10 space-y-5'>
-                  { MarketItemArray?.map((item) => {
-                    return (
-                      <div>
-                        {<MarketItemTemplate marketItem={item}/>}
-                      </div>
-                      )
-                    })}
-                </div>
-              </Tab.Panel>
-            </Tab.Panels>
-          </Tab.Group>
+              )
+            })}
         </div>
+      </div>
     </div>
   )
 }
