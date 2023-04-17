@@ -2,12 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { launchpadContract, launchpadFactory } from "@/utils/contractInfo.js";
-import { useAccount, useContractRead, useContractReads } from "wagmi";
+import {
+  useAccount,
+  useContractRead,
+  useContractReads,
+  useContractWrite,
+  usePrepareContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
 import React, { useEffect, useState } from "react";
 import { ongoing, arr } from "../launchpad";
 import { ethers } from "ethers";
 
-const Ongoing = () => {
+const Ended = () => {
   // const [read, setRead] = useState();
   const { query } = useRouter();
   const id = Number(query.id);
@@ -24,7 +31,7 @@ const Ongoing = () => {
   });
 
   const read = String(readData?.[3]);
-
+  // console.log(read);
   const {
     data,
     isError: readerror,
@@ -64,6 +71,44 @@ const Ongoing = () => {
     ],
   });
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    write?.();
+  };
+
+  const { config } = usePrepareContractWrite({
+    address: read,
+    abi: launchpadContract.abi,
+    functionName: "withdrawNFT",
+  });
+
+  const {
+    data: writedata,
+    isLoading: writeloading,
+    isSuccess,
+    write,
+  } = useContractWrite(config);
+
+  const {
+    data: sendWaitData,
+    isError: errorWaitData,
+    isLoading: loadWaitData,
+  } = useWaitForTransaction({
+    hash: data?.hash,
+
+    onError(error) {
+      console.log("Error Message: ", error);
+    },
+
+    onSuccess(data) {
+      console.log("Success: ", data);
+    },
+  });
+
+  if (sendWaitData) {
+    console.log("Your wait data is ", sendWaitData);
+  }
+
   const date = (x) => {
     let myDate = new Date(x * 1000);
     // console.log(myDate);
@@ -75,7 +120,7 @@ const Ongoing = () => {
   const end = date(data?.[4]).toDateString();
   return (
     <div className="flex flex-col gap-8 items-center h-auto mt-[1rem] mb-[5rem]">
-      <h1>Ongoing Launchpad</h1>
+      <h1>Ended Launchpad</h1>
       <span className="bg-[rgba(0,0,0,0.4)] border-2 border-black rounded-md shadow-2xl p-8">
         {/* <Image
           className="shadow-lg mb-4 rounded-md"
@@ -88,8 +133,7 @@ const Ongoing = () => {
           <p>Name: {readData?.[0]}</p>
           <p>Symbol: {data?.[0]}</p>
           <p>
-            Amount Raised: {String(data?.[1]) / ethers.utils.parseEther("1")}{" "}
-            ETH / {String(data?.[5]) / ethers.utils.parseEther("1")} ETH
+            Total Raised: {String(data?.[5]) / ethers.utils.parseEther("1")} ETH
           </p>
           <p>Start Date: {start}</p>
         </div>
@@ -105,13 +149,11 @@ const Ongoing = () => {
         </div>
 
         <Link
-          href={`../startLaunchPad/${id}`}
-          className="border px-4 py-2 rounded-md"
+          href={`../withdraw/${id}`}
+          className="border px-4 ml-4 py-2 rounded-md"
+          onClick={handleClick}
         >
-          START
-        </Link>
-        <Link href={`../deposit/${id}`} className="border px-4 py-2 rounded-md">
-          DEPOSIT
+          {writeloading || loadWaitData ? "Withdrawing" : "WITHDRAW"}
         </Link>
         {/* <Link href={`/${info?.scan}`} className="border px-4 py-2 rounded-md">
             View More
@@ -121,4 +163,4 @@ const Ongoing = () => {
   );
 };
 
-export default Ongoing;
+export default Ended;

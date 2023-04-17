@@ -3,63 +3,6 @@ import { launchpadFactory } from "@/utils/contractInfo.js";
 import { useAccount, useContractRead, useContractReads } from "wagmi";
 import Link from "next/link";
 
-export const ongoing = [
-  {
-    id: 1,
-    img: "image1.jpg",
-    logo: "image2.jpg",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Public Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-  {
-    id: 2,
-    img: "image3.png",
-    logo: "image4.png",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Private Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-  {
-    id: 3,
-    img: "image5.png",
-    logo: "image6.png",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Public Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-  {
-    id: 4,
-    img: "image4.png",
-    logo: "image3.png",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Public Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-  {
-    id: 5,
-    img: "image6.png",
-    logo: "image5.png",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Private Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-  {
-    id: 6,
-    img: "image2.jpg",
-    logo: "image1.jpg",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Public Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-];
-
 const LaunchPads = ({ arg }) => {
   const [read, setRead] = useState();
 
