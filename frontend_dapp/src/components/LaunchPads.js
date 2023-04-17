@@ -66,9 +66,15 @@ const LaunchPads = ({ arg }) => {
         </div>
 
         <div className="flex justify-center p-4">
-          <a href="www.sepolia.etherscan.io" passHref={true}>
-            View on Etherscan
-          </a>
+          <Link
+            legacyBehavior
+            href={`https://sepolia.etherscan.io/address/${read?.[3]}`}
+            passHref
+          >
+            <a target="_blank" rel="noopener noreferrer">
+              View on Etherscan
+            </a>
+          </Link>
         </div>
       </div>
     </Link>

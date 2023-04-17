@@ -87,6 +87,7 @@ const Ended = () => {
     isLoading: writeloading,
     isSuccess,
     write,
+    isError: writeerror,
   } = useContractWrite(config);
 
   const {
@@ -121,6 +122,7 @@ const Ended = () => {
   return (
     <div className="flex flex-col gap-8 items-center h-auto mt-[1rem] mb-[5rem]">
       <h1>Ended Launchpad</h1>
+      <p>{writeerror ? "You are not subscribed" : ""}</p>
       <span className="bg-[rgba(0,0,0,0.4)] border-2 border-black rounded-md shadow-2xl p-8">
         {/* <Image
           className="shadow-lg mb-4 rounded-md"

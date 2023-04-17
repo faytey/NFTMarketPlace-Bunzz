@@ -79,7 +79,11 @@ const EndedPads = ({ arg }) => {
   const end = date(data?.[4]).toDateString();
   const d = new Date();
 
-  if (data?.[4] < d.getTime() / 1000) {
+  // console.log(end);
+
+  if (data?.[4] == 0) {
+    return;
+  } else if (data?.[4] < d.getTime() / 1000) {
     console.log("ended");
     return (
       <Link
@@ -118,9 +122,15 @@ const EndedPads = ({ arg }) => {
           </div>
 
           <div className="flex justify-center p-4">
-            <a href="www.sepolia.etherscan.io" passHref={true}>
-              View on Etherscan
-            </a>
+            <Link
+              legacyBehavior
+              href={`https://sepolia.etherscan.io/address/${read?.[3]}`}
+              passHref
+            >
+              <a target="_blank" rel="noopener noreferrer">
+                View on Etherscan
+              </a>
+            </Link>
           </div>
         </div>
       </Link>

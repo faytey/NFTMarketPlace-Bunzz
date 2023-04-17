@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { launchpadContract, launchpadFactory } from "@/utils/contractInfo.js";
 import { useAccount, useContractRead, useContractReads } from "wagmi";
 import Link from "next/link";
+import Head from "next/head";
 import { ethers } from "ethers";
 
 const UpcomingPads = ({ arg }) => {
@@ -118,9 +119,26 @@ const UpcomingPads = ({ arg }) => {
           </div>
 
           <div className="flex justify-center p-4">
+            {/* <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`www.sepolia.etherscan.io/address/${read?.[3]}`}
+              passHref
+            >
+              View on Etherscan
+            </Link>
             <a href="www.sepolia.etherscan.io" passHref={true}>
               View on Etherscan
-            </a>
+            </a> */}
+            <Link
+              legacyBehavior
+              href={`https://sepolia.etherscan.io/address/${read?.[3]}`}
+              passHref
+            >
+              <a target="_blank" rel="noopener noreferrer">
+                View on Etherscan
+              </a>
+            </Link>
           </div>
         </div>
       </Link>
