@@ -12,7 +12,9 @@ const NFTDetailsTemplate1 = memo(
     itemId,
   }) => {
 
-    const { data, isError, isLoading } = useContractReads({
+    const [data, setData] = useState()
+
+    const { data: contractInfo, isError, isLoading } = useContractReads({
         contracts: [
             {
                 address: contractAddress,
@@ -54,6 +56,7 @@ const NFTDetailsTemplate1 = memo(
     useEffect(
       () => {
         getMetadata(data?.[1]);
+        setData(contractInfo)
       },
       [tokenMetadata, data]
     )
