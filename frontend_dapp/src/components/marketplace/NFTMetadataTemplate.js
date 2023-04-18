@@ -1,9 +1,5 @@
 import { memo, useEffect, useState } from "react";
 import axios from "axios";
-import NFTImageTemplate from "./NFTImageTemplate";
-import { ethers } from "ethers";
-import { usePrepareContractWrite } from "wagmi";
-import { marketplaceContract } from "@/utils/contractInfo";
 
 
 const NFTMetadataTemplate = memo(
@@ -29,9 +25,6 @@ const NFTMetadataTemplate = memo(
     useEffect(
       () => {
         getMetadata(tokenURI);
-        console.log(tokenMetadata)
-        console.log(nftImgUrl)
-        console.log(tokenURI)
       },
       [tokenMetadata, tokenURI]
     )
