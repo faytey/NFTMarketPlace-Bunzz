@@ -7,7 +7,7 @@ import {
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
-import { launchpadFactoryAddr, launchpadFactoryAbi } from "../utils/utils";
+import { launchpadFactoryAddr, launchpadFactoryAbi } from "../../utils/utils";
 
 export default function createlaunchpad() {
   const { address } = useAccount();

@@ -1,14 +1,14 @@
-import EndedPads from "@/components/EndedPads.js";
-import LaunchPads from "@/components/LaunchPads.js";
-import OngoingPads from "@/components/OngoingPads.js";
-import UpcomingPads from "@/components/UpcomingPads.js";
+import EndedPads from "@/components/launchpad/EndedPads.js";
+import LaunchPads from "@/components/launchpad/LaunchPads.js";
+import OngoingPads from "@/components/launchpad/OngoingPads.js";
+import UpcomingPads from "@/components/launchpad/UpcomingPads.js";
 import { launchpadFactory } from "@/utils/contractInfo.js";
 import { Tab } from "@headlessui/react";
 import Image from "next/image.js";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useAccount, useContractRead } from "wagmi";
-import Layout from "../components/Layout.js";
+import Layout from "../../components/Layout.js";
 
 export const upcoming = [
   {
@@ -125,7 +125,7 @@ export default function Launchpad() {
               className="rounded-md"
             />
             <Link
-              href="/createlaunchpad"
+              href="/launchpad/createlaunchpad"
               className="w-full flex justify-center"
             >
               <button className="bg-green-700 shadow-xl w-[50%] rounded-md py-4">
@@ -136,13 +136,11 @@ export default function Launchpad() {
         </div>
 
         <Tab.Group>
-          <Tab.List>
-            <div className="flex justify-evenly bg-[rgba(0,0,0,0.4)] border-2 border-black py-4 rounded-xl">
-              <Tab className="outline-none">HOME</Tab>
-              <Tab className="outline-none">ONGOING</Tab>
-              <Tab className="outline-none">UPCOMING</Tab>
-              <Tab className="outline-none">ENDED</Tab>
-            </div>
+          <Tab.List className="flex justify-evenly bg-[rgba(0,0,0,0.4)] border-2 border-black py-4 rounded-xl">
+            <Tab className="outline-none">HOME</Tab>
+            <Tab className="outline-none">ONGOING</Tab>
+            <Tab className="outline-none">UPCOMING</Tab>
+            <Tab className="outline-none">ENDED</Tab>
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel className="grid grid-cols-1 md:grid-cols-2 md:gap-10 py-10">

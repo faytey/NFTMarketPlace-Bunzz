@@ -11,7 +11,7 @@ import {
   useWaitForTransaction,
 } from "wagmi";
 import React, { useState } from "react";
-import { ongoing, arr } from "../launchpad";
+import { ongoing, arr } from "..";
 import { ethers } from "ethers";
 
 const StartLaunchPad = () => {
@@ -89,19 +89,14 @@ const StartLaunchPad = () => {
     <div className="flex flex-col gap-8 items-center h-auto mb-[2rem]">
       <h1>Start LaunchPad</h1>
       <span className="bg-[rgba(0,0,0,0.4)] rounded-md shadow-xl p-8">
-        {/* <Image
-          className="shadow-lg mb-4 rounded-md"
-          src={`/${info?.img}`}
-          alt="image"
-          width={400}
-          height={200}
-        /> */}
         <div className="flex flex-col gap-2 items-center">
           <p>Name: {readData?.[0]}</p>
           <p>Creator: {readData?.[1]}</p>
           <p>Created: {today}</p>
           <Link
-            href={`/www.sepolia.io/${readData?.[3]}`}
+            href={`https://sepolia.io/${readData?.[3]}`}
+            passHref
+            legacyBehavior
             className="border px-4 py-2 rounded-md"
           >
             View More

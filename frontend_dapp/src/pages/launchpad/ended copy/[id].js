@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { launchpadContract, launchpadFactory } from "@/utils/contractInfo.js";
 import { useAccount, useContractRead, useContractReads } from "wagmi";
 import React, { useEffect, useState } from "react";
-import { ongoing, arr } from "../launchpad";
+import { ongoing, arr } from "..";
 import { ethers } from "ethers";
 
 const Ongoing = () => {
