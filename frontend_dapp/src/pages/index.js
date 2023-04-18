@@ -857,27 +857,12 @@ export default function Home() {
         <div>Checkout Our Weekly Updated Trending Collection.</div>
 
         <div className="mt-10 grid grid-cols-3 gap-8">
-          <div className="grid-col-1">
-            <img src="././assets/dog1.png" id="firstpicset" />
-            <div className="grid grid-cols-3 mt-5 gap-5">
-              <div className="grid-cols-1">
-                <img
-                  src="././assets/firstsetimagesub1.png"
-                  id="firstpicsetsub"
-                />
-              </div>
-              <div className="grid-cols-1">
-                <img
-                  src="././assets/firstsetimagesub2.png"
-                  id="firstpicsetsub"
-                />
-              </div>
-              <div
-                className="grid-cols-1 text-center bg-purple"
-                id="firstpicsetsubtext"
-              >
-                1025+
-              </div>
+          <div className='grid-col-1' >
+            <img src="https://ipfs.filebase.io/ipfs/QmdYkAq8CFB2rqtswWyJWr5s7MWdQuHcg1zVBArpaB2nNn" id="firstpicset"/>
+            <div className='grid grid-cols-3 mt-5 gap-5'>
+              <div className='grid-cols-1'><img src="././assets/firstsetimagesub1.png" id="firstpicsetsub"/></div>
+              <div className='grid-cols-1'><img src="././assets/firstsetimagesub2.png" id="firstpicsetsub"/></div>
+              <div className='grid-cols-1 text-center bg-purple' id = "firstpicsetsubtext">1025+</div>
             </div>
             <div style={{ fontSize: "120%", fontWeight: "bold" }}>
               Dsgn Animals

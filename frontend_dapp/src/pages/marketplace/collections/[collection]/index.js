@@ -1,6 +1,5 @@
 import { Inter } from 'next/font/google'
-import { erc721ABI, useContractRead, useContractReads, useProvider } from 'wagmi'
-import { Suspense, useEffect, useState } from 'react'
+import { erc721ABI, useContractRead, useContractReads } from 'wagmi'
 import { useRouter } from 'next/router'
 import CollectionInfoTemplate from '@/components/marketplace/CollectionInfoTemplate'
 import NFTDetailsTemplate1 from '@/components/marketplace/NFTDetailsTemplate1'
@@ -19,18 +18,6 @@ export default function Collection() {
 
   const { collection } = router.query;
 
-  const [contractDetails, setContractDetails] = useState();
-  // const [collectionAddress, setCollectionAddress] = useState();
-  
-  
-  // useEffect(() => {
-  //   setContractDetails({
-  //     address: collection,
-  //     abi: erc721ABI,
-  //   });
-  //   // setCollectionAddress
-  // },
-  // [contractDetails, collection])
 
   const { data: collectionName, isError: collectionDataError, isLoading: collectionDataIsLoading } = useContractRead({
       address: collection,
@@ -58,13 +45,13 @@ export default function Collection() {
       <div>
         {<CollectionInfoTemplate collectionName={collectionName} collectionAddress={collection}/> ?? <p>Loading...</p>}
       </div>
-      <div className='md:grid md:grid-cols-3 gap-10 space-y-5 m-0 p-14'>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-10 space-y-5 m-0 p-14'>
         {
           marketplaceData?.[1]?.map((item) => {
             if (item.nftContract == collection) {
               return (
                   <div>
-                    {<NFTDetailsTemplate1 contractAddress={collection} tokenID={item.tokenId.toString()} /> ?? <p>Loading...</p>}
+                    {<NFTDetailsTemplate1 contractAddress={collection} tokenID={item.tokenId.toString()} itemId={item.itemId} /> ?? <p>Loading...</p>}
                   </div>
                   )
             }

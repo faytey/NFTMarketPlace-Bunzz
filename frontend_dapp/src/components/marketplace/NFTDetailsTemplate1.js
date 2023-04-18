@@ -1,16 +1,15 @@
 import Link from "next/link";
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import { erc721ABI, useContractReads } from "wagmi";
-import NFTMetadataTemplate from "./NFTMetadataTemplate";
-import ImageInfoTemplate from "./ImageInfoTemplate";
-import ButtonTemplate from "./ButtonTemplate";
 import { marketplaceContract } from "@/utils/contractInfo";
 import { ethers } from "ethers";
+import axios from "axios";
 
 const NFTDetailsTemplate1 = memo(
   ({
     contractAddress,
     tokenID,
+    itemId,
   }) => {
 
     const { data, isError, isLoading } = useContractReads({
@@ -33,13 +32,43 @@ const NFTDetailsTemplate1 = memo(
             },
         ]
     })
+
+
+
+    const [tokenMetadata, setTokenMetadata] = useState();
+    const [nftImgUrl, setNftImgUrl] = useState();
+
+
+
+    const baseIpfs = "https://ipfs.io/ipfs/";
+
+    async function getMetadata(tokenURI) {
+        var metadataurl = `${baseIpfs}${tokenURI?.slice(7)}`
+        var res = await axios.get(metadataurl).then((res) => {return(res.data)}).catch((err) => {console.log(err)})
+        setTokenMetadata(res)
+        var imgURI = tokenMetadata?.image
+        var imgurl = `${baseIpfs}${imgURI?.slice(7)}`
+        setNftImgUrl(imgurl)
+    }
+
+    useEffect(
+      () => {
+        getMetadata(data?.[1]);
+      },
+      [tokenMetadata, data]
+    )
+
+
+
+
+
     return (
       <div >
 
         <div
-          className="flex-1 rounded-xl bg-[#1C1C1C] h-[469px] flex flex-col items-center justify-start cursor-pointer">
+          className="flex-1 rounded-xl bg-[#1C1C1C] flex flex-col items-center justify-start cursor-pointer">
           <div className="self-stretch rounded-t-xl rounded-b-none flex flex-col items-start justify-start">
-            {<ImageInfoTemplate tokenURI={data?.[1]} /> ?? <p>Loading...</p>}
+            <img src={nftImgUrl} />
           </div>
           <div className="self-stretch flex flex-col pt-5 px-[30px] pb-[25px] items-start justify-start gap-[25px]">
             <div className="flex justify-between w-full">
@@ -53,14 +82,14 @@ const NFTDetailsTemplate1 = memo(
                       <img
                         className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-101xl max-w-full overflow-hidden max-h-full object-cover"
                         alt=""
-                        src="assets/Avatar.png"
+                        src={nftImgUrl}
                       />
                     </div>
                   </div>
                   <div className="flex-1 relative leading-[140%]">Token ID: {tokenID}</div>
                 </div>
               </div>
-              <Link href={`/marketplace/${tokenID}`} className="border m-0 p-5 rounded-lg">Buy</Link>
+              <Link href={`/marketplace/${itemId}`} className="border m-0 p-5 rounded-lg">Buy</Link>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start text-xs text-caption-label-text font-h5-space-mono">
               <div className="flex-1 flex flex-col py-0 pr-[21px] pl-0 items-start justify-start gap-[8px]">

@@ -30,8 +30,8 @@ const CollectionInfoTemplate = memo((
 
   return (
     <div className="self-stretch bg-background flex flex-col py-10 px-0 items-center text-2xl font-h5-space-mono">
-      <div className="flex flex-row gap-[100px]">
-        <div className="shrink-0 flex flex-col  gap-[30px]">
+      <div className="flex flex-row">
+        <div className="shrink-0 flex flex-col gap-8">
           <div className="relative text-32xl leading-[110%] capitalize font-semibold font-caption-work-sans flex items-center">
             {collectionName ?? <p>Loading...</p>}
           </div>
@@ -61,7 +61,7 @@ const CollectionInfoTemplate = memo((
               </div>
             </div>
           </div>
-          <div className="self-stretch flex flex-col items-start justify-start gap-[8px] text-caption-label-text">
+          <div className="self-stretch flex flex-col items-start justify-start text-caption-label-text gap-3">
             <b className="self-stretch relative leading-[100%] capitalize">
               About
             </b>
@@ -69,7 +69,7 @@ const CollectionInfoTemplate = memo((
               The internet's friendliest designer kid.
             </div>
           </div>
-          <div className="self-stretch flex flex-col items-start justify-start gap-[8px] text-caption-label-text">
+          <div className="self-stretch flex flex-col items-start justify-start text-caption-label-text gap-3">
             <b className="relative leading-[100%] capitalize">Links</b>
             <div className="flex flex-row items-start justify-start gap-[10px]">
               <BsGlobe2 className="relative w-5 h-5 shrink-0 cursor-pointer" onClick={onGlobeIconClick} />
@@ -81,14 +81,14 @@ const CollectionInfoTemplate = memo((
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-start justify-end gap-[20px] text-center text-base font-caption-work-sans">
-          <div className="rounded-xl bg-[#A259FF] w-[186px] h-[60px] shrink-0 flex flex-row py-0 px-[50px] box-border items-center justify-center gap-[12px]">
+        <div className="flex flex-row items-start justify-end text-center text-base font-caption-work-sans gap-8">
+          <div className="rounded-xl bg-[#A259FF] h-[60px] shrink-0 flex flex-row py-0 px-[50px] box-border items-center justify-center gap-2">
             <BiCopy className="relative w-5 h-5 shrink-0"/>
             <div className="relative leading-[140%] font-semibold">
               {collectionAddress?.slice(0,6)+"..."+collectionAddress?.slice(-6)}
             </div>
           </div>
-          <div className="rounded-xl box-border h-[60px] flex flex-row py-0 px-[30px] items-center justify-center gap-[12px] border-[2px] border-solid border-[#A259FF]">
+          <div className="rounded-xl box-border h-[60px] flex flex-row py-0 px-[30px] items-center justify-center gap-2 border-[2px] border-solid border-[#A259FF]">
             <BsPlus className="relative w-5 h-5 shrink-0" />
             <div className="relative leading-[140%] font-semibold">
               Follow
