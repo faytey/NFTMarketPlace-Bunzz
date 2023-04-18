@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { launchpadFactory } from "@/utils/contractInfo.js";
 import { useAccount, useContractRead, useContractReads } from "wagmi";
 import Link from "next/link";
-import CopyButton from "../CopyButton";
 import { Truncate } from "../Truncate";
+import CopyButton from "../CopyButton";
 
 const LaunchPads = ({ arg }) => {
   const [read, setRead] = useState();
@@ -53,15 +53,19 @@ const LaunchPads = ({ arg }) => {
           </div>
         </div>
 
-        <div className="flex justify-center p-4">
+        <div className="flex gap-4 p-4">
           <Link
-            legacyBehavior
             href={`https://sepolia.etherscan.io/address/${read?.[3]}`}
-            passHref
+            className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 p-5"
           >
-            <a target="_blank" rel="noopener noreferrer">
-              View on Etherscan
-            </a>
+            View on Etherscan
+          </Link>
+          <Link
+            href={`/launchpad/startLaunchPad/${arg}`}
+            key={arg}
+            className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 p-5"
+          >
+            Start Pad
           </Link>
         </div>
       </div>

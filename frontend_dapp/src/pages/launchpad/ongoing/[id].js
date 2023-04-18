@@ -3,10 +3,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { launchpadContract, launchpadFactory } from "@/utils/contractInfo.js";
 import { useAccount, useContractRead, useContractReads } from "wagmi";
-import React, { useEffect, useState } from "react";
-import { ongoing, arr } from "..";
+import React from "react";
 import { ethers } from "ethers";
 import CopyButton from "@/components/CopyButton";
+import { Truncate } from "@/components/Truncate";
 
 const Ongoing = () => {
   // const [read, setRead] = useState();
@@ -94,10 +94,10 @@ const Ongoing = () => {
             ETH
           </p>
           <p>End Date: {end}</p>
-          <p>
-            Creator: {readData?.[1]}
-            <CopyButton />
-          </p>
+          <h6 className="flex gap-2">
+            Creator: <Truncate string={String(readData?.[1])} />
+            <CopyButton arg={readData?.[1]} />
+          </h6>
           <p>Created: {today}</p>
         </div>
         <div className="flex gap-4 ml-4">

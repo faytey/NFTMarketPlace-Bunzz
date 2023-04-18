@@ -3,6 +3,8 @@ import { launchpadContract, launchpadFactory } from "@/utils/contractInfo.js";
 import { useAccount, useContractRead, useContractReads } from "wagmi";
 import Link from "next/link";
 import { ethers } from "ethers";
+import { Truncate } from "../Truncate";
+import CopyButton from "../CopyButton";
 
 const OngoingPads = ({ arg }) => {
   const [read, setRead] = useState();
