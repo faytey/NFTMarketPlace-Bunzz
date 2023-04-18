@@ -13,6 +13,8 @@ import {
 import React, { useEffect, useState } from "react";
 import { ongoing, arr } from "..";
 import { ethers } from "ethers";
+import CopyButton from "@/components/CopyButton";
+import { Truncate } from "@/components/Truncate";
 
 const Upcoming = () => {
   // const [read, setRead] = useState();
@@ -78,7 +80,12 @@ const Upcoming = () => {
         <div className="flex flex-col gap-2 p-4">
           <p>Name: {readData?.[0]}</p>
           <p>Symbol: {data?.[0]}</p>
-          <p>LaunchPad Address: {read}</p>
+          <h6 className="flex gap-2">
+            LaunchPad Address: <Truncate string={String(read)} />
+            <span>
+              <CopyButton arg={read} src="/copy.svg" />
+            </span>
+          </h6>
           <p>Creator: {readData?.[1]}</p>
         </div>
         <Link

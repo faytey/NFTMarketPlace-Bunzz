@@ -44,7 +44,7 @@ const LaunchPads = ({ arg }) => {
         <div className="flex gap-3 p-2 border-b-2">
           <div className="flex flex-col">
             <h1 className="text-3xl">{read?.[0]}</h1>
-            <h6>
+            <h6 className="flex gap-2">
               LaunchPad Address: <Truncate string={String(read?.[3])} />
               <span>
                 <CopyButton arg={read?.[3]} />

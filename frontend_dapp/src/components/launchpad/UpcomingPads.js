@@ -4,6 +4,8 @@ import { useAccount, useContractRead, useContractReads } from "wagmi";
 import Link from "next/link";
 import Head from "next/head";
 import { ethers } from "ethers";
+import { Truncate } from "../Truncate";
+import CopyButton from "../CopyButton";
 
 const UpcomingPads = ({ arg }) => {
   const [read, setRead] = useState();
@@ -96,7 +98,12 @@ const UpcomingPads = ({ arg }) => {
                 {String(data?.[1]) / ethers.utils.parseEther("1")} ETH /{" "}
                 {String(data?.[5]) / ethers.utils.parseEther("1")} ETH
               </p>
-              <h6>LaunchPad Address: {read?.[3]}</h6>
+              <h6 className="flex gap-2">
+                LaunchPad Address: <Truncate string={String(read?.[3])} />
+                <span>
+                  <CopyButton arg={read?.[3]} />
+                </span>
+              </h6>
             </div>
           </div>
         </div>

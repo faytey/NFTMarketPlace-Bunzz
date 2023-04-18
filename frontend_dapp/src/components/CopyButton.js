@@ -10,7 +10,7 @@ const CopyButton = ({ arg }) => {
     <span>
       <Image
         onClick={handleClick}
-        src="copy.svg"
+        src="/copy.svg"
         alt="copy image"
         width={24}
         height={24}

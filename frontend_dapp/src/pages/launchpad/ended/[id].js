@@ -13,6 +13,8 @@ import {
 import React, { useEffect, useState } from "react";
 import { ongoing, arr } from "..";
 import { ethers } from "ethers";
+import { Truncate } from "@/components/Truncate";
+import CopyButton from "@/components/CopyButton";
 
 const Ended = () => {
   // const [read, setRead] = useState();
@@ -122,19 +124,16 @@ const Ended = () => {
   return (
     <div className="flex flex-col gap-8 items-center h-auto mt-[1rem] mb-[5rem]">
       <h1>Ended Launchpad</h1>
-      <p>{writeerror ? "You are not subscribed" : ""}</p>
       <div className="bg-[rgba(0,0,0,0.4)] border-2 border-black rounded-md shadow-2xl p-8">
-        {/* <Image
-          className="shadow-lg mb-4 rounded-md"
-          src={`/${info?.img}`}
-          alt="image"
-          width={400}
-          height={200}
-        /> */}
         <div className="flex flex-col gap-2 p-4">
           <p>Name: {readData?.[0]}</p>
           <p>Symbol: {data?.[0]}</p>
-          <p>LaunchPad Address: {read}</p>
+          <h6 className="flex gap-2">
+            LaunchPad Address: <Truncate string={String(read)} />
+            <span>
+              <CopyButton arg={read} />
+            </span>
+          </h6>
           <p>
             Total Raised: {String(data?.[5]) / ethers.utils.parseEther("1")} ETH
           </p>
@@ -147,7 +146,12 @@ const Ended = () => {
             ETH
           </p>
           <p>End Date: {end}</p>
-          <p>Creator: {readData?.[1]}</p>
+          <p className="flex gap-2">
+            Creator: <Truncate string={String(readData?.[1])} />
+            <span>
+              <CopyButton arg={readData?.[1]} />
+            </span>
+          </p>
           <p>Created: {today}</p>
         </div>
 

@@ -6,6 +6,7 @@ import { useAccount, useContractRead, useContractReads } from "wagmi";
 import React, { useEffect, useState } from "react";
 import { ongoing, arr } from "..";
 import { ethers } from "ethers";
+import CopyButton from "@/components/CopyButton";
 
 const Ongoing = () => {
   // const [read, setRead] = useState();
@@ -93,7 +94,10 @@ const Ongoing = () => {
             ETH
           </p>
           <p>End Date: {end}</p>
-          <p>Creator: {readData?.[1]}</p>
+          <p>
+            Creator: {readData?.[1]}
+            <CopyButton />
+          </p>
           <p>Created: {today}</p>
         </div>
         <div className="flex gap-4 ml-4">

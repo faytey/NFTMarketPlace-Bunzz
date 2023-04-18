@@ -3,6 +3,8 @@ import { launchpadContract, launchpadFactory } from "@/utils/contractInfo.js";
 import { useAccount, useContractRead, useContractReads } from "wagmi";
 import Link from "next/link";
 import { ethers } from "ethers";
+import { Truncate } from "../Truncate";
+import CopyButton from "../CopyButton";
 
 const EndedPads = ({ arg }) => {
   const [read, setRead] = useState();
@@ -99,7 +101,12 @@ const EndedPads = ({ arg }) => {
                 Total Raised: {String(data?.[5]) / ethers.utils.parseEther("1")}{" "}
                 ETH
               </p>
-              <h6>LaunchPad Address: {read?.[3]}</h6>
+              <h6 className="flex gap-2">
+                LaunchPad Address: <Truncate string={String(reads)} />
+                <span>
+                  <CopyButton arg={reads} />
+                </span>
+              </h6>
             </div>
           </div>
         </div>
