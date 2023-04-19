@@ -60,12 +60,7 @@ const NFTContainer = memo(
 
 
     return (
-<<<<<<< HEAD
-      <div className="self-stretch flex flex-row items-center justify-start space-x-20 text-32xl pl-14">
-      <div className="flex flex-row items-start justify-start max-w-full m-auto gap-[30px] ml-10 text-left text-3xl mb-10 font-sans">
-=======
       <div className="items-start justify-start max-w-full m-auto gap-3 text-left text-3xl font-sans">
->>>>>>> 9beeda7f8bf3209c271b159ad92c2f8a11c57179
         <div
           className="flex-1 rounded-xl bg-[#1C1C1C] h-[469px] flex flex-col items-center justify-start cursor-pointer"
           onClick={onNFTCardContainerClick}
@@ -107,7 +102,6 @@ const NFTContainer = memo(
             </div>
           </div>
         </div>
-    </div>
     </div>
   );
 }
