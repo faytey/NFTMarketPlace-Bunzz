@@ -54,7 +54,7 @@ export default function Navbar() {
           }
         >
           <div className="flex-col pl-4 text-xl md:flex-grow md:pl-0">
-            <ul className="flex flex-wrap items-center justify-end flex-grow gap-2 pr-4 space-x-2 md:gap-6 md:space-x-6">
+            <ul className="flex flex-col items-center md:flex-row mr-2 justify-end flex-grow gap-2 pr-4 space-x-2 md:gap-6 md:space-x-6">
               <li>
                 <Link href={"/"}>Home</Link>
               </li>
@@ -66,6 +66,9 @@ export default function Navbar() {
               </li>
               <li>
                 <Link href={"/profile"}>Profile</Link>
+              </li>
+              <li>
+                <Link href={"/admin"}>Admin</Link>
               </li>
               <li>
                 <ConnectButton />

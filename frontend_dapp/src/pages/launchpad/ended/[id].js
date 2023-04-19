@@ -156,6 +156,7 @@ const Ended = () => {
         </div>
 
         <button
+          type="submit"
           className="border px-4 ml-4 py-2 rounded-md"
           onClick={handleClick}
         >
