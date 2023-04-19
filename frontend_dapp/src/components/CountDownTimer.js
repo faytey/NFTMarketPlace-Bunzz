@@ -23,6 +23,8 @@ export const CountDownTimer = ({ time }) => {
     document.getElementById("demo").innerHTML =
       days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
+    // console.log(document.getElementById("demo").innerHTML);
+
     // If the count down is finished, write some text
     if (distance < 0) {
       clearInterval(x);
@@ -32,7 +34,7 @@ export const CountDownTimer = ({ time }) => {
   return (
     <div
       id="demo"
-      className="border p-1 w-[50%] text-center rounded-md bg-white text-black"
+      className="border border-black shadow-md drop-shadow-lg p-1 w-[50%] text-center rounded-md bg-[rgba(255,255,255,0.5)] text-black"
     ></div>
   );
 };

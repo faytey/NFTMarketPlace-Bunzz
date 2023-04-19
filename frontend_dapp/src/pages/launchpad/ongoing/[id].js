@@ -7,6 +7,7 @@ import React from "react";
 import { ethers } from "ethers";
 import CopyButton from "@/components/CopyButton";
 import { Truncate } from "@/components/Truncate";
+import { CountDownTimer } from "@/components/CountDownTimer";
 
 const Ongoing = () => {
   const { query } = useRouter();
@@ -77,6 +78,10 @@ const Ongoing = () => {
       <h1>Ongoing Launchpad</h1>
       <div className="bg-[rgba(0,0,0,0.4)] border-2 border-black rounded-md shadow-2xl p-8">
         <div className="flex flex-col gap-2 p-4">
+          <div className="flex items-center gap-4">
+            <h1>Counting Down:</h1>
+            <CountDownTimer time={data?.[4]} />
+          </div>
           <p>Name: {readData?.[0]}</p>
           <p>Symbol: {data?.[0]}</p>
           <p>
