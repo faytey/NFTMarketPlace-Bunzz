@@ -5,6 +5,7 @@ import { erc721ABI, useContractRead, useContractWrite, usePrepareContractWrite, 
 import { marketplaceContract } from "@/utils/contractInfo";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { BiCopy } from "react-icons/bi";
 
 
 const NFTMetadataTemplate = memo(
@@ -71,16 +72,18 @@ const NFTMetadataTemplate = memo(
 
 
     return (
-      <div className="relative bg-background w-full h-full flex flex-col items-start justify-start text-left text-base text-text font-h3-work-sans">
-        <div className="self-stretch bg-background grid grid-cols-2 items-center justify-start gap-[60px] text-32xl pl-14">
+      <div className="relative bg-background w-full h-full m-0 p-8 items-start justify-start text-left text-base text-text font-h3-work-sans">
+        <div className="self-stretch bg-background w-full items-center grid md:grid-cols-2 justify-start gap-3 text-32xl">
           <div >
            {<img src={nftImgUrl} /> ?? <p>Loading...</p>}
           </div>
-          <div className="self-stretch flex flex-col pt-5 px-[30px] pb-[25px] items-start justify-start gap-[25px]">
+          <div className="self-stretch flex flex-col p-8 items-start justify-start gap-3">
               <div className="flex justify-between w-full">
                 <div className="self-stretch flex flex-col items-start justify-start gap-[5px]">
-                  <div className="self-stretch relative leading-[140%] capitalize font-semibold">
-                    <p>Token Contract: {data?.nftContract?.slice(0,6)+"..."+data?.nftContract?.slice(-6) ?? <p>Loading...</p>}</p>
+                  <div className="self-stretch relative leading-[140%] capitalize font-semibold flex gap-5 w-full justify-between">
+                    <p>Token Contract: </p>
+                    <p>{data?.nftContract?.slice(0,6)+"..."+data?.nftContract?.slice(-6) ?? <p>Loading...</p>}</p>
+                    <BiCopy size={20} className="hover:cursor-pointer" onClick={() => {navigator.clipboard.writeText(data?.nftContract)}}/>
                   </div>
                   <div className="self-stretch flex flex-row items-start justify-start gap-[12px] text-base font-h5-space-mono">
                     <div className="flex flex-row items-start justify-start">
@@ -146,14 +149,14 @@ const NFTMetadataTemplate = memo(
               </div>
 
 
-              <div className="flex gap-3">
-                  <button className="font-2xl text-center w-full border rounded-lg m-0 p-2" onClick={(e) => {
+              <div className="gap-3 w-full grid grid-cols-2">
+                  <button className="font-2xl text-center border rounded-lg m-0 p-3" onClick={(e) => {
                   e.preventDefault();
                   write?.()
                   }}>
                     Buy
                 </button>
-                <Link className="border m-0 p-3 rounded-lg cursor-pointer" href={`/marketplace/collections/${data?.nftContract}`}>View Collection</Link>
+                <Link className="border m-0 p-3 rounded-lg cursor-pointer text-center" href={`/marketplace/collections/${data?.nftContract}`}>View Collection</Link>
               </div>
           </div>
         </div>
