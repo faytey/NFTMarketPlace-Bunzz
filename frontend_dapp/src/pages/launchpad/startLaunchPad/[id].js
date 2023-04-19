@@ -130,7 +130,7 @@ const StartLaunchPad = () => {
           />
           <button
             type="submit"
-            classname="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 p-5"
+            className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 p-5"
           >
             {writeLoad || loadWaitData ? "Starting LaunchPad" : "SUBMIT"}
           </button>
