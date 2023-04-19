@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ethers } from "ethers";
 import { Truncate } from "../Truncate";
 import CopyButton from "../CopyButton";
+import { CountDownTimer } from "../CountDownTimer";
 
 const OngoingPads = ({ arg }) => {
   const [read, setRead] = useState();
@@ -67,12 +68,12 @@ const OngoingPads = ({ arg }) => {
 
   useEffect(() => {
     setRead(readData);
-    console.log(read);
+    // console.log(read);
   }, [read]);
 
   const date = (x) => {
     let myDate = new Date(x * 1000);
-    console.log(myDate);
+    // console.log(myDate);
     return myDate;
   };
 
@@ -82,7 +83,7 @@ const OngoingPads = ({ arg }) => {
   const d = new Date();
 
   if (data?.[2] < d.getTime() / 1000 && data?.[4] > d.getTime() / 1000) {
-    console.log("ongoing");
+    // console.log("ongoing");
     return (
       <Link
         href={`/launchpad/ongoing/${arg}`}
@@ -92,12 +93,14 @@ const OngoingPads = ({ arg }) => {
         <div>
           <div className="flex gap-3 p-2">
             <div className="flex flex-col">
+              <CountDownTimer time={data?.[4]} />
               <h1 className="text-3xl border-b-2 py-2 mb-2">{read?.[0]}</h1>
               <p>
                 Amount Raised:{" "}
                 {String(data?.[1]) / ethers.utils.parseEther("1")} ETH /{" "}
                 {String(data?.[5]) / ethers.utils.parseEther("1")} ETH
               </p>
+              <p>End date: {end}</p>
               <h6 className="flex gap-2">
                 LaunchPad Address: <Truncate string={String(read?.[3])} />
                 <span>
@@ -109,8 +112,6 @@ const OngoingPads = ({ arg }) => {
         </div>
       </Link>
     );
-  } else {
-    console.log("upcoming");
   }
 };
 

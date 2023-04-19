@@ -1,7 +1,10 @@
 import React from "react";
 
-export const CountDownTimer = () => {
-  var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
+export const CountDownTimer = ({ time }) => {
+  let timer = new Date(Number(time));
+  //   let times = timer.slice(4, 23);
+  console.log(timer);
+  var countDownDate = new Date("Apr 20, 2023 18:16:04").getTime();
 
   // Update the count down every 1 second
   var x = setInterval(function () {
@@ -26,8 +29,13 @@ export const CountDownTimer = () => {
     // If the count down is finished, write some text
     if (distance < 0) {
       clearInterval(x);
-      document.getElementById("demo").innerHTML = "EXPIRED";
+      document.getElementById("demo").innerHTML = "00d 00h 00m 00s";
     }
   }, 1000);
-  return <div id="demo"></div>;
+  return (
+    <div
+      id="demo"
+      className="border p-1 w-[50%] text-center rounded-md bg-white text-black"
+    ></div>
+  );
 };
