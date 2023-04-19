@@ -56,7 +56,7 @@ const MarketItemTemplate = memo(
               <div className="flex justify-between w-full">
                 <div className="self-stretch flex flex-col items-start justify-start gap-[5px]">
                   <div className="self-stretch relative leading-[140%] capitalize font-semibold">
-                    {marketItem?.nftContract?.slice(0,6)+"..."+marketItem?.nftContract?.slice(-6) ?? <p>Loading...</p>}
+                    Token Contract: {marketItem?.nftContract?.slice(0,6)+"..."+marketItem?.nftContract?.slice(-6) ?? <p>Loading...</p>}
                   </div>
                   <div className="self-stretch flex flex-row items-start justify-start gap-[12px] text-base font-h5-space-mono">
                     <div className="flex flex-row items-start justify-start">
