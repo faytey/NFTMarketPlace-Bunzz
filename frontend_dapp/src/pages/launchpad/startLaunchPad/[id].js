@@ -11,7 +11,7 @@ import {
   useWaitForTransaction,
 } from "wagmi";
 import React, { useState } from "react";
-import { ongoing, arr } from "../launchpad";
+import { ongoing, arr } from "..";
 import { ethers } from "ethers";
 
 const StartLaunchPad = () => {
@@ -88,21 +88,14 @@ const StartLaunchPad = () => {
   return (
     <div className="flex flex-col gap-8 items-center h-auto mb-[2rem]">
       <h1>Start LaunchPad</h1>
-      <span className="bg-[rgba(0,0,0,0.4)] rounded-md shadow-xl p-8">
-        {/* <Image
-          className="shadow-lg mb-4 rounded-md"
-          src={`/${info?.img}`}
-          alt="image"
-          width={400}
-          height={200}
-        /> */}
+      <div className="bg-[rgba(0,0,0,0.4)] rounded-md shadow-xl p-8">
         <div className="flex flex-col gap-2 items-center">
           <p>Name: {readData?.[0]}</p>
           <p>Creator: {readData?.[1]}</p>
           <p>Created: {today}</p>
           <Link
-            href={`/www.sepolia.io/${readData?.[3]}`}
-            className="border px-4 py-2 rounded-md"
+            href={`https://sepolia.io/${readData?.[3]}`}
+            className="px-4 py-2 rounded-md shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 p-5"
           >
             View More
           </Link>
@@ -135,11 +128,14 @@ const StartLaunchPad = () => {
             value={totalAmountNeeded}
             onChange={(e) => setTotalAmountNeeded(e.target.value)}
           />
-          <button type="submit">
+          <button
+            type="submit"
+            classname="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 p-5"
+          >
             {writeLoad || loadWaitData ? "Starting LaunchPad" : "SUBMIT"}
           </button>
         </form>
-      </span>
+      </div>
     </div>
   );
 };

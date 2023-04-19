@@ -2,19 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { launchpadContract, launchpadFactory } from "@/utils/contractInfo.js";
-import {
-  useAccount,
-  useContractRead,
-  useContractReads,
-  useContractWrite,
-  usePrepareContractWrite,
-  useWaitForTransaction,
-} from "wagmi";
-import React, { useEffect, useState } from "react";
-import { ongoing, arr } from "../launchpad";
+import { useAccount, useContractRead, useContractReads } from "wagmi";
+import React from "react";
 import { ethers } from "ethers";
+import CopyButton from "@/components/CopyButton";
+import { Truncate } from "@/components/Truncate";
 
-const Ended = () => {
+const Ongoing = () => {
   // const [read, setRead] = useState();
   const { query } = useRouter();
   const id = Number(query.id);
@@ -31,7 +25,7 @@ const Ended = () => {
   });
 
   const read = String(readData?.[3]);
-  // console.log(read);
+
   const {
     data,
     isError: readerror,
@@ -71,45 +65,6 @@ const Ended = () => {
     ],
   });
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    write?.();
-  };
-
-  const { config } = usePrepareContractWrite({
-    address: read,
-    abi: launchpadContract.abi,
-    functionName: "withdrawNFT",
-  });
-
-  const {
-    data: writedata,
-    isLoading: writeloading,
-    isSuccess,
-    write,
-    isError: writeerror,
-  } = useContractWrite(config);
-
-  const {
-    data: sendWaitData,
-    isError: errorWaitData,
-    isLoading: loadWaitData,
-  } = useWaitForTransaction({
-    hash: data?.hash,
-
-    onError(error) {
-      console.log("Error Message: ", error);
-    },
-
-    onSuccess(data) {
-      console.log("Success: ", data);
-    },
-  });
-
-  if (sendWaitData) {
-    console.log("Your wait data is ", sendWaitData);
-  }
-
   const date = (x) => {
     let myDate = new Date(x * 1000);
     // console.log(myDate);
@@ -121,21 +76,14 @@ const Ended = () => {
   const end = date(data?.[4]).toDateString();
   return (
     <div className="flex flex-col gap-8 items-center h-auto mt-[1rem] mb-[5rem]">
-      <h1>Ended Launchpad</h1>
-      <p>{writeerror ? "You are not subscribed" : ""}</p>
-      <span className="bg-[rgba(0,0,0,0.4)] border-2 border-black rounded-md shadow-2xl p-8">
-        {/* <Image
-          className="shadow-lg mb-4 rounded-md"
-          src={`/${info?.img}`}
-          alt="image"
-          width={400}
-          height={200}
-        /> */}
+      <h1>Ongoing Launchpad</h1>
+      <div className="bg-[rgba(0,0,0,0.4)] border-2 border-black rounded-md shadow-2xl p-8">
         <div className="flex flex-col gap-2 p-4">
           <p>Name: {readData?.[0]}</p>
           <p>Symbol: {data?.[0]}</p>
           <p>
-            Total Raised: {String(data?.[5]) / ethers.utils.parseEther("1")} ETH
+            Amount Raised: {String(data?.[1]) / ethers.utils.parseEther("1")}{" "}
+            ETH / {String(data?.[5]) / ethers.utils.parseEther("1")} ETH
           </p>
           <p>Start Date: {start}</p>
         </div>
@@ -146,23 +94,35 @@ const Ended = () => {
             ETH
           </p>
           <p>End Date: {end}</p>
-          <p>Creator: {readData?.[1]}</p>
+          <h6 className="flex gap-2">
+            Creator: <Truncate string={String(readData?.[1])} />
+            <CopyButton arg={readData?.[1]} />
+          </h6>
           <p>Created: {today}</p>
         </div>
-
-        <Link
-          href={`../withdraw/${id}`}
-          className="border px-4 ml-4 py-2 rounded-md"
-          onClick={handleClick}
-        >
-          {writeloading || loadWaitData ? "Withdrawing" : "WITHDRAW"}
-        </Link>
-        {/* <Link href={`/${info?.scan}`} className="border px-4 py-2 rounded-md">
-            View More
-          </Link> */}
-      </span>
+        <div className="flex gap-4 ml-4">
+          <Link
+            href={`../startLaunchPad/${id}`}
+            className="border px-4 py-2 rounded-md"
+          >
+            START
+          </Link>
+          <Link
+            href={`../deposit/${id}`}
+            className="border px-4 py-2 rounded-md"
+          >
+            DEPOSIT
+          </Link>
+          <Link
+            href={`https://sepolia.etherscan.io/address/${read}`}
+            className="border px-4 py-2 rounded-md"
+          >
+            VIEW MORE
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Ended;
+export default Ongoing;
