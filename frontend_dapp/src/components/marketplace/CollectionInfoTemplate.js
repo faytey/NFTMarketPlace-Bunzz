@@ -83,7 +83,7 @@ const CollectionInfoTemplate = memo((
         </div>
         <div className="flex flex-row items-start justify-end text-center text-base font-caption-work-sans gap-8">
           <div className="rounded-xl bg-[#A259FF] h-[60px] shrink-0 flex flex-row py-0 px-[50px] box-border items-center justify-center gap-2">
-            <BiCopy className="relative w-5 h-5 shrink-0"/>
+            <BiCopy className="relative w-5 h-5 shrink-0 hover:cursor-pointer" onClick={() => {navigator.clipboard.writeText(collectionAddress)}}/>
             <div className="relative leading-[140%] font-semibold">
               {collectionAddress?.slice(0,6)+"..."+collectionAddress?.slice(-6)}
             </div>
