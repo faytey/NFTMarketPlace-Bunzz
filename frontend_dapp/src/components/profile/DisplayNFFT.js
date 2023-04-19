@@ -20,7 +20,11 @@ const NFTDetail = () => {
   useEffect(() => {
     const fetchNFTCids = async () => {
       const provider = new ethers.providers.Web3Provider(library.provider);
-      const contract = new ethers.Contract(NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI, provider);
+      const contract = new ethers.Contract(
+        NFT_CONTRACT_ADDRESS,
+        NFT_CONTRACT_ABI,
+        provider
+      );
       const nftId = 1; // replace with the ID of the NFT you want to fetch the CID for
       const nftData = await contract.getNFTData(nftId); // replace with the name of the function that retrieves the NFT data from the contract
       setImageCid(nftData.imageCid);
@@ -46,9 +50,9 @@ const NFTDetail = () => {
     }
   }, [ipfs, imageCid, metadataCid]);
 
-  return (
-    // render NFT image and metadata
-  );
+  // return (
+  //   // render NFT image and metadata
+  // );
 };
 
 export default NFTDetail;
