@@ -17,7 +17,6 @@ import { Truncate } from "@/components/Truncate";
 import CopyButton from "@/components/CopyButton";
 
 const Ended = () => {
-  // const [read, setRead] = useState();
   const { query } = useRouter();
   const id = Number(query.id);
 
@@ -33,7 +32,6 @@ const Ended = () => {
   });
 
   const read = String(readData?.[3]);
-  // console.log(read);
   const {
     data,
     isError: readerror,
@@ -114,7 +112,6 @@ const Ended = () => {
 
   const date = (x) => {
     let myDate = new Date(x * 1000);
-    // console.log(myDate);
     return myDate;
   };
 
@@ -162,9 +159,6 @@ const Ended = () => {
         >
           {writeloading || loadWaitData ? "Withdrawing" : "WITHDRAW"}
         </button>
-        {/* <Link href={`/${info?.scan}`} className="border px-4 py-2 rounded-md">
-            View More
-          </Link> */}
       </div>
     </div>
   );

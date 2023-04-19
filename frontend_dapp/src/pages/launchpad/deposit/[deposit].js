@@ -14,7 +14,6 @@ import {
 
 const Deposit = () => {
   const { deposit } = useRouter().query;
-  // console.log(useRouter().query);
   const id = Number(deposit);
 
   const { address } = useAccount();
@@ -43,8 +42,6 @@ const Deposit = () => {
     functionName: "price",
   });
 
-  console.log(reads);
-
   const tryouts = () => {
     const string = prices / ethers.utils.parseEther("1");
     const total = string * amount;
@@ -54,11 +51,6 @@ const Deposit = () => {
     console.log(totals);
     return totals;
   };
-
-  // useEffect(() => {
-  //   setPrice(string);
-  //   console.log(price);
-  // }, [price]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

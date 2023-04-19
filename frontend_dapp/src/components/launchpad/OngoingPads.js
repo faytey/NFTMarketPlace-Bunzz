@@ -23,8 +23,6 @@ const OngoingPads = ({ arg }) => {
     args: [arg],
   });
 
-  // console.log(readData);
-
   const reads = String(readData?.[3]);
 
   const {
@@ -68,22 +66,19 @@ const OngoingPads = ({ arg }) => {
 
   useEffect(() => {
     setRead(readData);
-    // console.log(read);
   }, [read]);
 
   const date = (x) => {
     let myDate = new Date(x * 1000);
-    // console.log(myDate);
     return myDate;
   };
 
   const today = date(read?.[2]).toDateString();
   const start = date(data?.[2]).toDateString();
-  const end = date(data?.[4]).toDateString();
+  const ends = date(data?.[4]).toDateString();
   const d = new Date();
 
   if (data?.[2] < d.getTime() / 1000 && data?.[4] > d.getTime() / 1000) {
-    // console.log("ongoing");
     return (
       <Link
         href={`/launchpad/ongoing/${arg}`}
@@ -100,7 +95,7 @@ const OngoingPads = ({ arg }) => {
                 {String(data?.[1]) / ethers.utils.parseEther("1")} ETH /{" "}
                 {String(data?.[5]) / ethers.utils.parseEther("1")} ETH
               </p>
-              <p>End date: {end}</p>
+              <p>End date: {ends}</p>
               <h6 className="flex gap-2">
                 LaunchPad Address: <Truncate string={String(read?.[3])} />
                 <span>

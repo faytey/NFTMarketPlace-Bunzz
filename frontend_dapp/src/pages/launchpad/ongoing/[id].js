@@ -9,7 +9,6 @@ import CopyButton from "@/components/CopyButton";
 import { Truncate } from "@/components/Truncate";
 
 const Ongoing = () => {
-  // const [read, setRead] = useState();
   const { query } = useRouter();
   const id = Number(query.id);
 
@@ -67,7 +66,6 @@ const Ongoing = () => {
 
   const date = (x) => {
     let myDate = new Date(x * 1000);
-    // console.log(myDate);
     return myDate;
   };
 

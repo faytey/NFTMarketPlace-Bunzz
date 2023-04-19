@@ -89,8 +89,6 @@ export default function Launchpad() {
 
   const Reads = Number(reads);
 
-  console.log(Reads);
-
   const arr = [];
 
   const Params = () => {
@@ -100,9 +98,6 @@ export default function Launchpad() {
     }
   };
 
-  console.log(arr);
-
-  console.log(Params());
   return (
     <div className="">
       <header className="flex items-center flex-col">

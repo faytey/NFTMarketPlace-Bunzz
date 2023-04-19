@@ -20,7 +20,6 @@ const LaunchPads = ({ arg }) => {
     functionName: "LaunchPads",
     args: [arg],
   });
-  console.log(readData);
 
   useEffect(() => {
     setRead(readData);
@@ -29,7 +28,6 @@ const LaunchPads = ({ arg }) => {
 
   const date = (x) => {
     let myDate = new Date(x * 1000);
-    console.log(myDate);
     return myDate;
   };
 

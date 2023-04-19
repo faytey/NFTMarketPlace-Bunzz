@@ -17,7 +17,6 @@ import CopyButton from "@/components/CopyButton";
 import { Truncate } from "@/components/Truncate";
 
 const Upcoming = () => {
-  // const [read, setRead] = useState();
   const { query } = useRouter();
   const id = Number(query.id);
 
@@ -33,7 +32,6 @@ const Upcoming = () => {
   });
 
   const read = String(readData?.[3]);
-  // console.log(read);
   const {
     data,
     isError: readerror,
@@ -90,8 +88,6 @@ const Upcoming = () => {
         </div>
         <Link
           href={`https://sepolia.io/${read}`}
-          // passHref
-          // legacyBehavior
           className="border px-4 py-2 ml-4 rounded-md"
         >
           View More
