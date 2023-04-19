@@ -62,6 +62,7 @@ const NFTContainer = memo(
 
 
     return (
+      <div className="self-stretch flex flex-row items-center justify-start space-x-20 text-32xl pl-14">
       <div className="flex flex-row items-start justify-start max-w-full m-auto gap-[30px] ml-10 text-left text-3xl mb-10 font-sans">
         <div
           className="flex-1 rounded-xl bg-[#1C1C1C] h-[469px] flex flex-col items-center justify-start cursor-pointer"
@@ -105,6 +106,7 @@ const NFTContainer = memo(
             </div>
           </div>
         </div>
+    </div>
     </div>
   );
 }
