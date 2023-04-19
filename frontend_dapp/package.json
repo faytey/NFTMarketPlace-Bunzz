@@ -20,7 +20,7 @@
     "eslint": "8.37.0",
     "eslint-config-next": "^13.3.0",
     "ethers": "^5.7.2",
-    "ipfs-core": "^0.18.0",
+    "ipfs-core": "^0.17.0",
     "ipfs-http-client": "^60.0.0",
     "next": "^13.3.0",
     "postcss": "8.4.21",
