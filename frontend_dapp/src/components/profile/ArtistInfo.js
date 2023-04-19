@@ -2,7 +2,7 @@ import { memo, useCallback } from "react";
 import { BsGlobe2, BsDiscord, BsYoutube, BsTwitter, BsInstagram, BsPlus } from "react-icons/bs";
 import { BiCopy } from "react-icons/bi";
 
-const ArtistInfo = memo(() => {
+const ArtistInfo = memo(({address}) => {
   const onGlobeIconClick = useCallback(() => {
     window.open("https://www.google.com");
   }, []);
@@ -31,7 +31,7 @@ const ArtistInfo = memo(() => {
             <div className="relative text-32xl leading-[110%] capitalize font-semibold font-caption-work-sans flex items-center w-[510px]">
               Animakid
             </div>
-            <div className="rounded-xl w-[510px] flex flex-row items-start justify-start gap-[20px] text-9xl">
+            <div className="rounded-xl w-[510px] flex flex-row items-start justify-start gap-[20px] text-5xl">
               <div className="flex-1 rounded-xl flex flex-col items-start justify-start">
                 <b className="self-stretch relative leading-[140%] capitalize">
                   250k+
@@ -81,7 +81,7 @@ const ArtistInfo = memo(() => {
             <div className="rounded-xl bg-[#A259FF] w-[186px] h-[60px] shrink-0 flex flex-row py-0 px-[50px] box-border items-center justify-center gap-[12px]">
               <BiCopy className="relative w-5 h-5 shrink-0"/>
               <div className="relative leading-[140%] font-semibold">
-                0xc0E3...B79C
+                {address?.slice(0,6)+"..."+address?.slice(-6)}
               </div>
             </div>
             <div className="rounded-xl box-border h-[60px] flex flex-row py-0 px-[30px] items-center justify-center gap-[12px] border-[2px] border-solid border-[#A259FF]">

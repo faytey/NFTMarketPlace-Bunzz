@@ -5,13 +5,14 @@ import { useRouter } from "next/router";
 import axios from 'axios';
 
 import {Tab} from '@headlessui/react'
-import { erc721ABI, useContractReads } from 'wagmi'
+import { erc721ABI, useAccount, useContractReads, useContractRead, useProvider } from 'wagmi'
 import { azukiContract, baycContract, marketplaceContract } from '@/utils/contractInfo'
 import { Suspense, useEffect, useState } from 'react'
 import MarketPlaceHeaderTemplate from '@/components/marketplace/MarketPlaceHeaderTemplate'
 import NFTCollectionTemplate1 from '@/components/marketplace/NFTCollectionTemplate1'
 import NFTDetailsTemplate1 from '@/components/marketplace/NFTDetailsTemplate1'
 import NFTSpecs from "@/components/nftdetailing/NFTSpecs";
+import { ethers } from "ethers";
 
 
 
@@ -20,20 +21,10 @@ const ArtistPage = () => {
 
   const [itemListed, setItemListed] = useState();
   const [marketItems, setMarketItems] = useState();
-  // const [marketplaceInfo, setMarketPlaceInfo] = useState();
+  const [myMarketItem, setMyMarketItem] = useState();
+  const [ownedAsset, setOwnedAsset] = useState();
+  const [listedAsset, setListedAsset] = useState();
 
-
-  const MarketItem = {
-    itemId:"5",
-    nftContract : "0x85E302Eb913125C9c053257B0A2b878B89388013",
-    tokenId : "2",
-    seller : "0x85E302Eb913125C9c053257B0A2b878B89388013",
-    owner : "0x85E302Eb913125C9c053257B0A2b878B89388013",
-    price : "3",
-    sold : false,
-}
-
-const MarketItemArray = [MarketItem,MarketItem,MarketItem]
 
   const { data: marketplaceData, isError: marketplaceDataError, isLoading: marketplaceDataIsLoading } = useContractReads({
     contracts: [
@@ -48,18 +39,61 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
       {
         ...marketplaceContract,
         functionName: 'fetchMyNfts',
+        
       },
   ]})
+
+  const {address} = useAccount({
+    onConnect({ address }) {
+      console.log(address)
+    },
+  })
+
+  const { data: listed } = useContractRead({
+        ...marketplaceContract,
+        functionName: 'fetchItemListed',
+        overrides: {
+          from: address
+        }
+  })
+
+  const { data: owned } = useContractRead({
+    ...marketplaceContract,
+    functionName: 'fetchMyNfts',
+    overrides: {
+      from: address
+    }
+})
+
+
+  // const provider = useProvider()
+
+  // async function getMI() {
+  
+  //   const contract = new ethers.Contract(marketplaceContract.address, marketplaceContract.abi, provider)
+  
+  //   const MI = await contract.fetchMyNfts()
+
+  //   console.log(MI)
+
+  // }
+
+  
 
 
 
   useEffect(() => {
-    setItemListed(marketplaceData?.[0])
-    setMarketItems(marketplaceData?.[1])
-    console.log(marketplaceData)
-    console.log(marketItems)
+    setItemListed(marketplaceData?.[0]);
+    setMarketItems(marketplaceData?.[1]);
+    setMyMarketItem(marketplaceData?.[2]);
+    setOwnedAsset(owned);
+    setListedAsset(listed);
+
+    //getMI()
+    //console.log(reader)
+    
   },
-  [marketplaceData]
+  [marketplaceData, myMarketItem, itemListed]
   )
 
   const router = useRouter();
@@ -96,7 +130,7 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
         </div>
       </div>
 
-      <ArtistInfo />
+      <ArtistInfo address={address} />
 
       <Tab.Group>
         <Tab.List>
@@ -139,13 +173,13 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
       </div>
         </Tab.List>
         <Tab.Panels>
-          <div className="self-stretch bg-[#2B2B2B]-secondary flex flex-col py-20 px-0 items-center justify-start gap-[30px]">
+          <div className="self-stretch bg-[#2B2B2B] flex flex-row py-20 px-0 items-center justify-start gap-[30px]">
           <Tab.Panel>
-              { marketItems?.map((item) => {
+              { ownedAsset?.map((item) => {
                 return (
                     <div>
                       {<NFTContainer 
-                          marketItem={item}
+                        marketItem={item}
                           //onNFTCardContainerClick={onNFTCardContainerClick}
                           />}
                     </div>
@@ -154,24 +188,11 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
             </Tab.Panel>
 
           <Tab.Panel>
-          { marketItems?.map((item) => {
-            return (
-                <div>
-                  {<NFTContainer 
-                      marketItem={item}
-                      //onNFTCardContainerClick={onNFTCardContainerClick}
-                      />}
-                </div>
-                )
-              })}
-          </Tab.Panel>
-
-          <Tab.Panel>
-            { marketItems?.map((item) => {
+            { listedAsset?.map((item) => {
               return (
                   <div>
                     {<NFTContainer 
-                        marketItem={item}
+                      marketItem={item}
                         //onNFTCardContainerClick={onNFTCardContainerClick}
                         />}
                   </div>
