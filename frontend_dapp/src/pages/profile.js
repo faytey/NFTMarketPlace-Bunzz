@@ -1,17 +1,9 @@
-import { useCallback } from "react";
 import ArtistInfo from "../components/profile/ArtistInfo";
 import NFTContainer from "../components/profile/NFTContainer";
-import { useRouter } from "next/router";
-import axios from 'axios';
-
 import {Tab} from '@headlessui/react'
-import { erc721ABI, useContractReads } from 'wagmi'
-import { azukiContract, baycContract, marketplaceContract } from '@/utils/contractInfo'
-import { Suspense, useEffect, useState } from 'react'
-import MarketPlaceHeaderTemplate from '@/components/marketplace/MarketPlaceHeaderTemplate'
-import NFTCollectionTemplate1 from '@/components/marketplace/NFTCollectionTemplate1'
-import NFTDetailsTemplate1 from '@/components/marketplace/NFTDetailsTemplate1'
-import NFTSpecs from "@/components/nftdetailing/NFTSpecs";
+import { useAccount, useContractReads, useContractRead } from 'wagmi'
+import { marketplaceContract } from '@/utils/contractInfo'
+import { useEffect, useState } from 'react'
 
 
 
@@ -20,20 +12,10 @@ const ArtistPage = () => {
 
   const [itemListed, setItemListed] = useState();
   const [marketItems, setMarketItems] = useState();
-  // const [marketplaceInfo, setMarketPlaceInfo] = useState();
+  const [myMarketItem, setMyMarketItem] = useState();
+  const [ownedAsset, setOwnedAsset] = useState();
+  const [listedAsset, setListedAsset] = useState();
 
-
-  const MarketItem = {
-    itemId:"5",
-    nftContract : "0x85E302Eb913125C9c053257B0A2b878B89388013",
-    tokenId : "2",
-    seller : "0x85E302Eb913125C9c053257B0A2b878B89388013",
-    owner : "0x85E302Eb913125C9c053257B0A2b878B89388013",
-    price : "3",
-    sold : false,
-}
-
-const MarketItemArray = [MarketItem,MarketItem,MarketItem]
 
   const { data: marketplaceData, isError: marketplaceDataError, isLoading: marketplaceDataIsLoading } = useContractReads({
     contracts: [
@@ -48,34 +30,51 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
       {
         ...marketplaceContract,
         functionName: 'fetchMyNfts',
+        
       },
   ]})
+
+  const {address} = useAccount({
+    onConnect({ address }) {
+      console.log(address)
+    },
+  })
+
+  const { data: listed } = useContractRead({
+        ...marketplaceContract,
+        functionName: 'fetchItemListed',
+        overrides: {
+          from: address
+        }
+  })
+
+  const { data: owned } = useContractRead({
+    ...marketplaceContract,
+    functionName: 'fetchMyNfts',
+    overrides: {
+      from: address
+    }
+})
+
 
 
 
   useEffect(() => {
-    setItemListed(marketplaceData?.[0])
-    setMarketItems(marketplaceData?.[1])
-    console.log(marketplaceData)
-    console.log(marketItems)
+    setItemListed(marketplaceData?.[0]);
+    setMarketItems(marketplaceData?.[1]);
+    setMyMarketItem(marketplaceData?.[2]);
+    setOwnedAsset(owned);
+    setListedAsset(listed);
   },
-  [marketplaceData]
+  [marketplaceData, myMarketItem, itemListed]
   )
 
-  const router = useRouter();
 
-
-  // const onNFTCardContainerClick = useCallback(() => {
-  //   router.push({
-  //     pathname: "/nftdetail",
-  //     query: { item: "assets/DistantGalaxy.png", id:"Distant Galaxy" }
-  //   });
-  // }, [router]);
 
   
 
   return (
-    <div className="relative bg-[#2B2B2B] w-full flex flex-col items-start justify-start text-center text-3xl max-w-full m-auto font-sans">
+    <div className="relative bg-[#2B2B2B] w-full items-start justify-start text-center text-3xl max-w-full m-auto font-sans">
     
     <div className="self-stretch flex flex-col items-center justify-start">
         <img
@@ -96,21 +95,21 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
         </div>
       </div>
 
-      <ArtistInfo />
+      <ArtistInfo address={address} />
 
       <Tab.Group>
         <Tab.List>
-        <div className="self-stretch bg-[#2B2B2B] flex flex-col items-center justify-start gap-[10px]">
+        <div className="self-stretch bg-[#2B2B2B] flex flex-col items-center justify-start gap-3">
         <div className="self-stretch relative box-border h-px shrink-0 border-t-[1px] border-solid border-background-secondary" />
-        <div className="w-[1050px] flex flex-row items-start justify-start">
+        <div className="flex flex-row items-start justify-start">
           <div className="flex-1 flex flex-row items-start justify-start">
           <Tab>
-            <div className="flex-1 box-border h-[60px] flex flex-row py-0 px-[30px] items-center justify-center gap-[16px] text-text border-b-[2px] border-solid border-caption-label-text">
+            <div className="flex-1 box-border flex flex-row py-0 px-3 items-center justify-center gap-2 text-text border-b-[2px] border-solid border-caption-label-text">
               <div className="relative leading-[140%] capitalize font-semibold">
                   Owned
                   </div>
                   <div className="rounded-xl bg-[#1C1C1C] flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base font-h5-space-mono">
-                    <div className="relative leading-[140%]">302</div>
+                    <div className="relative leading-[140%]">{ownedAsset?.length ?? "0"}</div>
                   </div>
                 </div>
               </Tab>
@@ -120,67 +119,52 @@ const MarketItemArray = [MarketItem,MarketItem,MarketItem]
                     Listed Item
                     </div>
                     <div className="rounded-2xl bg-[#1C1C1C] flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base text-text font-h5-space-mono">
-                      <div className="relative leading-[140%]">67</div>
+                      <div className="relative leading-[140%]">{listedAsset?.length ?? "0"}</div>
                     </div>
                   </div>
-                </Tab>
-                <Tab>
                   <div className="flex-1 h-[60px] flex flex-row py-0 px-[30px] box-border items-center justify-center gap-[16px]">
                     <div className="relative leading-[140%] capitalize font-semibold">
                       
                     </div>
                     <div className="rounded-2xl bg-background-secondary flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base text-text font-h5-space-mono">
                     <div className="relative leading-[140%]"></div>
-                  </div>
+                    </div>
                 </div>
             </Tab>
           </div>
         </div>
-      </div>
+        </div>
         </Tab.List>
+        <div className="self-stretch bg-[#2B2B2B] py-20 px-0 items-center justify-start gap-[30px]">
         <Tab.Panels>
-          <div className="self-stretch bg-[#2B2B2B]-secondary flex flex-col py-20 px-0 items-center justify-start gap-[30px]">
           <Tab.Panel>
-              { marketItems?.map((item) => {
+            <div className="grid grid-cols-3 m-0 p-16 gap-8">
+              { ownedAsset?.map((item) => {
                 return (
                     <div>
                       {<NFTContainer 
-                          marketItem={item}
-                          //onNFTCardContainerClick={onNFTCardContainerClick}
-                          />}
+                        marketItem={item}
+                      />}
                     </div>
                     )
                   })}
-            </Tab.Panel>
-
-          <Tab.Panel>
-          { marketItems?.map((item) => {
-            return (
-                <div>
-                  {<NFTContainer 
-                      marketItem={item}
-                      //onNFTCardContainerClick={onNFTCardContainerClick}
-                      />}
-                </div>
-                )
-              })}
+            </div>
           </Tab.Panel>
-
           <Tab.Panel>
-            { marketItems?.map((item) => {
+            <div className="grid grid-cols-3 m-0 p-16 gap-8">
+            { listedAsset?.map((item) => {
               return (
                   <div>
                     {<NFTContainer 
-                        marketItem={item}
-                        //onNFTCardContainerClick={onNFTCardContainerClick}
-                        />}
+                      marketItem={item}
+                    />}
                   </div>
                   )
                 })}
+            </div>
           </Tab.Panel>
-
-        </div>
         </Tab.Panels>
+      </div>
       </Tab.Group>
 
     </div>
