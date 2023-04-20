@@ -77,9 +77,9 @@ const UpcomingPads = ({ arg }) => {
     return myDate;
   };
 
-  const today = date(read?.[2]).toDateString();
-  const start = date(data?.[2]).toDateString();
-  const end = date(data?.[4]).toDateString();
+  // const today = date(read?.[2]).toDateString();
+  // const start = date(data?.[2]).toDateString();
+  // const end = date(data?.[4]).toDateString();
 
   if (data?.[2] == 0 && data?.[4] == 0) {
     console.log("upcoming");

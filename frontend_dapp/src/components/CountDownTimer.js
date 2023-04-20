@@ -4,6 +4,7 @@ export const CountDownTimer = ({ time }) => {
   let timer = Number(time);
   var countDownDate = new Date(timer).getTime();
   // Update the count down every 1 second
+
   var x = setInterval(function () {
     // Get today's date and time
     var now = new Date().getTime();
@@ -22,8 +23,6 @@ export const CountDownTimer = ({ time }) => {
     // Display the result in the element with id="demo"
     document.getElementById("demo").innerHTML =
       days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-    // console.log(document.getElementById("demo").innerHTML);
 
     // If the count down is finished, write some text
     if (distance < 0) {
