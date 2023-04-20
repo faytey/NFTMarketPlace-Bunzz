@@ -76,15 +76,15 @@ const Upcoming = () => {
       <h1>Upcoming Launchpad</h1>
       <div className="bg-[rgba(0,0,0,0.4)] border-2 border-black rounded-md shadow-2xl p-8">
         <div className="flex flex-col gap-2 p-4">
-          <p>Name: {readData?.[0]}</p>
-          <p>Symbol: {data?.[0]}</p>
+          <p>Name: {readData?.[0] ?? <p>Loading...</p>}</p>
+          <p>Symbol: {data?.[0] ?? <p>Loading...</p>}</p>
           <h6 className="flex gap-2">
             LaunchPad Address: <Truncate string={String(read)} />
             <span>
               <CopyButton arg={read} src="/copy.svg" />
             </span>
           </h6>
-          <p>Creator: {readData?.[1]}</p>
+          <p>Creator: {readData?.[1] ?? <p>Loading...</p>}</p>
         </div>
         <Link
           href={`https://sepolia.io/${read}`}

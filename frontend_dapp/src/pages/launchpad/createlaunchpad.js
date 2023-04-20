@@ -73,7 +73,7 @@ export default function createlaunchpad() {
         <h1 className="text-center text-bold text-2xl">
           Enter Your LaunchPad Details
         </h1>
-        <p>LaunchPad listing Fee = {read / ethers.utils.parseEther("1")}</p>
+        <p>LaunchPad listing Fee = {read / ethers.utils.parseEther("1") ?? <p>Loading...</p>}</p>
         <div>
           <label htmlFor="name" className="mb-4">
             Name:{" "}

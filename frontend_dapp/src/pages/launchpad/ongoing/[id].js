@@ -82,8 +82,8 @@ const Ongoing = () => {
             <h1>Counting Down:</h1>
             <CountDownTimer time={data?.[4]} />
           </div>
-          <p>Name: {readData?.[0]}</p>
-          <p>Symbol: {data?.[0]}</p>
+          <p>Name: {readData?.[0] ?? <p>Loading...</p>}</p>
+          <p>Symbol: {data?.[0] ?? <p>Loading...</p>}</p>
           <p>
             Amount Raised: {String(data?.[1]) / ethers.utils.parseEther("1")}{" "}
             ETH / {String(data?.[5]) / ethers.utils.parseEther("1")} ETH
@@ -93,15 +93,15 @@ const Ongoing = () => {
         <hr />
         <div className="flex flex-col gap-2 p-4">
           <p>
-            Price Per NFT: {String(data?.[3]) / ethers.utils.parseEther("1")}{" "}
+            Price Per NFT: {String(data?.[3]) / ethers.utils.parseEther("1") ?? <p>Loading...</p>}{" "}
             ETH
           </p>
-          <p>End Date: {end}</p>
+          <p>End Date: {end ?? <p>Loading...</p>}</p>
           <h6 className="flex gap-2">
             Creator: <Truncate string={String(readData?.[1])} />
             <CopyButton arg={readData?.[1]} />
           </h6>
-          <p>Created: {today}</p>
+          <p>Created: {today ?? <p>Loading...</p>}</p>
         </div>
         <div className="flex gap-4 ml-4">
           <Link
