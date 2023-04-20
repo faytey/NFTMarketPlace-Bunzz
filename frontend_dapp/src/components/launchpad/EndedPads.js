@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ethers } from "ethers";
 import { Truncate } from "../Truncate";
 import CopyButton from "../CopyButton";
+// import NFTDetailsTemplate1 from "../marketplace/NFTDetailsTemplate1";
 
 const EndedPads = ({ arg }) => {
   const [read, setRead] = useState();
@@ -88,6 +89,11 @@ const EndedPads = ({ arg }) => {
       >
         <div>
           <div className="flex gap-3 p-2">
+            {/* <NFTDetailsTemplate1
+              contractAddress={String(reads)}
+              tokenID={arg}
+              itemId={arg}
+            /> */}
             <div className="flex flex-col">
               <h1 className="text-3xl border-b-2 py-2 mb-2">{read?.[0]}</h1>
               <p>

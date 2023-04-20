@@ -1,8 +1,9 @@
 import { launchpadFactory } from "@/utils/contractInfo";
 import { ethers } from "ethers";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useAccount,
+  useContractRead,
   useContractWrite,
   usePrepareContractWrite,
   useWaitForTransaction,
@@ -15,6 +16,7 @@ export default function createlaunchpad() {
   const [name, setName] = useState("");
   const [symbol, setSymbol] = useState("");
   const [uri, setUri] = useState("");
+  const [read, setRead] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,6 +47,20 @@ export default function createlaunchpad() {
     },
   });
 
+  const {
+    data: readData,
+    isLoading: readLoading,
+    isError,
+  } = useContractRead({
+    address: launchpadFactory.address,
+    abi: launchpadFactory.abi,
+    functionName: "listingFee",
+  });
+
+  useEffect(() => {
+    setRead(readData);
+  }, [read]);
+
   if (sendWaitData) {
     console.log("Your wait data is ", sendWaitData);
   }
@@ -52,11 +68,12 @@ export default function createlaunchpad() {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="w-[40%] mx-auto shadow-xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-8 flex flex-col items-center gap-6"
+        className="w-[40%] mx-auto shadow-xl bg-[rgba(0,0,0,0.4)] rounded-mds border-2 border-black p-8 flex flex-col items-center gap-6"
       >
         <h1 className="text-center text-bold text-2xl">
           Enter Your LaunchPad Details
         </h1>
+        <p>LaunchPad listing Fee = {read / ethers.utils.parseEther("1")}</p>
         <div>
           <label htmlFor="name" className="mb-4">
             Name:{" "}

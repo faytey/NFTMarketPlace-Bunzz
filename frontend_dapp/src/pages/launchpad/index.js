@@ -61,7 +61,7 @@ export default function Launchpad() {
           </div>
           <div className="flex-1 flex flex-col gap-4 items-center">
             <Image
-              src="/image1.jpg"
+              src="/assets/benz2.gif"
               alt="icon"
               width={250}
               height={200}

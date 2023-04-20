@@ -39,7 +39,7 @@ const Nav = () => {
         {
           Anchors.map((anchor) => (
             <li key={anchor.name} className="md:ml-6 text-xl md:my-0 my-7 mb-[10px]">
-              <Link href={anchor.address} className={` hover:text-[#A259FF] duration-500 ease-in-out ${styles.trans}`} >{anchor.name}</Link>
+              <Link href={anchor.address} className={`  hover:text-[#A259FF] duration-500 ease-in-out ${styles.trans}`} >{anchor.name}</Link>
             </li>
           ))
         }
