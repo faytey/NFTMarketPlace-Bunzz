@@ -775,7 +775,7 @@ export default function Home() {
         <div
           className="grid-cols-1"
           style={{
-            backgroundColor: "",
+            // backgroundColor: "",
             paddingRight: "10%",
             paddingTop: "5%",
             paddingBottom: "5%",
@@ -789,7 +789,7 @@ export default function Home() {
             Sell Art From More Than 20k Nft Artists.
           </div>
           <button
-            class="mt-8 font-bold py-4 px-8 rounded-full"
+            className="mt-8 font-bold py-4 px-8 rounded-full"
             style={{ transition: "1s ease-in-out", background: "#0044ee" }}
             id="homeButton"
           >
@@ -823,7 +823,7 @@ export default function Home() {
         <div
           className="grid-cols-1 "
           style={{
-            backgroundColor: "",
+            // backgroundColor: "",
             paddingLeft: "10%",
             paddingTop: "5%",
             paddingBottom: "5%",
@@ -837,7 +837,7 @@ export default function Home() {
               transition: "5s ease-in-out",
               boxShadow: "15px 15px 10px 2px rgba(20,20,20,0.9)",
               animation: "homepicanimation2 3s alternate infinite",
-              borderRadius: "",
+              // borderRadius: "",
             }}
           />
           <div id="viewBUNZZ1"></div>
@@ -857,12 +857,30 @@ export default function Home() {
         <div>Checkout Our Weekly Updated Trending Collection.</div>
 
         <div className="mt-10 grid grid-cols-3 gap-8">
-          <div className='grid-col-1' >
-            <img src="https://ipfs.filebase.io/ipfs/QmdYkAq8CFB2rqtswWyJWr5s7MWdQuHcg1zVBArpaB2nNn" id="firstpicset"/>
-            <div className='grid grid-cols-3 mt-5 gap-5'>
-              <div className='grid-cols-1'><img src="././assets/firstsetimagesub1.png" id="firstpicsetsub"/></div>
-              <div className='grid-cols-1'><img src="././assets/firstsetimagesub2.png" id="firstpicsetsub"/></div>
-              <div className='grid-cols-1 text-center bg-purple' id = "firstpicsetsubtext">1025+</div>
+          <div className="grid-col-1">
+            <img
+              src="https://ipfs.filebase.io/ipfs/QmdYkAq8CFB2rqtswWyJWr5s7MWdQuHcg1zVBArpaB2nNn"
+              id="firstpicset"
+            />
+            <div className="grid grid-cols-3 mt-5 gap-5">
+              <div className="grid-cols-1">
+                <img
+                  src="././assets/firstsetimagesub1.png"
+                  id="firstpicsetsub"
+                />
+              </div>
+              <div className="grid-cols-1">
+                <img
+                  src="././assets/firstsetimagesub2.png"
+                  id="firstpicsetsub"
+                />
+              </div>
+              <div
+                className="grid-cols-1 text-center bg-purple"
+                id="firstpicsetsubtext"
+              >
+                1025+
+              </div>
             </div>
             <div style={{ fontSize: "120%", fontWeight: "bold" }}>
               Dsgn Animals

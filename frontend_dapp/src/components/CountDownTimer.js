@@ -1,18 +1,15 @@
 import React from "react";
 
 export const CountDownTimer = ({ time }) => {
-  let timer = new Date(Number(time));
-  //   let times = timer.slice(4, 23);
-  console.log(timer);
-  var countDownDate = new Date("Apr 20, 2023 18:16:04").getTime();
-
+  let timer = Number(time);
+  var countDownDate = new Date(timer).getTime();
   // Update the count down every 1 second
   var x = setInterval(function () {
     // Get today's date and time
     var now = new Date().getTime();
 
     // Find the distance between now and the count down date
-    var distance = countDownDate - now;
+    var distance = countDownDate * 1000 - now;
 
     // Time calculations for days, hours, minutes and seconds
     var days = Math.floor(distance / (1000 * 60 * 60 * 24));

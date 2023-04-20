@@ -89,8 +89,6 @@ export default function Launchpad() {
 
   const Reads = Number(reads);
 
-  console.log(Reads);
-
   const arr = [];
 
   const Params = () => {
@@ -100,9 +98,6 @@ export default function Launchpad() {
     }
   };
 
-  console.log(arr);
-
-  console.log(Params());
   return (
     <div className="">
       <header className="flex items-center flex-col">
@@ -145,22 +140,22 @@ export default function Launchpad() {
           <Tab.Panels>
             <Tab.Panel className="grid grid-cols-1 md:grid-cols-2 md:gap-10 py-10">
               {arr.map((pad) => {
-                return <LaunchPads arg={pad} />;
+                return <LaunchPads arg={pad} key={pad} />;
               })}
             </Tab.Panel>
             <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
               {arr.map((data1) => {
-                return <OngoingPads arg={data1} />;
+                return <OngoingPads arg={data1} key={data1} />;
               })}
             </Tab.Panel>
             <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
               {arr.map((data2) => {
-                return <UpcomingPads arg={data2} />;
+                return <UpcomingPads arg={data2} key={data2} />;
               })}
             </Tab.Panel>
             <Tab.Panel className="grid grid-cols-2 gap-10 py-10">
               {arr.map((data3) => {
-                return <EndedPads arg={data3} />;
+                return <EndedPads arg={data3} key={data3} />;
               })}
             </Tab.Panel>
           </Tab.Panels>

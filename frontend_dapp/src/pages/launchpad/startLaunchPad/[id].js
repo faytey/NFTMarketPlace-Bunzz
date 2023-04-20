@@ -27,7 +27,6 @@ const StartLaunchPad = () => {
     functionName: "LaunchPads",
     args: [id],
   });
-  console.log(readData);
 
   const { address } = useAccount();
 
@@ -83,7 +82,6 @@ const StartLaunchPad = () => {
   };
 
   const today = date(readData?.[2]).toDateString();
-  console.log(today);
 
   return (
     <div className="flex flex-col gap-8 items-center h-auto mb-[2rem]">
@@ -130,7 +128,7 @@ const StartLaunchPad = () => {
           />
           <button
             type="submit"
-            classname="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 p-5"
+            className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 p-5"
           >
             {writeLoad || loadWaitData ? "Starting LaunchPad" : "SUBMIT"}
           </button>

@@ -22,8 +22,6 @@ const EndedPads = ({ arg }) => {
     args: [arg],
   });
 
-  // console.log(readData);
-
   const reads = String(readData?.[3]);
 
   const {
@@ -72,7 +70,6 @@ const EndedPads = ({ arg }) => {
 
   const date = (x) => {
     let myDate = new Date(x * 1000);
-    console.log(myDate);
     return myDate;
   };
 
@@ -81,12 +78,9 @@ const EndedPads = ({ arg }) => {
   const end = date(data?.[4]).toDateString();
   const d = new Date();
 
-  // console.log(end);
-
   if (data?.[4] == 0) {
     return;
   } else if (data?.[4] < d.getTime() / 1000) {
-    console.log("ended");
     return (
       <Link
         href={`/launchpad/ended/${arg}`}
@@ -112,8 +106,6 @@ const EndedPads = ({ arg }) => {
         </div>
       </Link>
     );
-  } else {
-    console.log("upcoming or ongoing");
   }
 };
 
