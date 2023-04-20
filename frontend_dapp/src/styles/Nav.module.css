@@ -1,0 +1,19 @@
+
+.trans {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.trans::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #A259FF;
+    transition: width .3s;
+}
+
+.trans:hover::after {
+    width: 100%;
+    /*transition: width .3s;*/
+}
