@@ -84,7 +84,6 @@ const EndedPads = ({ arg }) => {
     return (
       <Link
         href={`/launchpad/ended/${arg}`}
-        key={arg}
         className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-5"
       >
         <div>

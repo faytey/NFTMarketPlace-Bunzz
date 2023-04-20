@@ -23,7 +23,6 @@ const LaunchPads = ({ arg }) => {
 
   useEffect(() => {
     setRead(readData);
-    console.log(read);
   }, [read]);
 
   const date = (x) => {
@@ -59,7 +58,6 @@ const LaunchPads = ({ arg }) => {
         </Link>
         <Link
           href={`/launchpad/startLaunchPad/${arg}`}
-          key={arg}
           className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 p-5"
         >
           Start Pad

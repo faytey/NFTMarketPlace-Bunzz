@@ -4,70 +4,12 @@ import OngoingPads from "@/components/launchpad/OngoingPads.js";
 import UpcomingPads from "@/components/launchpad/UpcomingPads.js";
 import { launchpadFactory } from "@/utils/contractInfo.js";
 import { Tab } from "@headlessui/react";
-import Image from "next/image.js";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useAccount, useContractRead } from "wagmi";
 import Layout from "../../components/Layout.js";
 
-export const upcoming = [
-  {
-    id: 1,
-    img: "image4.png",
-    logo: "image3.png",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Public Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-  {
-    id: 2,
-    img: "image6.png",
-    logo: "image5.png",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Private Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-  {
-    id: 3,
-    img: "image1.jpg",
-    logo: "image2.jpg",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Public Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-  {
-    id: 4,
-    img: "image3.png",
-    logo: "image4.png",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Private Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-];
-export const past = [
-  {
-    id: 1,
-    img: "image6.png",
-    logo: "image5.png",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Private Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-  {
-    id: 2,
-    img: "image2.jpg",
-    logo: "image1.jpg",
-    topic: "Awesome Launchpad",
-    description: "lorem ipsum dolor sit amet",
-    access: "Public Access",
-    scan: "https://www.sepolia.etherscan.io",
-  },
-];
 export default function Launchpad() {
   const [read, setRead] = useState();
 
@@ -84,7 +26,6 @@ export default function Launchpad() {
 
   useEffect(() => {
     setRead(reads);
-    console.log(read);
   }, [read]);
 
   const Reads = Number(reads);
@@ -94,10 +35,17 @@ export default function Launchpad() {
   const Params = () => {
     for (let i = 1; i < Reads; i++) {
       arr.push(i);
-      console.log(i);
     }
   };
 
+  Params();
+  // if (!reads) {
+  //   return (
+  //     <div className="mt-3 mb-[4rem] rounded-lg shadow-xl bg-[rgba(0,0,0,0.4)] border-2 border-black flex justify-center gap-10 items-center p-6">
+  //       Loading...
+  //     </div>
+  //   );
+  // }
   return (
     <div className="">
       <header className="flex items-center flex-col">
