@@ -86,7 +86,7 @@ const ArtistInfo = memo(({address}) => {
             <div className="rounded-xl bg-[#A259FF] w-[186px] h-[60px] shrink-0 flex flex-row py-0 px-[50px] box-border items-center justify-center gap-[12px]">
               <BiCopy onClick={handleClick} className="relative w-5 h-5 shrink-0 hover:cursor-pointer active:translate-y-1"/>
               <div className="relative leading-[140%] font-semibold">
-                {address?.slice(0,6)+"..."+address?.slice(-6)}
+                {address?.slice(0,6)+"..."+address?.slice(-6) ?? <p>Loading...</p>}
               </div>
             </div>
             <div className="rounded-xl box-border h-[60px] flex flex-row py-0 px-[30px] items-center justify-center gap-[12px] border-[2px] border-solid border-[#A259FF]">

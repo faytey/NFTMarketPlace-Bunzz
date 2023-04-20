@@ -94,8 +94,8 @@ const UpcomingPads = ({ arg }) => {
               <h1 className="text-3xl border-b-2 py-2 mb-2">{read?.[0]}</h1>
               <p>
                 Amount Raised:{" "}
-                {String(data?.[1]) / ethers.utils.parseEther("1")} ETH /{" "}
-                {String(data?.[5]) / ethers.utils.parseEther("1")} ETH
+                {String(data?.[1]) / ethers.utils.parseEther("1") ?? <p>Loading...</p>} ETH /{" "}
+                {String(data?.[5]) / ethers.utils.parseEther("1") ?? <p>Loading...</p>} ETH
               </p>
               <h6 className="flex gap-2">
                 LaunchPad Address: <Truncate string={String(read?.[3])} />

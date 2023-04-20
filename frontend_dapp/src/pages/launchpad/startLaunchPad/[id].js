@@ -1,4 +1,4 @@
-import Image from "next/image";
+ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { launchpadContract, launchpadFactory } from "@/utils/contractInfo.js";
@@ -88,9 +88,9 @@ const StartLaunchPad = () => {
       <h1>Start LaunchPad</h1>
       <div className="bg-[rgba(0,0,0,0.4)] rounded-md shadow-xl p-8">
         <div className="flex flex-col gap-2 items-center">
-          <p>Name: {readData?.[0]}</p>
-          <p>Creator: {readData?.[1]}</p>
-          <p>Created: {today}</p>
+          <p>Name: {readData?.[0] ?? <p>Loading...</p>}</p>
+          <p>Creator: {readData?.[1] ?? <p>Loading...</p>}</p>
+          <p>Created: {today ?? <p>Loading...</p>}</p>
           <Link
             href={`https://sepolia.io/${readData?.[3]}`}
             className="px-4 py-2 rounded-md shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 p-5"
