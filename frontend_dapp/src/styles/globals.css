@@ -10,7 +10,6 @@ body {
 body{background-image:linear-gradient(60deg, blue, green, red); transition:3s ease-in-out}
 /* body:hover{background-image:linear-gradient(20deg, yellow, indigo, maroon); transition:3s ease-in-out} */
 #homeButton:hover{transform:scale3d(0.9,0.9,0.9);}
-#homepagefirstPic:hover{transform:rotate3D(2,1,1,40deg)}
 #firstpicset{transition:1s ease-in-out;width:100%; height:70%; border-radius: 7%;}
 #firstpicset:hover{transform:scale3D(0.9,0.9,0.9);box-shadow: 2px 2px 20px 20px #360bd1;}
 #firstpicsetsub{transition:1s ease-in-out;width:100%; height:85%; border-radius: 15%}
@@ -24,26 +23,3 @@ body{background-image:linear-gradient(60deg, blue, green, red); transition:3s ea
 #thirdsectiontopcreators:hover{transform:scale3D(0.9,0.9,0.9);box-shadow: 2px 2px 20px 20px #360bd1;}
 #fourthsectioncategories:hover{transform:scale3D(0.9,0.9,0.9);box-shadow: 2px 2px 20px 20px #360bd1;}
 #fifthsectioncontainers:hover{transform:scale3D(0.9,0.9,0.9);box-shadow: 2px 2px 20px 20px #360bd1;}
-
-#countdown {margin-left:20%;
-  font-size: 3em;
-  font-weight: 100;
-  color: white;
-  width: 700px;
-text-align: center;
-  color: white;
-margin-right:20;}
-
-#countdown div {   display: inline-block;
-  min-width: 90px;
-  padding: 15px;
-  background: grey;
-  border-radius: 10px;
-  border: 2px solid #030d52;
-  margin: 15px;}
-
-#countdown div span { color: #ffffff;
-  display: block;
-  margin-top: 15px;
-  font-size: .35em;
-  font-weight: 400;}

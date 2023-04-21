@@ -768,7 +768,7 @@ export default function Home() {
   return (
     <main className="mt-6 mb-6" style={{ transition: "3s ease-in-out" }}>
       <div
-        className="grid grid-cols-2 pb-6"
+        className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2"
         id="firstHomeSection"
         style={{ paddingLeft: "12%", paddingRight: "12%" }}
       >
@@ -776,7 +776,6 @@ export default function Home() {
           className="grid-cols-1"
           style={{
             // backgroundColor: "",
-            paddingRight: "10%",
             paddingTop: "5%",
             paddingBottom: "5%",
           }}
@@ -821,10 +820,9 @@ export default function Home() {
         </div>
 
         <div
-          className="grid-cols-1 "
+          className="grid-cols-1"
           style={{
             // backgroundColor: "",
-            paddingLeft: "10%",
             paddingTop: "5%",
             paddingBottom: "5%",
           }}
@@ -841,23 +839,21 @@ export default function Home() {
             }}
           />
           <div id="viewBUNZZ1"></div>
-          <div id="viewBUNZZ2"></div>
-          <div id="viewBUNZZ3"></div>
         </div>
       </div>
 
       <div
-        className="mt-4 pb-8"
+        className="mt-4" 
         id="secondHomeSection"
-        style={{ paddingLeft: "12%", paddingRight: "12%", fontSize: "120%" }}
+        style={{ paddingLeft: "12%", paddingRight: "12%", fontSize: "120%", marginBottom:"", paddingBottom:"5%" }}
       >
         <h1 style={{ fontSize: "160%", fontWeight: "bold" }}>
           Trending Collection
         </h1>
         <div>Checkout Our Weekly Updated Trending Collection.</div>
 
-        <div className="mt-10 grid grid-cols-3 gap-8">
-          <div className="grid-col-1">
+        <div className="mt-10 grid md:grid-cols-3 sm:grid-cols-1 gap-8 lg:grid-cols-3">
+          <div className="grid-cols-1">
             <img
               src="https://ipfs.filebase.io/ipfs/QmdYkAq8CFB2rqtswWyJWr5s7MWdQuHcg1zVBArpaB2nNn"
               id="firstpicset"
@@ -974,9 +970,9 @@ export default function Home() {
       <div
         className=""
         id="thirdhomesection"
-        style={{ paddingLeft: "12%", paddingRight: "12%", marginTop: "8%" }}
+        style={{ paddingLeft: "12%", paddingRight: "12%", marginTop: "5%" }}
       >
-        <div className="grid grid-cols-2 mb-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 mb-10 ">
           <div className="grid-cols-1" style={{ fontSize: "120%" }}>
             <div style={{ fontSize: "160%", fontWeight: "bold" }}>
               Top Creators
@@ -985,7 +981,7 @@ export default function Home() {
           </div>
           <div className="grid-cols-1" style={{}}>
             <button
-              className="btn float-right py-3 mt-3 rounded-full px-8 font-bold"
+              className="btn md:float-right lg:float-right py-3 mt-3 rounded-full px-8 font-bold"
               type="submit"
               id="homeButton"
               style={{
@@ -998,7 +994,97 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-1 gap-8 mb-8">
+          <div
+            className="grid-cols-1 text-center"
+            id="thirdsectiontopcreators"
+            style={{
+              backgroundColor: "#444444",
+              borderRadius: "8%",
+              paddingBottom: "6%", marginLeft:"5%", marginRight:"5%"
+            }}
+          >
+            <img
+              src="././assets/firstsetimagesub1.png"
+              className="rounded-full sm:ml-4"
+              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
+            />
+            <div
+              className="font-bold"
+              style={{ fontSize: "130%", marginTop: "-10%" }}
+            >
+              keepitreal
+            </div>
+            <div>Total Sales: 34.53 ETH</div>
+          </div>
+          <div
+            className="grid-cols-1 text-center"
+            id="thirdsectiontopcreators"
+            style={{
+              backgroundColor: "#444444",
+              borderRadius: "8%",
+              paddingBottom: "6%",
+            }}
+          >
+            <img
+              src="././assets/firstsetimagesub1.png"
+              className="rounded-full sm:ml-4"
+              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
+            />
+            <div
+              className="font-bold"
+              style={{ fontSize: "130%", marginTop: "-10%" }}
+            >
+              keepitreal
+            </div>
+            <div>Total Sales: 34.53 ETH</div>
+          </div>
+          <div
+            className="grid-cols-1 text-center"
+            id="thirdsectiontopcreators"
+            style={{
+              backgroundColor: "#444444",
+              borderRadius: "8%",
+              paddingBottom: "6%",
+            }}
+          >
+            <img
+              src="././assets/firstsetimagesub1.png"
+              className="rounded-full sm:ml-4"
+              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
+            />
+            <div
+              className="font-bold"
+              style={{ fontSize: "130%", marginTop: "-10%" }}
+            >
+              keepitreal
+            </div>
+            <div>Total Sales: 34.53 ETH</div>
+          </div>
+          <div
+            className="grid-cols-1 text-center"
+            id="thirdsectiontopcreators"
+            style={{
+              backgroundColor: "#444444",
+              borderRadius: "8%",
+              paddingBottom: "6%",
+            }}
+          >
+            <img
+              src="././assets/firstsetimagesub1.png"
+              className="rounded-full sm:ml-4"
+              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
+            />
+            <div
+              className="font-bold"
+              style={{ fontSize: "130%", marginTop: "-10%" }}
+            >
+              keepitreal
+            </div>
+            <div>Total Sales: 34.53 ETH</div>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-1 gap-8 mb-8">
           <div
             className="grid-cols-1 text-center"
             id="thirdsectiontopcreators"
@@ -1088,97 +1174,7 @@ export default function Home() {
             <div>Total Sales: 34.53 ETH</div>
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-8 mb-8">
-          <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "6%",
-            }}
-          >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
-            <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
-            >
-              keepitreal
-            </div>
-            <div>Total Sales: 34.53 ETH</div>
-          </div>
-          <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "6%",
-            }}
-          >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
-            <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
-            >
-              keepitreal
-            </div>
-            <div>Total Sales: 34.53 ETH</div>
-          </div>
-          <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "6%",
-            }}
-          >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
-            <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
-            >
-              keepitreal
-            </div>
-            <div>Total Sales: 34.53 ETH</div>
-          </div>
-          <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "6%",
-            }}
-          >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
-            <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
-            >
-              keepitreal
-            </div>
-            <div>Total Sales: 34.53 ETH</div>
-          </div>
-        </div>
-        <div className="grid grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-1 gap-8 mb-8">
           <div
             className="grid-cols-1 text-center"
             id="thirdsectiontopcreators"
@@ -1278,7 +1274,7 @@ export default function Home() {
         <div className="" style={{ fontSize: "180%", fontWeight: "bold" }}>
           Browse Categories
         </div>
-        <div className="grid grid-cols-4 gap-8 mb-4">
+        <div className="grid md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-1 gap-8 mb-4">
           <div
             className="grid-cols-1"
             id="fourthsectioncategories"
@@ -1372,7 +1368,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-8 mb-4">
+        <div className="grid md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-1 gap-8 mb-4">
           <div
             className="grid-cols-1"
             id="fourthsectioncategories"
@@ -1473,7 +1469,7 @@ export default function Home() {
         id="fifthhomesection"
         style={{ paddingLeft: "12%", paddingRight: "12%", marginTop: "6%" }}
       >
-        <div className="grid grid-cols-2 mb-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 mb-10">
           <div className="grid-cols-1" style={{ fontSize: "120%" }}>
             <div style={{ fontSize: "160%", fontWeight: "bold" }}>
               Discover More Nfts
@@ -1482,7 +1478,7 @@ export default function Home() {
           </div>
           <div className="grid-cols-1" style={{}}>
             <button
-              className="btn float-right py-3 mt-3 rounded-full px-8 font-bold"
+              className="btn md:float-right lg:float-right py-3 mt-3 rounded-full px-8 font-bold"
               type="submit"
               id="homeButton"
               style={{
@@ -1494,7 +1490,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-8 mb-4">
+        <div className="grid md:grid-cols-3 lg:grid-cols-3 sm:grid-cols-1 gap-8 mb-4">
           <div
             className="grid-cols-1"
             id="fifthsectioncontainers"
@@ -1506,7 +1502,7 @@ export default function Home() {
               transition: "1s ease-in-out",
             }}
           >
-            <img src="././assets/finegirl.png" />
+            <img src="././assets/finegirl.png" style={{width:"100%"}} />
             <div
               style={{
                 fontSize: "130%",
@@ -1582,7 +1578,7 @@ export default function Home() {
               transition: "1s ease-in-out",
             }}
           >
-            <img src="././assets/SpaceTales.png" />
+            <img src="././assets/SpaceTales.png" style={{width:"100%"}}/>
             <div
               style={{
                 fontSize: "130%",
@@ -1658,7 +1654,7 @@ export default function Home() {
               transition: "1s ease-in-out",
             }}
           >
-            <img src="././assets/CherryGirl.png" />
+            <img src="././assets/CherryGirl.png" style={{width:"100%"}}/>
             <div
               style={{
                 fontSize: "130%",
@@ -1734,11 +1730,11 @@ export default function Home() {
           backgroundImage: "url(././assets/mushroom2.png)",
           paddingTop: "20%",
           paddingBottom: "5%",
-          backgroundSize: "100%",
+          backgroundSize: "120%",
         }}
       >
         <div
-          className="grid grid-cols-2"
+          className="grid md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1"
           style={{ paddingRight: "12%", paddingLeft: "12%" }}
         >
           <div className="grid-cols-1">
@@ -1773,8 +1769,8 @@ export default function Home() {
             </button>
           </div>
           <div className="grid-cols-1">
-            <div className="float-right" id="timerparagraph">
-              <div id="countdown"></div>
+            <div className="md:float-right lg:float-right" style={{fontSize:"250%"}} id="timerparagraph">
+              <div id="countdown">1 day 24 hours</div>
             </div>
           </div>
         </div>
@@ -1796,7 +1792,7 @@ export default function Home() {
           </div>
           <div>Find Out How To Get Started</div>
         </div>
-        <div className="grid grid-cols-3 gap-8" style={{ marginTop: "4%" }}>
+        <div className="grid md:grid-cols-3 lg:grid-cols-3 sm:grid-cols-1 gap-8" style={{ marginTop: "4%" }}>
           <div
             className="grid-cols-1"
             style={{
