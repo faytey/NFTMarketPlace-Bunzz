@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <header
       className=""
-      // style={{ backgroundColor: "", marginBottom: "%", paddingBottom: "" }}
+       style={{ backgroundColor: "", marginBottom: "%", paddingBottom: "", }}
     >
       <div
         className="flex flex-col py-8 mx-auto text-white text-center roboto-regular max-w-7xl md:mx-5
