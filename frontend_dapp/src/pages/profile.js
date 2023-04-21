@@ -122,14 +122,6 @@ const ArtistPage = () => {
                       <div className="relative leading-[140%]">{listedAsset?.length ?? "0"}</div>
                     </div>
                   </div>
-                  <div className="flex-1 h-[60px] flex flex-row py-0 px-[30px] box-border items-center justify-center gap-[16px]">
-                    <div className="relative leading-[140%] capitalize font-semibold">
-                      
-                    </div>
-                    <div className="rounded-2xl bg-background-secondary flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base text-text font-h5-space-mono">
-                    <div className="relative leading-[140%]"></div>
-                    </div>
-                </div>
             </Tab>
           </div>
         </div>
