@@ -83,7 +83,7 @@ const NFTMetadataTemplate = memo(
                   <div className="self-stretch relative leading-[140%] capitalize font-semibold flex gap-5 w-full justify-between">
                     <p>Token Contract: </p>
                     <p>{data?.nftContract?.slice(0,6)+"..."+data?.nftContract?.slice(-6) ?? <p>Loading...</p>}</p>
-                    <BiCopy size={20} className="hover:cursor-pointer" onClick={() => {navigator.clipboard.writeText(data?.nftContract)}}/>
+                    <BiCopy size={20} className="hover:cursor-pointer active:translate-y-1" onClick={() => {navigator.clipboard.writeText(data?.nftContract)}}/>
                   </div>
                   <div className="self-stretch flex flex-row items-start justify-start gap-[12px] text-base font-h5-space-mono">
                     <div className="flex flex-row items-start justify-start">
@@ -116,16 +116,18 @@ const NFTMetadataTemplate = memo(
                   <div className="self-stretch relative leading-[110%]">
                     Seller
                   </div>
-                  <div className="self-stretch relative text-base leading-[140%] text-text">
+                  <div className="self-stretch relative text-base leading-[140%] text-text flex gap-3">
                     {data?.seller ?? <p>Loading....</p>}
+                    <BiCopy size={20} className="hover:cursor-pointer active:translate-y-1" onClick={() => {navigator.clipboard.writeText(data?.seller)}}/>
                   </div>
                 </div>
                 <div className="flex-1 flex flex-col py-0 pr-[21px] pl-0 items-start justify-start gap-[8px]">
                   <div className="self-stretch relative leading-[110%]">
                     Owner
                   </div>
-                  <div className="self-stretch relative text-base leading-[140%] text-text">
+                  <div className="self-stretch relative text-base leading-[140%] text-text flex gap-3">
                     {data?.owner ?? <p>Loading....</p>}
+                    <BiCopy size={20} className="hover:cursor-pointer active:translate-y-1" onClick={() => {navigator.clipboard.writeText(data?.owner)}}/>
                   </div>
                 </div>
               </div>

@@ -7,6 +7,7 @@ import CopyButton from "../CopyButton";
 
 const LaunchPads = ({ arg }) => {
   const [read, setRead] = useState();
+  const [index, setIndex] = useState();
 
   const { address } = useAccount();
 
@@ -33,10 +34,7 @@ const LaunchPads = ({ arg }) => {
   const today = date(read?.[2]).toDateString();
 
   return (
-    <div
-      key={arg}
-      className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-5"
-    >
+    <div className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-5">
       <div className="flex gap-3 p-2 border-b-2">
         <div className="flex flex-col">
           <h1 className="text-3xl">{read?.[0]}</h1>

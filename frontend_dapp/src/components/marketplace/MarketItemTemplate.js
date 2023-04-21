@@ -3,6 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import { erc721ABI, useContractRead } from "wagmi";
 import { ethers } from "ethers";
+import { BiCopy } from "react-icons/bi";
 
 
 
@@ -55,8 +56,10 @@ const MarketItemTemplate = memo(
             <div className="self-stretch flex flex-col pt-5 px-[30px] pb-[25px] items-start justify-start gap-[25px]">
               <div className="flex justify-between w-full">
                 <div className="self-stretch flex flex-col items-start justify-start gap-[5px]">
-                  <div className="self-stretch relative leading-[140%] capitalize font-semibold">
-                    Token Contract: {marketItem?.nftContract?.slice(0,6)+"..."+marketItem?.nftContract?.slice(-6) ?? <p>Loading...</p>}
+                  <div className="self-stretch relative leading-[140%] capitalize font-semibold flex gap-3">
+                    <p>Token Contract: </p>
+                    <p>{marketItem?.nftContract?.slice(0,6)+"..."+marketItem?.nftContract?.slice(-6) ?? <p>Loading...</p>}</p>
+                    <BiCopy className="hover:cursor-pointer active:translate-y-1" size={20} onClick={() => navigator.clipboard.writeText(marketItem?.nftContract)}/>
                   </div>
                   <div className="self-stretch flex flex-row items-start justify-start gap-[12px] text-base font-h5-space-mono">
                     <div className="flex flex-row items-start justify-start">
@@ -83,8 +86,8 @@ const MarketItemTemplate = memo(
                 </div>
               </div>
               <div className="flex gap-3">
-                <Link className="border m-0 p-3 rounded-lg cursor-pointer" href={`/marketplace/${marketItem?.itemId}`}>Buy Item</Link>
-                <Link className="border m-0 p-3 rounded-lg cursor-pointer" href={`/marketplace/collections/${marketItem?.nftContract}`}>View Collection</Link>
+                <Link className="border m-0 p-3 rounded-lg cursor-pointer bg-[#A259FF]" href={`/marketplace/${marketItem?.itemId}`}>Buy Item</Link>
+                <Link className="border m-0 p-3 rounded-lg cursor-pointer bg-[#A259FF]" href={`/marketplace/collections/${marketItem?.nftContract}`}>View Collection</Link>
               </div>
             </div>
           </div>

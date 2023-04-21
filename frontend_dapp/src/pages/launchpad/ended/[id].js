@@ -123,8 +123,8 @@ const Ended = () => {
       <h1>Ended Launchpad</h1>
       <div className="bg-[rgba(0,0,0,0.4)] border-2 border-black rounded-md shadow-2xl p-8">
         <div className="flex flex-col gap-2 p-4">
-          <p>Name: {readData?.[0]}</p>
-          <p>Symbol: {data?.[0]}</p>
+          <p>Name: {readData?.[0] ?? <p>Loading...</p>}</p>
+          <p>Symbol: {data?.[0] ?? <p>Loading...</p>}</p>
           <h6 className="flex gap-2">
             LaunchPad Address: <Truncate string={String(read)} />
             <span>
@@ -132,14 +132,14 @@ const Ended = () => {
             </span>
           </h6>
           <p>
-            Total Raised: {String(data?.[5]) / ethers.utils.parseEther("1")} ETH
+            Total Raised: {String(data?.[5]) / ethers.utils.parseEther("1") ?? <p>Loading...</p>} ETH
           </p>
-          <p>Start Date: {start}</p>
+          <p>Start Date: {start ?? <p>Loading...</p>}</p>
         </div>
         <hr />
         <div className="flex flex-col gap-2 p-4">
           <p>
-            Price Per NFT: {String(data?.[3]) / ethers.utils.parseEther("1")}{" "}
+            Price Per NFT: {String(data?.[3]) / ethers.utils.parseEther("1") ?? <p>Loading...</p>}{" "}
             ETH
           </p>
           <p>End Date: {end}</p>
@@ -149,7 +149,7 @@ const Ended = () => {
               <CopyButton arg={readData?.[1]} />
             </span>
           </p>
-          <p>Created: {today}</p>
+          <p>Created: {today ?? <p>Loading...</p>}</p>
         </div>
 
         <button
