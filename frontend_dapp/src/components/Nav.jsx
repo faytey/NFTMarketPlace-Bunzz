@@ -6,6 +6,7 @@ import { SiSinglestore } from "react-icons/si";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineClose } from "react-icons/md";
 import styles from "../styles/Nav.module.css"
+import { useRouter } from "next/router";
 
 
 
@@ -20,10 +21,12 @@ const Nav = () => {
         {name: "Admin", address: "/admin"},
     ];
 
+    const router = useRouter();
+
     let [open, setOpen] = useState(false);
   return (
     <div className="shadow-md w-full fixed top-0 left-0 z-30">
-      <div className="md:flex items-center justify-between bg-[#2B2B2B] py-4 md:px-10 px-7">
+      <div className="md:flex items-center justify-between bg-[#2B2B2B] bg-opacity-75 py-4 md:px-10 px-7">
       <div className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-300">
       <span className='text-3xl text-[#8900AE] mr-2 pt-2'>
       <SiSinglestore />
@@ -39,7 +42,7 @@ const Nav = () => {
         {
           Anchors.map((anchor) => (
             <li key={anchor.name} className="md:ml-6 text-xl md:my-0 my-7 mb-[10px]">
-              <Link href={anchor.address} className={`  hover:text-[#A259FF] duration-500 ease-in-out ${styles.trans}`} >{anchor.name}</Link>
+              <Link href={anchor.address} className={`${router.pathname == anchor.address ? 'text-[#A259FF] border-b-2 border-[#A259FF]' : ''}  hover:text-[#A259FF] duration-500 ease-in-out ${styles.trans}`} >{anchor.name}</Link>
             </li>
           ))
         }
