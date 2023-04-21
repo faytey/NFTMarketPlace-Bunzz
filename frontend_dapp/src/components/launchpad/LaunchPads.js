@@ -34,7 +34,7 @@ const LaunchPads = ({ arg }) => {
   const today = date(read?.[2]).toDateString();
 
   return (
-    <div className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-5">
+    <div className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-5 mb-5">
       <div className="flex gap-3 p-2 border-b-2">
         <div className="flex flex-col">
           <h1 className="text-3xl">{read?.[0]}</h1>
@@ -47,7 +47,7 @@ const LaunchPads = ({ arg }) => {
         </div>
       </div>
 
-      <div className="flex gap-4 p-4">
+      <div className="flex gap-4 p-4 flex-col md:flex-row text-center">
         <Link
           href={`https://sepolia.etherscan.io/address/${read?.[3]}`}
           className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 p-5"

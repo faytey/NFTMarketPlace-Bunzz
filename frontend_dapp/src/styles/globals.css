@@ -5,21 +5,78 @@
 body {
   background: #2b2b2b;
   color: #ffffff;
+  overflow-x: hidden;
 }
-@keyframes homepicanimation2{0%{ transform:scale3D(0.9,0.9,0.9)} 100%{transform:scale3D(1,1,1)}}
-body{background-image:linear-gradient(60deg, blue, green, red); transition:3s ease-in-out}
+@keyframes homepicanimation2 {
+  0% {
+    transform: scale3D(0.9, 0.9, 0.9);
+  }
+  100% {
+    transform: scale3D(1, 1, 1);
+  }
+}
+body {
+  background-image: linear-gradient(60deg, blue, green, red);
+  transition: 3s ease-in-out;
+}
 /* body:hover{background-image:linear-gradient(20deg, yellow, indigo, maroon); transition:3s ease-in-out} */
-#homeButton:hover{transform:scale3d(0.9,0.9,0.9);}
-#firstpicset{transition:1s ease-in-out;width:100%; height:70%; border-radius: 7%;}
-#firstpicset:hover{transform:scale3D(0.9,0.9,0.9);box-shadow: 2px 2px 20px 20px #360bd1;}
-#firstpicsetsub{transition:1s ease-in-out;width:100%; height:85%; border-radius: 15%}
-#firstpicsetsub:hover{transform:scale3D(0.9,0.9,0.9);box-shadow: 2px 2px 20px 20px #360bd1;}
-#firstpicsetsubtext{transition:1s ease-in-out;width:100%;text-align:center; background-color:purple; 
-  padding-top:25%;height:85%;font-size:120%; font-weight:bold;border-radius:15%}
-#firstpicsetsubtext:hover{transform:scale3D(0.9,0.9,0.9)}
-#smallestpics{width:50%; height:100%; transition:1s ease-in-out}
-#smallestpics:hover{transform:scale3D(0.9,0.9,0.9)}
-#thirdsectiontopcreators{transition:1s ease-in-out}
-#thirdsectiontopcreators:hover{transform:scale3D(0.9,0.9,0.9);box-shadow: 2px 2px 20px 20px #360bd1;}
-#fourthsectioncategories:hover{transform:scale3D(0.9,0.9,0.9);box-shadow: 2px 2px 20px 20px #360bd1;}
-#fifthsectioncontainers:hover{transform:scale3D(0.9,0.9,0.9);box-shadow: 2px 2px 20px 20px #360bd1;}
+#homeButton:hover {
+  transform: scale3d(0.9, 0.9, 0.9);
+}
+#firstpicset {
+  transition: 1s ease-in-out;
+  width: 100%;
+  height: 70%;
+  border-radius: 7%;
+}
+#firstpicset:hover {
+  transform: scale3D(0.9, 0.9, 0.9);
+  box-shadow: 2px 2px 20px 20px #360bd1;
+}
+#firstpicsetsub {
+  transition: 1s ease-in-out;
+  width: 100%;
+  height: 85%;
+  border-radius: 15%;
+}
+#firstpicsetsub:hover {
+  transform: scale3D(0.9, 0.9, 0.9);
+  box-shadow: 2px 2px 20px 20px #360bd1;
+}
+#firstpicsetsubtext {
+  transition: 1s ease-in-out;
+  width: 100%;
+  text-align: center;
+  background-color: purple;
+  padding-top: 25%;
+  height: 85%;
+  font-size: 120%;
+  font-weight: bold;
+  border-radius: 15%;
+}
+#firstpicsetsubtext:hover {
+  transform: scale3D(0.9, 0.9, 0.9);
+}
+#smallestpics {
+  width: 50%;
+  height: 100%;
+  transition: 1s ease-in-out;
+}
+#smallestpics:hover {
+  transform: scale3D(0.9, 0.9, 0.9);
+}
+#thirdsectiontopcreators {
+  transition: 1s ease-in-out;
+}
+#thirdsectiontopcreators:hover {
+  transform: scale3D(0.9, 0.9, 0.9);
+  box-shadow: 2px 2px 20px 20px #360bd1;
+}
+#fourthsectioncategories:hover {
+  transform: scale3D(0.9, 0.9, 0.9);
+  box-shadow: 2px 2px 20px 20px #360bd1;
+}
+#fifthsectioncontainers:hover {
+  transform: scale3D(0.9, 0.9, 0.9);
+  box-shadow: 2px 2px 20px 20px #360bd1;
+}

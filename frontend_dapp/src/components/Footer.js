@@ -42,8 +42,8 @@ export default function Footer() {
         marginRight: "1%",
       }}
     >
-      <div className="flex flex-row items-start justify-between">
-        <div className="w-[327.41px] shrink-0 flex flex-col py-0 pr-[84px] pl-0 box-border items-start justify-start gap-[30px] text-base text-lightgray font-caption-work-sans">
+      <div className="flex flex-col md:flex-row pl-[4rem] gap-4 items-start justify-between">
+        <div className="w-[327.41px] shrink-0 flex flex-col py-0 pr-[84px] pl-0 md:box-border items-start justify-start gap-[30px] text-base text-lightgray font-caption-work-sans">
           <Link href={"/"}>BUNZZ</Link>
           <div className="flex flex-col items-start justify-start gap-[20px]">
             <div className="relative leading-[140%] inline-block w-[238px]">
@@ -97,7 +97,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-start justify-start gap-[25px]">
+        {/* <div className="flex flex-col items-start justify-start gap-[25px]">
           <b className="relative leading-[160%] capitalize">
             Join our weekly digest
           </b>
@@ -122,7 +122,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="w-[1049.41px] flex flex-col items-start justify-start gap-[20px] text-xs text-lightgray font-caption-work-sans">
         <div className="self-stretch relative box-border h-px shrink-0 border-t-[1px] border-solid border-caption-label-text" />
