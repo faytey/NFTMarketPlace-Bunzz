@@ -8,7 +8,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useAccount, useContractRead } from "wagmi";
-import Layout from "../../components/Layout.js";
 
 export default function Launchpad() {
   const [read, setRead] = useState();
@@ -28,7 +27,7 @@ export default function Launchpad() {
     setRead(reads);
   }, [read]);
 
-  const Reads = Number(reads);
+  const Reads = Number(read);
 
   const arr = [];
 
@@ -49,7 +48,7 @@ export default function Launchpad() {
   return (
     <div className="">
       <header className="flex items-center flex-col">
-        <h1>Discover Investment Worthy LaunchPads</h1>
+        <h1 className="text-center">Discover Investment Worthy LaunchPads</h1>
       </header>
       <main className="w-[80%] mx-auto">
         <div className="mt-3 mb-[4rem] rounded-lg shadow-xl bg-[rgba(0,0,0,0.4)] border-2 border-black md:flex justify-center gap-10 items-center p-6">

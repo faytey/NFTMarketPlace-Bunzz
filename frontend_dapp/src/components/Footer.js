@@ -35,11 +35,9 @@ export default function Footer() {
 
   return (
     <div
-      className="self-stretch mt-[2rem] bg-background-secondary flex flex-col py-10 px-[195px] items-center justify-start gap-[30px] text-3xl font-h5-space-mono"
+      className="self-stretch mt-[2rem] md:mx-[1%] bg-background-secondary flex flex-col py-10 px-[195px] items-center justify-start gap-[30px] text-3xl font-h5-space-mono"
       style={{
         boxShadow: "2px -2px 5px 1px #ccc",
-        marginLeft: "1%",
-        marginRight: "1%",
       }}
     >
       <div className="flex flex-col md:flex-row pl-[4rem] gap-4 items-start justify-between">
@@ -125,7 +123,7 @@ export default function Footer() {
         </div> */}
       </div>
       <div className="w-[1049.41px] flex flex-col items-start justify-start gap-[20px] text-xs text-lightgray font-caption-work-sans">
-        <div className="self-stretch relative box-border h-px shrink-0 border-t-[1px] border-solid border-caption-label-text" />
+        <div className="self-stretch relative box-border h-px shrink-0 border-solid border-caption-label-text" />
         <div className="self-stretch relative leading-[110%]">
           Ⓒ Web3Bridge.
         </div>

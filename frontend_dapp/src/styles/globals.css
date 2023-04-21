@@ -6,7 +6,9 @@ body {
   background: #2b2b2b;
   color: #ffffff;
   overflow-x: hidden;
+  background-repeat: no-repeat;
 }
+
 @keyframes homepicanimation2 {
   0% {
     transform: scale3D(0.9, 0.9, 0.9);
@@ -15,6 +17,7 @@ body {
     transform: scale3D(1, 1, 1);
   }
 }
+
 body {
   background-image: linear-gradient(60deg, blue, green, red);
   transition: 3s ease-in-out;

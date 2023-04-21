@@ -31,17 +31,17 @@ const LaunchPads = ({ arg }) => {
     return myDate;
   };
 
-  const today = date(read?.[2]).toDateString();
+  const today = date(readData?.[2]).toDateString();
 
   return (
     <div className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 border-black p-5 mb-5">
       <div className="flex gap-3 p-2 border-b-2">
         <div className="flex flex-col">
-          <h1 className="text-3xl">{read?.[0]}</h1>
+          <h1 className="text-3xl">{readData?.[0]}</h1>
           <h6 className="flex gap-2">
-            LaunchPad Address: <Truncate string={String(read?.[3])} />
+            LaunchPad Address: <Truncate string={String(readData?.[3])} />
             <span>
-              <CopyButton arg={read?.[3]} />
+              <CopyButton arg={readData?.[3]} />
             </span>
           </h6>
         </div>
@@ -49,7 +49,7 @@ const LaunchPads = ({ arg }) => {
 
       <div className="flex gap-4 p-4 flex-col md:flex-row text-center">
         <Link
-          href={`https://sepolia.etherscan.io/address/${read?.[3]}`}
+          href={`https://sepolia.etherscan.io/address/${readData?.[3]}`}
           className="rounded-lg shadow-2xl bg-[rgba(0,0,0,0.4)] border-2 p-5"
         >
           View on Etherscan
