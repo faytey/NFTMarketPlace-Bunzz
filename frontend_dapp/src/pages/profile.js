@@ -12,11 +12,17 @@ const ArtistPage = () => {
   const [ownedAsset, setOwnedAsset] = useState();
   const [listedAsset, setListedAsset] = useState();
 
+<<<<<<< HEAD
+
+
+  const { data: marketplaceData, isError: marketplaceDataError, isLoading: marketplaceDataIsLoading } = useContractReads({
+=======
   const {
     data: marketplaceData,
     isError: marketplaceDataError,
     isLoading: marketplaceDataIsLoading,
   } = useContractReads({
+>>>>>>> 16e9823f39b00759fad9835bfa898bb01d1c9459
     contracts: [
       {
         ...marketplaceContract,
@@ -40,20 +46,53 @@ const ArtistPage = () => {
   });
 
   const { data: listed } = useContractRead({
+<<<<<<< HEAD
+        ...marketplaceContract,
+        functionName: 'fetchItemListed',
+        overrides: {
+          from: address
+        }
+  })
+  const [active, setActive] = useState()
+=======
     ...marketplaceContract,
     functionName: "fetchItemListed",
     overrides: {
       from: address,
     },
   });
+>>>>>>> 16e9823f39b00759fad9835bfa898bb01d1c9459
 
   const { data: owned } = useContractRead({
     ...marketplaceContract,
     functionName: "fetchMyNfts",
     overrides: {
+<<<<<<< HEAD
+      from: address
+    }
+})
+
+let Attribute = [
+  {id: 1, type: "Owned", value: ownedAsset},
+  {id: 2, type: "Listed Item", value: listedAsset},
+];
+
+function handleClick(attri) {
+  // console.log(attri)
+  //  let internal = attri;
+  //  console.log(internal)
+  //  return internal;
+   //internal.classList.add("text-[#A259FF] border-b-2 border-[#A259FF]")
+  setActive(attri)
+   
+}
+
+
+=======
       from: address,
     },
   });
+>>>>>>> 16e9823f39b00759fad9835bfa898bb01d1c9459
 
   useEffect(() => {
     setItemListed(marketplaceData?.[0]);
@@ -88,6 +127,27 @@ const ArtistPage = () => {
 
       <Tab.Group>
         <Tab.List>
+<<<<<<< HEAD
+        <div className="self-stretch bg-[#2B2B2B] flex flex-col items-center justify-start gap-3">
+        <div className="self-stretch relative box-border h-px shrink-0 border-t-[1px] border-solid border-background-secondary" />
+        <div className="flex flex-row items-start justify-start">
+          <div className="flex-1 flex flex-row items-start justify-start">
+              <div className="flex flex-row py-0 px-4 items-center justify-center gap-2">
+                  {
+                    Attribute.map((attribute) => (
+                      <Tab id={attribute.id} key={attribute.id} onClick={() => handleClick(attribute.id)} className= {` ${ active == attribute.id ? 'text-[#A259FF] border-b-2 border-[#A259FF]' : ''} flex flex-row py-0 px-3 items-center justify-center gap-2`}>
+                        <div className="relative leading-[140%] capitalize font-semibold">
+                          {attribute.type}
+                        </div>
+                        <div className="rounded-xl bg-[#1C1C1C] flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base font-h5-space-mono">
+                          <div className="relative leading-[140%]">{attribute.value?.length ?? "0"}</div>
+                        </div>
+                      </Tab>
+                    ))
+                  }
+                </div>
+              
+=======
           <div className="self-stretch bg-[#2B2B2B] flex flex-col items-center justify-start gap-3">
             <div className="self-stretch relative box-border h-px shrink-0 border-t-[1px] border-solid border-background-secondary" />
             <div className="flex flex-row items-start justify-start">
@@ -118,6 +178,7 @@ const ArtistPage = () => {
                 </Tab>
               </div>
             </div>
+>>>>>>> 16e9823f39b00759fad9835bfa898bb01d1c9459
           </div>
         </Tab.List>
         <div className="self-stretch bg-[#2B2B2B] py-20 px-0 items-center justify-start gap-[30px]">
