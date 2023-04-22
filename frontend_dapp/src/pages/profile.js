@@ -35,7 +35,7 @@ const ArtistPage = () => {
 
   const { address } = useAccount({
     onConnect({ address }) {
-      console.log(address);
+      // console.log(address);
     },
   });
 
@@ -71,7 +71,7 @@ const ArtistPage = () => {
           alt=""
           src="assets/ImagePlaceHolder.png"
         />
-        <div className="w-[1050px] flex flex-row items-start justify-start mt-[-70px]">
+        <div className="flex flex-row items-start justify-start mt-[-70px]">
           <div className="rounded-xl flex flex-row items-start justify-start border-[2px] border-solid border-[#2B2B2B]">
             <div className="relative w-[120px] h-[120px] shrink-0">
               <img

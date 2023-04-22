@@ -46,12 +46,12 @@ const NFTContainer = memo(({ marketItem }) => {
 
   useEffect(() => {
     getMetadata(tokenURI);
-    console.log(tokenMetadata);
-    console.log(nftImgUrl);
-    console.log(tokenURI);
+    // console.log(tokenMetadata);
+    // console.log(nftImgUrl);
+    // console.log(tokenURI);
   }, [tokenMetadata, tokenURI]);
 
-  console.log("token:", tokenMetadata);
+  // console.log("token:", tokenMetadata);
 
   const router = useRouter();
 

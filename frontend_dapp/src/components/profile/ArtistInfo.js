@@ -10,25 +10,25 @@ import {
 import { BiCopy } from "react-icons/bi";
 
 const ArtistInfo = memo(({ address }) => {
-  const onGlobeIconClick = useCallback(() => {
-    window.open("https://www.google.com");
-  }, []);
+  // const onGlobeIconClick = useCallback(() => {
+  //   window.open("https://www.google.com");
+  // }, []);
 
-  const onDiscordLogoIconClick = useCallback(() => {
-    window.open("https://www.discord.com");
-  }, []);
+  // const onDiscordLogoIconClick = useCallback(() => {
+  //   window.open("https://www.discord.com");
+  // }, []);
 
-  const onYoutubeLogoIconClick = useCallback(() => {
-    window.open("https://www.youtube.com");
-  }, []);
+  // const onYoutubeLogoIconClick = useCallback(() => {
+  //   window.open("https://www.youtube.com");
+  // }, []);
 
-  const onTwitterLogoIconClick = useCallback(() => {
-    window.open("https://www.twitter.com");
-  }, []);
+  // const onTwitterLogoIconClick = useCallback(() => {
+  //   window.open("https://www.twitter.com");
+  // }, []);
 
-  const onInstagramLogoIconClick = useCallback(() => {
-    window.open("https://www.instagram.com");
-  }, []);
+  // const onInstagramLogoIconClick = useCallback(() => {
+  //   window.open("https://www.instagram.com");
+  // }, []);
 
   const handleClick = () => {
     navigator.clipboard.writeText(address);
@@ -78,7 +78,7 @@ const ArtistInfo = memo(({ address }) => {
             </div>
             <div className="self-stretch flex flex-col items-start justify-start gap-2 text-caption-label-text">
               <b className="relative leading-[160%] capitalize">Links</b>
-              <div className="flex flex-row items-start justify-start gap-2">
+              {/* <div className="flex flex-row items-start justify-start gap-2">
                 <BsGlobe2
                   className="relative w-8 h-8 shrink-0 cursor-pointer"
                   onClick={onGlobeIconClick}
@@ -99,7 +99,7 @@ const ArtistInfo = memo(({ address }) => {
                   className="relative w-8 h-8 shrink-0 cursor-pointer"
                   onClick={onInstagramLogoIconClick}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-start justify-end gap-4 text-center text-base">

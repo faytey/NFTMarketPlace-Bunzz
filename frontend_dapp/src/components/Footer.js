@@ -122,7 +122,7 @@ export default function Footer() {
           </div>
         </div> */}
       </div>
-      <div className="w-[1049.41px] flex flex-col items-start justify-start gap-[20px] text-xs text-lightgray font-caption-work-sans">
+      <div className="flex flex-col items-start justify-start gap-[20px] text-xs text-lightgray font-caption-work-sans">
         <div className="self-stretch relative box-border h-px shrink-0 border-solid border-caption-label-text" />
         <div className="self-stretch relative leading-[110%]">
           Ⓒ Web3Bridge.
