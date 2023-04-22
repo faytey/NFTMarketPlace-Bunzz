@@ -2,18 +2,10 @@ import Link from "next/link";
 import { memo } from "react";
 
 const NFTDetailsTemplate = memo(
-  ({
-    NFTImage,
-    NFTName,
-    NFTAuthor,
-    NFTPrice,
-    HighestBid,
-    ButtonLink,
-  }) => {
+  ({ NFTImage, NFTName, NFTAuthor, NFTPrice, HighestBid, ButtonLink }) => {
     return (
       // <div className="w-[1050px] flex flex-row items-start justify-start gap-[30px] text-left text-3xl text-text font-caption-work-sans">
-      <div >
-
+      <div>
         <Link
           className="flex-1 rounded-xl bg-[#1C1C1C] h-[469px] flex flex-col items-center justify-start cursor-pointer"
           href={ButtonLink}
@@ -40,7 +32,9 @@ const NFTDetailsTemplate = memo(
                     />
                   </div>
                 </div>
-                <div className="flex-1 relative leading-[140%]">{NFTAuthor}</div>
+                <div className="flex-1 relative leading-[140%]">
+                  {NFTAuthor}
+                </div>
               </div>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start text-xs text-caption-label-text font-h5-space-mono">
@@ -63,10 +57,10 @@ const NFTDetailsTemplate = memo(
             </div>
           </div>
         </Link>
-
       </div>
     );
   }
 );
 
 export default NFTDetailsTemplate;
+NFTDetailsTemplate.displayName = "NFTDetailsTemplate";

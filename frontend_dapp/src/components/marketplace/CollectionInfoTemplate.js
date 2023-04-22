@@ -1,13 +1,15 @@
 import { memo, useCallback } from "react";
-import { BsGlobe2, BsDiscord, BsYoutube, BsTwitter, BsInstagram, BsPlus } from "react-icons/bs";
+import {
+  BsGlobe2,
+  BsDiscord,
+  BsYoutube,
+  BsTwitter,
+  BsInstagram,
+  BsPlus,
+} from "react-icons/bs";
 import { BiCopy } from "react-icons/bi";
 
-const CollectionInfoTemplate = memo((
-  {
-    collectionName,
-    collectionAddress,
-  }
-) => {
+const CollectionInfoTemplate = memo(({ collectionName, collectionAddress }) => {
   const onGlobeIconClick = useCallback(() => {
     window.open("https://www.google.com");
   }, []);
@@ -66,38 +68,58 @@ const CollectionInfoTemplate = memo((
               About
             </b>
             <div className="self-stretch relative leading-[100%] capitalize font-caption-work-sans text-text">
-              The internet's friendliest designer kid.
+              The internet&apos;s friendliest designer kid.
             </div>
           </div>
           <div className="self-stretch flex flex-col items-start justify-start text-caption-label-text gap-3">
             <b className="relative leading-[100%] capitalize">Links</b>
             <div className="flex flex-row items-start justify-start gap-[10px]">
-              <BsGlobe2 className="relative w-5 h-5 shrink-0 cursor-pointer" onClick={onGlobeIconClick} />
-              <BsDiscord className="relative w-5 h-5  shrink-0 cursor-pointer" onClick={onDiscordLogoIconClick} />
-              <BsYoutube className="relative w-5 h-5 shrink-0 cursor-pointer" onClick={onYoutubeLogoIconClick} />
-              <BsTwitter className="relative w-5 h-5  shrink-0 cursor-pointer" onClick={onTwitterLogoIconClick} />
-              <BsInstagram className="relative w-5 h-5  shrink-0 cursor-pointer"  onClick={onInstagramLogoIconClick} />
-              
+              <BsGlobe2
+                className="relative w-5 h-5 shrink-0 cursor-pointer"
+                onClick={onGlobeIconClick}
+              />
+              <BsDiscord
+                className="relative w-5 h-5  shrink-0 cursor-pointer"
+                onClick={onDiscordLogoIconClick}
+              />
+              <BsYoutube
+                className="relative w-5 h-5 shrink-0 cursor-pointer"
+                onClick={onYoutubeLogoIconClick}
+              />
+              <BsTwitter
+                className="relative w-5 h-5  shrink-0 cursor-pointer"
+                onClick={onTwitterLogoIconClick}
+              />
+              <BsInstagram
+                className="relative w-5 h-5  shrink-0 cursor-pointer"
+                onClick={onInstagramLogoIconClick}
+              />
             </div>
           </div>
         </div>
         <div className="flex flex-row items-start justify-end text-center text-base font-caption-work-sans gap-8">
           <div className="rounded-xl bg-[#A259FF] h-[60px] shrink-0 flex flex-row py-0 px-[50px] box-border items-center justify-center gap-2">
-            <BiCopy className="relative w-5 h-5 shrink-0 hover:cursor-pointer active:translate-y-1" onClick={() => {navigator.clipboard.writeText(collectionAddress)}}/>
+            <BiCopy
+              className="relative w-5 h-5 shrink-0 hover:cursor-pointer active:translate-y-1"
+              onClick={() => {
+                navigator.clipboard.writeText(collectionAddress);
+              }}
+            />
             <div className="relative leading-[140%] font-semibold">
-              {collectionAddress?.slice(0,6)+"..."+collectionAddress?.slice(-6)}
+              {collectionAddress?.slice(0, 6) +
+                "..." +
+                collectionAddress?.slice(-6)}
             </div>
           </div>
           <div className="rounded-xl box-border h-[60px] flex flex-row py-0 px-[30px] items-center justify-center gap-2 border-[2px] border-solid border-[#A259FF]">
             <BsPlus className="relative w-5 h-5 shrink-0" />
-            <div className="relative leading-[140%] font-semibold">
-              Follow
-            </div>
+            <div className="relative leading-[140%] font-semibold">Follow</div>
           </div>
         </div>
       </div>
-   </div>
+    </div>
   );
 });
 
 export default CollectionInfoTemplate;
+CollectionInfoTemplate.displayName = "CollectionInfoTemplate";

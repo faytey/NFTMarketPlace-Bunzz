@@ -109,7 +109,7 @@ export default function Launchpad() {
             </Tab.Panels>
           ) ?? (
             <div className="mt-3 mb-[4rem] rounded-lg shadow-xl bg-[rgba(0,0,0,0.4)] border-2 border-black flex justify-center gap-10 items-center p-6">
-              // Loading... //{" "}
+              Loading...{" "}
             </div>
           )}
         </Tab.Group>
