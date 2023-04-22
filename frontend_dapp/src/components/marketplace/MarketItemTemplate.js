@@ -51,7 +51,7 @@ const MarketItemTemplate = memo(({ marketItem }) => {
         <div className="self-stretch flex flex-col pt-5 px-[30px] pb-[25px] items-start justify-start gap-[25px]">
           <div className="flex justify-between w-full">
             <div className="self-stretch flex flex-col items-start justify-start gap-[5px]">
-              <div className="self-stretch relative leading-[140%] capitalize font-semibold flex gap-3">
+              <div className="self-stretch relative leading-[140%] capitalize font-semibold flex flex-col md:flex-row gap-3">
                 <p>Token Contract: </p>
                 <p>
                   {marketItem?.nftContract?.slice(0, 6) +
@@ -91,7 +91,7 @@ const MarketItemTemplate = memo(({ marketItem }) => {
               </div>
             </div>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col md:flex-row gap-3">
             <Link
               className="border m-0 p-3 rounded-lg cursor-pointer bg-[#A259FF]"
               href={`/marketplace/${marketItem?.itemId}`}
