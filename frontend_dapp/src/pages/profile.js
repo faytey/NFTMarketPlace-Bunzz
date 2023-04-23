@@ -17,6 +17,7 @@ const ArtistPage = () => {
   const [listedAsset, setListedAsset] = useState();
 
 
+
   const { data: marketplaceData, isError: marketplaceDataError, isLoading: marketplaceDataIsLoading } = useContractReads({
     contracts: [
       {
@@ -47,6 +48,7 @@ const ArtistPage = () => {
           from: address
         }
   })
+  const [active, setActive] = useState()
 
   const { data: owned } = useContractRead({
     ...marketplaceContract,
@@ -56,6 +58,20 @@ const ArtistPage = () => {
     }
 })
 
+let Attribute = [
+  {id: 1, type: "Owned", value: ownedAsset},
+  {id: 2, type: "Listed Item", value: listedAsset},
+];
+
+function handleClick(attri) {
+  // console.log(attri)
+  //  let internal = attri;
+  //  console.log(internal)
+  //  return internal;
+   //internal.classList.add("text-[#A259FF] border-b-2 border-[#A259FF]")
+  setActive(attri)
+   
+}
 
 
 
@@ -103,26 +119,21 @@ const ArtistPage = () => {
         <div className="self-stretch relative box-border h-px shrink-0 border-t-[1px] border-solid border-background-secondary" />
         <div className="flex flex-row items-start justify-start">
           <div className="flex-1 flex flex-row items-start justify-start">
-          <Tab>
-            <div className="flex-1 box-border flex flex-row py-0 px-3 items-center justify-center gap-2 text-text border-b-[2px] border-solid border-caption-label-text">
-              <div className="relative leading-[140%] capitalize font-semibold">
-                  Owned
-                  </div>
-                  <div className="rounded-xl bg-[#1C1C1C] flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base font-h5-space-mono">
-                    <div className="relative leading-[140%]">{ownedAsset?.length ?? "0"}</div>
-                  </div>
+              <div className="flex flex-row py-0 px-4 items-center justify-center gap-2">
+                  {
+                    Attribute.map((attribute) => (
+                      <Tab id={attribute.id} key={attribute.id} onClick={() => handleClick(attribute.id)} className= {` ${ active == attribute.id ? 'text-[#A259FF] border-b-2 border-[#A259FF]' : ''} flex flex-row py-0 px-3 items-center justify-center gap-2`}>
+                        <div className="relative leading-[140%] capitalize font-semibold">
+                          {attribute.type}
+                        </div>
+                        <div className="rounded-xl bg-[#1C1C1C] flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base font-h5-space-mono">
+                          <div className="relative leading-[140%]">{attribute.value?.length ?? "0"}</div>
+                        </div>
+                      </Tab>
+                    ))
+                  }
                 </div>
-              </Tab>
-              <Tab>
-                <div className="flex-1 h-[60px] flex flex-row py-0 px-[30px] box-border items-center justify-center gap-[16px]">
-                  <div className="relative leading-[140%] capitalize font-semibold">
-                    Listed Item
-                    </div>
-                    <div className="rounded-2xl bg-[#1C1C1C] flex flex-row py-[5px] px-2.5 items-center justify-start text-left text-base text-text font-h5-space-mono">
-                      <div className="relative leading-[140%]">{listedAsset?.length ?? "0"}</div>
-                    </div>
-                  </div>
-            </Tab>
+              
           </div>
         </div>
         </div>
