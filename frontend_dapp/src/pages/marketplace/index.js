@@ -35,7 +35,7 @@ export default function MarketPlace() {
   }, [marketplaceData, itemListed, marketItems]);
 
   return (
-    <div className="w-full m-0 p-24 gap-8">
+    <div className="w-full m-0 p-5 gap-5">
       <MarketPlaceHeaderTemplate />
       <div className="w-full">
         <div className="md:grid md:grid-cols-3 gap-10 space-y-5 m-0">

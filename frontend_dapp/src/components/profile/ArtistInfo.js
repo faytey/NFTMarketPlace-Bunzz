@@ -10,40 +10,21 @@ import {
 import { BiCopy } from "react-icons/bi";
 
 const ArtistInfo = memo(({ address }) => {
-  // const onGlobeIconClick = useCallback(() => {
-  //   window.open("https://www.google.com");
-  // }, []);
-
-  // const onDiscordLogoIconClick = useCallback(() => {
-  //   window.open("https://www.discord.com");
-  // }, []);
-
-  // const onYoutubeLogoIconClick = useCallback(() => {
-  //   window.open("https://www.youtube.com");
-  // }, []);
-
-  // const onTwitterLogoIconClick = useCallback(() => {
-  //   window.open("https://www.twitter.com");
-  // }, []);
-
-  // const onInstagramLogoIconClick = useCallback(() => {
-  //   window.open("https://www.instagram.com");
-  // }, []);
 
   const handleClick = () => {
     navigator.clipboard.writeText(address);
   };
 
   return (
-    <div className="self-stretch bg-[#2B2B2B] w-3/4 flex flex-col py-10 px-0 items-center justify-start text-left text-3xl text-text font-h5 font-space-mono">
-      <div className="w-screen flex flex-col items-start justify-start">
-        <div className="flex flex-col md:flex-row items-start justify-start gap-2">
-          <div className="w-screen shrink-0 flex flex-col items-start justify-start gap-6">
-            <div className="relative text-2xl leading-[110%] capitalize font-semibold font-caption-work-sans flex items-center w-auto">
+    <div className="self-stretch bg-[#2B2B2B] w-full flex flex-col p-5 items-center justify-between text-3xl text-text font-h5 font-space-mono">
+      <div className="w-full flex flex-col items-start justify-start">
+        <div className="flex flex-col md:flex-row items-start justify-between w-full gap-8">
+          <div className="w-full flex flex-col justify-between">
+            <div className="relative text-2xl m-0 p-5 leading-[110%] capitalize font-semibold font-caption-work-sans flex items-center">
               Animakid
             </div>
-            <div className="rounded-xl flex flex-row items-start justify-start gap-4 text-5xl px-4">
-              <div className="flex-1 rounded-xl flex flex-col items-start justify-start">
+            <div className="rounded-xl flex flex-row w-full justify-between gap-5 text-4xl p-3">
+              <div className="rounded-xl flex flex-col items-start justify-start">
                 <b className="self-stretch relative leading-[140%] capitalize">
                   250k+
                 </b>
@@ -51,7 +32,7 @@ const ArtistInfo = memo(({ address }) => {
                   Volume
                 </div>
               </div>
-              <div className="flex-1 rounded-xl flex flex-col items-start justify-start">
+              <div className="rounded-xl flex flex-col items-start justify-start">
                 <b className="self-stretch relative leading-[140%] capitalize">
                   50+
                 </b>
@@ -59,7 +40,7 @@ const ArtistInfo = memo(({ address }) => {
                   NFTs Sold
                 </div>
               </div>
-              <div className="flex-1 rounded-xl flex flex-col items-start justify-start">
+              <div className="rounded-xl flex flex-col items-start justify-start">
                 <b className="self-stretch relative leading-[140%] capitalize">
                   3000+
                 </b>
@@ -68,38 +49,13 @@ const ArtistInfo = memo(({ address }) => {
                 </div>
               </div>
             </div>
-            <div className="self-stretch flex flex-col items-start justify-start gap-2 text-caption-label-text">
+            <div className="self-stretch flex flex-col text-left m-0 p-5 items-start justify-start gap-2 text-caption-label-text">
               <b className="self-stretch relative leading-[160%] capitalize">
                 Bio
               </b>
               <div className="self-stretch relative leading-[160%] capitalize font-caption-work-sans text-text">
                 The internet&apos;s friendliest designer kid.
               </div>
-            </div>
-            <div className="self-stretch flex flex-col items-start justify-start gap-2 text-caption-label-text">
-              <b className="relative leading-[160%] capitalize">Links</b>
-              {/* <div className="flex flex-row items-start justify-start gap-2">
-                <BsGlobe2
-                  className="relative w-8 h-8 shrink-0 cursor-pointer"
-                  onClick={onGlobeIconClick}
-                />
-                <BsDiscord
-                  className="relative w-8 h-8 shrink-0 cursor-pointer"
-                  onClick={onDiscordLogoIconClick}
-                />
-                <BsYoutube
-                  className="relative w-8 h-8 shrink-0 cursor-pointer"
-                  onClick={onYoutubeLogoIconClick}
-                />
-                <BsTwitter
-                  className="relative w-8 h-8 shrink-0 cursor-pointer"
-                  onClick={onTwitterLogoIconClick}
-                />
-                <BsInstagram
-                  className="relative w-8 h-8 shrink-0 cursor-pointer"
-                  onClick={onInstagramLogoIconClick}
-                />
-              </div> */}
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-start justify-end gap-4 text-center text-base">

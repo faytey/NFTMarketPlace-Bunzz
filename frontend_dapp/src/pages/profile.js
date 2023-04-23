@@ -11,6 +11,7 @@ const ArtistPage = () => {
   const [myMarketItem, setMyMarketItem] = useState();
   const [ownedAsset, setOwnedAsset] = useState();
   const [listedAsset, setListedAsset] = useState();
+  const [addr, setAddr] = useState();
 
   const {
     data: marketplaceData,
@@ -35,7 +36,7 @@ const ArtistPage = () => {
 
   const { address } = useAccount({
     onConnect({ address }) {
-      // console.log(address);
+      setAddr(address)
     },
   });
 
@@ -43,7 +44,7 @@ const ArtistPage = () => {
     ...marketplaceContract,
     functionName: "fetchItemListed",
     overrides: {
-      from: address,
+      from: addr,
     },
   });
   const [active, setActive] = useState();
@@ -52,7 +53,7 @@ const ArtistPage = () => {
     ...marketplaceContract,
     functionName: "fetchMyNfts",
     overrides: {
-      from: address,
+      from: addr,
     },
   });
 
@@ -62,11 +63,6 @@ const ArtistPage = () => {
   ];
 
   function handleClick(attri) {
-    // console.log(attri)
-    //  let internal = attri;
-    //  console.log(internal)
-    //  return internal;
-    //internal.classList.add("text-[#A259FF] border-b-2 border-[#A259FF]")
     setActive(attri);
   }
 
@@ -99,7 +95,7 @@ const ArtistPage = () => {
         </div>
       </div>
 
-      <ArtistInfo address={address} />
+      <ArtistInfo address={addr} />
 
       <Tab.Group>
         <Tab.List>

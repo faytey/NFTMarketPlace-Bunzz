@@ -7,10 +7,9 @@ import Nav from "./Nav";
 
 export default function Layout({ children }) {
   return (
-    <div className="flex flex-col space-y-20">
-      {/*<Navbar/>*/}
+    <div className="flex flex-col">
       <Nav />
-      <div>
+      <div className="pt-24">
         <main>{children}</main>
       </div>
       <Footer />
