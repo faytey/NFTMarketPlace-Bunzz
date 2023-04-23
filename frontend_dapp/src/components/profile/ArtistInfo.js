@@ -23,7 +23,7 @@ const ArtistInfo = memo(({ address }) => {
             <div className="relative text-2xl m-0 p-5 leading-[110%] capitalize font-semibold font-caption-work-sans flex items-center">
               Animakid
             </div>
-            <div className="rounded-xl flex flex-row w-full justify-between gap-5 text-4xl p-3">
+            <div className="rounded-xl flex flex-row w-full justify-between gap-5 text-3xl p-3">
               <div className="rounded-xl flex flex-col items-start justify-start">
                 <b className="self-stretch relative leading-[140%] capitalize">
                   250k+
