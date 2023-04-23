@@ -93,7 +93,7 @@ const Ongoing = () => {
         <hr />
         <div className="flex flex-col gap-2 p-4">
           <p>
-            Price Per NFT: {String(data?.[3]) / ethers.utils.parseEther("1") ?? <p>Loading...</p>}{" "}
+            Price Per NFT: {String(data?.[3]) / ethers.utils.parseEther("1")}{" "}
             ETH
           </p>
           <p>End Date: {end ?? <p>Loading...</p>}</p>
