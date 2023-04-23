@@ -90,7 +90,6 @@ const Deposit = () => {
 
   return (
     <div className="w-[40%] mx-auto p-[2rem] bg-[rgba(0,0,0,0.4)] rounded-lg border border-black">
-      <p>Hello I'm the deposit page</p>
       <h1>Support this Awesome LaunchPad</h1>
       <form
         onSubmit={handleSubmit}

@@ -7,10 +7,7 @@ import { useState } from "react";
 export default function Navbar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
   return (
-    <header
-      className=""
-       style={{ backgroundColor: "", marginBottom: "%", paddingBottom: "", }}
-    >
+    <header>
       <div
         className="flex flex-col py-8 mx-auto text-white text-center roboto-regular max-w-7xl md:mx-5
       lg:mx-10 xl:mx-auto md:flex-row md:items-center md:justify-between"

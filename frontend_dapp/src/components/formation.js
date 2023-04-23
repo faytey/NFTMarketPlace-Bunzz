@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React, { memo } from "react";
 
 const NFTContainer = memo(
   ({
@@ -46,10 +46,10 @@ const NFTContainer = memo(
             <div className="self-stretch flex flex-row items-start justify-start text-xs text-caption-label-text font-h5-space-mono">
               <div className="flex-1 flex flex-col py-0 pr-[21px] pl-0 items-start justify-start gap-[8px]">
                 <div className="self-stretch relative leading-[110%]">
-                {marketItem?.price}
+                  {marketItem?.price}
                 </div>
                 <div className="self-stretch relative text-base leading-[140%] text-text">
-                {"..."} ETH
+                  {"..."} ETH
                 </div>
               </div>
               <div className="flex-1 flex flex-col items-end justify-center gap-[8px] text-right">
@@ -57,7 +57,7 @@ const NFTContainer = memo(
                   Highest Bid
                 </div>
                 <div className="self-stretch relative text-base leading-[140%] text-text">
-                {"..."}wETH
+                  {"..."}wETH
                 </div>
               </div>
             </div>
@@ -77,7 +77,7 @@ const NFTContainer = memo(
           <div className="self-stretch flex flex-col pt-5 px-[30px] pb-[25px] items-start justify-start gap-[25px]">
             <div className="self-stretch flex flex-col items-start justify-start gap-[5px]">
               <div className="self-stretch relative leading-[140%] capitalize font-semibold">
-              {tokenMetadata?.name ?? <p>Loading...</p>}
+                {tokenMetadata?.name ?? <p>Loading...</p>}
               </div>
               <div className="self-stretch flex flex-row items-start justify-start gap-[12px] text-base font-h5-space-mono">
                 <div className="flex flex-row items-start justify-start">
@@ -95,10 +95,10 @@ const NFTContainer = memo(
             <div className="self-stretch flex flex-row items-start justify-start text-xs text-caption-label-text font-h5-space-mono">
               <div className="flex-1 flex flex-col py-0 pr-[21px] pl-0 items-start justify-start gap-[8px]">
                 <div className="self-stretch relative leading-[110%]">
-                {marketItem?.price}
+                  {marketItem?.price}
                 </div>
                 <div className="self-stretch relative text-base leading-[140%] text-text">
-                {"..."} ETH
+                  {"..."} ETH
                 </div>
               </div>
               <div className="flex-1 flex flex-col items-end justify-center gap-[8px] text-right">
@@ -106,7 +106,7 @@ const NFTContainer = memo(
                   Highest Bid
                 </div>
                 <div className="self-stretch relative text-base leading-[140%] text-text">
-                {"..."}wETH
+                  {"..."}wETH
                 </div>
               </div>
             </div>
@@ -126,7 +126,7 @@ const NFTContainer = memo(
           <div className="self-stretch flex flex-col pt-5 px-[30px] pb-[25px] items-start justify-start gap-[25px]">
             <div className="self-stretch flex flex-col items-start justify-start gap-[5px]">
               <div className="self-stretch relative leading-[140%] capitalize font-semibold">
-              {tokenMetadata?.name ?? <p>Loading...</p>}
+                {tokenMetadata?.name ?? <p>Loading...</p>}
               </div>
               <div className="self-stretch flex flex-row items-start justify-start gap-[12px] text-base font-h5-space-mono">
                 <div className="flex flex-row items-start justify-start">
@@ -144,10 +144,10 @@ const NFTContainer = memo(
             <div className="self-stretch flex flex-row items-start justify-start text-xs text-caption-label-text font-h5-space-mono">
               <div className="flex-1 flex flex-col py-0 pr-[21px] pl-0 items-start justify-start gap-[8px]">
                 <div className="self-stretch relative leading-[110%]">
-                {marketItem?.price}
+                  {marketItem?.price}
                 </div>
                 <div className="self-stretch relative text-base leading-[140%] text-text">
-                {"..."} ETH
+                  {"..."} ETH
                 </div>
               </div>
               <div className="flex-1 flex flex-col items-end justify-center gap-[8px] text-right">
@@ -155,7 +155,7 @@ const NFTContainer = memo(
                   Highest Bid
                 </div>
                 <div className="self-stretch relative text-base leading-[140%] text-text">
-                {"..."}wETH
+                  {"..."}wETH
                 </div>
               </div>
             </div>
@@ -167,3 +167,4 @@ const NFTContainer = memo(
 );
 
 export default NFTContainer;
+NFTContainer.displayName = "NFTContainer";

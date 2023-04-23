@@ -3,8 +3,134 @@ const inter = Inter({ subsets: ["latin"] });
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { erc721ABI, useContractRead, useContractReads } from "wagmi";
+import { marketplaceContract } from "@/utils/contractInfo";
 
 export default function Home() {
+  const [marketItems, setMarketItems] = useState([]);
+
+  const {
+    data: marketplaceData,
+    isError: marketplaceDataError,
+    isLoading: marketplaceDataIsLoading,
+  } = useContractReads({
+    contracts: [
+      {
+        ...marketplaceContract,
+        functionName: "fetchMarketItems",
+      },
+    ],
+  });
+
+  useEffect(() => {
+    setMarketItems(marketplaceData?.[0]);
+  }, [marketplaceData, marketItems]);
+
+  const {
+    data: tokenURI,
+    isError: tokenUriError,
+    isLoading: tokenUriIsLoading,
+  } = useContractRead({
+    address: marketItems?.[9]?.nftContract ?? "0x0",
+    abi: erc721ABI,
+    functionName: "tokenURI",
+    args: [marketItems?.[9]?.tokenId ?? 9],
+  });
+
+  const {
+    data: tokenURI1,
+    isError: tokenUri1Error,
+    isLoading: tokenUri1IsLoading,
+  } = useContractRead({
+    address: marketItems?.[10]?.nftContract ?? "0x0",
+    abi: erc721ABI,
+    functionName: "tokenURI",
+    args: [marketItems?.[10]?.tokenId ?? 10],
+  });
+
+  const {
+    data: tokenURI2,
+    isError: tokenUri2Error,
+    isLoading: tokenUri2IsLoading,
+  } = useContractRead({
+    address: marketItems?.[8]?.nftContract ?? "0x0",
+    abi: erc721ABI,
+    functionName: "tokenURI",
+    args: [marketItems?.[8]?.tokenId ?? 3],
+  });
+
+  const [tokenMetadata, setTokenMetadata] = useState();
+  const [nftImgUrl, setNftImgUrl] = useState();
+
+  const [tokenMetadata1, setTokenMetadata1] = useState();
+  const [nftImgUrl1, setNftImgUrl1] = useState();
+
+  const [tokenMetadata2, setTokenMetadata2] = useState();
+  const [nftImgUrl2, setNftImgUrl2] = useState();
+
+  const baseIpfs = "https://ipfs.io/ipfs/";
+
+  async function getMetadata(tokenURI) {
+    var metadataurl = `${baseIpfs}${tokenURI?.slice(7)}`;
+    var res = await axios
+      .get(metadataurl)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setTokenMetadata(res);
+    var imgURI = tokenMetadata?.image;
+    var imgurl = `${baseIpfs}${imgURI?.slice(7)}`;
+    setNftImgUrl(imgurl);
+  }
+
+  async function getMetadata1(tokenURI1) {
+    var metadataurl = `${baseIpfs}${tokenURI1?.slice(7)}`;
+    var res = await axios
+      .get(metadataurl)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setTokenMetadata1(res);
+    var imgURI = tokenMetadata1?.image;
+    var imgurl = `${baseIpfs}${imgURI?.slice(7)}`;
+    setNftImgUrl1(imgurl);
+  }
+
+  async function getMetadata2(tokenURI2) {
+    var metadataurl = `${baseIpfs}${tokenURI2?.slice(7)}`;
+    var res = await axios
+      .get(metadataurl)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setTokenMetadata2(res);
+    var imgURI = tokenMetadata2?.image;
+    var imgurl = `${baseIpfs}${imgURI?.slice(7)}`;
+    setNftImgUrl2(imgurl);
+  }
+
+  useEffect(() => {
+    getMetadata(tokenURI);
+    getMetadata1(tokenURI1);
+    getMetadata2(tokenURI2);
+  }, [
+    tokenMetadata,
+    tokenURI,
+    tokenMetadata1,
+    tokenURI1,
+    tokenMetadata2,
+    tokenURI2,
+  ]);
+
   //In order to pull NFTs to the homepage, we need to use the settings, though these can only give us information on the NFTs.
   const { ethers } = require("ethers");
   const BunzzContractAddress = "0xC97576B9a68EDb00A1F4E03AE94E9C12cbAbD4E1";
@@ -778,40 +904,41 @@ export default function Home() {
             // backgroundColor: "",
             paddingTop: "5%",
             paddingBottom: "5%",
+            paddingRight: "5%",
           }}
         >
           <h1 style={{ fontSize: "350%", fontWeight: "bold" }}>
-            Discover Digital Art & Collect Nfts
+            Explore Digital Art and Gather Nfts
           </h1>
           <div style={{ fontSize: "120%" }}>
-            Nft Marketplace Ui Created With Anima For Figma. Collect, Buy And
-            Sell Art From More Than 20k Nft Artists.
+            Nextjs Was Used To Create The Nft Marketplace frontend for NiFT.
+            Assemble, purchase, and market artwork from over 20,000 Nft artists.
           </div>
           <button
             className="mt-8 font-bold py-4 px-8 rounded-full"
-            style={{ transition: "1s ease-in-out", background: "#0044ee" }}
+            style={{ transition: "1s ease-in-out", background: "purple" }}
             id="homeButton"
           >
-            <Link href={"/marketplace"}>Get Started</Link>
+            <Link href={"/marketplace"}>Explore</Link>
           </button>
           <div className="grid grid-cols-3 mt-8" style={{ fontSize: "120%" }}>
             <div className="grid-cols-1">
               <span style={{ fontSize: "120%", fontWeight: "bold" }}>
-                240k+
+                250k+
               </span>
               <br></br>
               Total Sale
             </div>
             <div className="grid-cols-1">
               <span style={{ fontSize: "120%", fontWeight: "bold" }}>
-                100k+
+                120k+
               </span>
               <br></br>
               Auctions
             </div>
             <div className="grid-cols-1">
               <span style={{ fontSize: "120%", fontWeight: "bold" }}>
-                240k+
+                250k+
               </span>
               <br></br>
               Artists
@@ -825,27 +952,39 @@ export default function Home() {
             // backgroundColor: "",
             paddingTop: "5%",
             paddingBottom: "5%",
+            paddingLeft: "5%",
+            borderRadius: "3%",
           }}
         >
-          <img
-            src="././assets/benz.jpg"
-            className=""
-            id="homepagefirstPic"
-            style={{
-              transition: "5s ease-in-out",
-              boxShadow: "15px 15px 10px 2px rgba(20,20,20,0.9)",
-              animation: "homepicanimation2 3s alternate infinite",
-              // borderRadius: "",
-            }}
-          />
+          {/* <a href="http://marketplace/14"> */}
+          <a href={"/marketplace"}>
+            {/* img src={nftImgUrl} */}
+            <img
+              src="././assets/dog1.png"
+              className=""
+              id="homepagefirstPic"
+              style={{
+                transition: "5s ease-in-out",
+                boxShadow: "15px 15px 10px 2px rgba(20,20,20,0.9)",
+                animation: "homepicanimation2 3s alternate infinite",
+                borderRadius: "3%",
+              }}
+            />{" "}
+          </a>
           <div id="viewBUNZZ1"></div>
         </div>
       </div>
 
       <div
-        className="mt-4" 
+        className="mt-4"
         id="secondHomeSection"
-        style={{ paddingLeft: "12%", paddingRight: "12%", fontSize: "120%", marginBottom:"", paddingBottom:"5%" }}
+        style={{
+          paddingLeft: "12%",
+          paddingRight: "12%",
+          fontSize: "120%",
+          marginBottom: "3%",
+          paddingBottom: "5%",
+        }}
       >
         <h1 style={{ fontSize: "160%", fontWeight: "bold" }}>
           Trending Collection
@@ -853,115 +992,88 @@ export default function Home() {
         <div>Checkout Our Weekly Updated Trending Collection.</div>
 
         <div className="mt-10 grid md:grid-cols-3 sm:grid-cols-1 gap-8 lg:grid-cols-3">
-          <div className="grid-cols-1">
-            <img
-              src="https://ipfs.filebase.io/ipfs/QmdYkAq8CFB2rqtswWyJWr5s7MWdQuHcg1zVBArpaB2nNn"
-              id="firstpicset"
-            />
-            <div className="grid grid-cols-3 mt-5 gap-5">
+          <div className="grid-cols-1" style={{ marginTop: "5%" }}>
+            {/* href="http://marketplace/15" */}
+            <a href={"/marketplace"}>
+              <img
+                //  src={nftImgUrl1}
+                src="././assets/ape.png"
+                id="firstpicset"
+              />
+            </a>
+            <div className="grid grid-cols-2 mt-5 gap-5">
               <div className="grid-cols-1">
-                <img
-                  src="././assets/firstsetimagesub1.png"
-                  id="firstpicsetsub"
-                />
-              </div>
-              <div className="grid-cols-1">
-                <img
-                  src="././assets/firstsetimagesub2.png"
-                  id="firstpicsetsub"
-                />
+                <Link href={"/marketplace"}>
+                  {" "}
+                  <img
+                    // src={nftImgUrl1}
+                    src="././assets/ape.png"
+                    id="firstpicsetsub"
+                  />
+                </Link>
               </div>
               <div
                 className="grid-cols-1 text-center bg-purple"
                 id="firstpicsetsubtext"
               >
-                1025+
+                1000+
               </div>
             </div>
             <div style={{ fontSize: "120%", fontWeight: "bold" }}>
-              Dsgn Animals
-            </div>
-            <div className="grid grid-cols-5">
-              <div className="grid-col-1">
-                <img
-                  src="././assets/finegirl.png"
-                  className="rounded-full"
-                  id="smallestpics"
-                />
-              </div>
-              <div className="=grid-cols-4" style={{ marginLeft: "-30%" }}>
-                MrFox
-              </div>
+              Bored Ape
             </div>
           </div>
-          <div className="grid-col-1">
-            <img src="././assets/standup.png" id="firstpicset" />
-            <div className="grid grid-cols-3 mt-5 gap-5">
+
+          <div className="grid-col-1" style={{ marginTop: "5%" }}>
+            {/* <a href="http://marketplace/13">  */}
+            <a href={"/marketplace"}>
+              {/* <img  src={nftImgUrl2} id="firstpicset" /> */}
+              <img src="././assets/ape2.png" id="firstpicset" />
+            </a>
+            <div className="grid grid-cols-2 mt-5 gap-5">
               <div className="grid-cols-1">
-                <img
-                  src="././assets/firstsetimagesub1.png"
-                  id="firstpicsetsub"
-                />
-              </div>
-              <div className="grid-cols-1">
-                <img
-                  src="././assets/firstsetimagesub2.png"
-                  id="firstpicsetsub"
-                />
+                <Link href={"/marketplace"}>
+                  <img
+                    // src={nftImgUrl2}
+                    src="././assets/ape2.png"
+                    id="firstpicsetsub"
+                  />
+                </Link>
               </div>
               <div className="grid-cols-1" id="firstpicsetsubtext">
-                1025+
+                2150+
               </div>
             </div>
             <div style={{ fontSize: "120%", fontWeight: "bold" }}>
-              Magic Mushrooms
-            </div>
-            <div className="grid grid-cols-5">
-              <div className="grid-col-1">
-                <img
-                  src="././assets/finegirl.png"
-                  className="rounded-full"
-                  id="smallestpics"
-                />
-              </div>
-              <div className="=grid-cols-4" style={{ marginLeft: "-30%" }}>
-                Shroomie
-              </div>
+              Bored Yacht Club
             </div>
           </div>
-          <div className="grid-col-1">
-            <img src="././assets/mushroom.png" id="firstpicset" />
-            <div className="grid grid-cols-3 mt-5 gap-5">
+
+          <div className="grid-col-1" style={{ marginTop: "5%" }}>
+            {/* <a href="marketplace/14"> */}
+            <a href={"/marketplace"}>
+              <img
+                //  src={nftImgUrl}
+                src="././assets/ape3.png"
+                id="firstpicset"
+              />
+            </a>
+            <div className="grid grid-cols-2 mt-5 gap-5">
               <div className="grid-cols-1">
-                <img
-                  src="././assets/firstsetimagesub1.png"
-                  id="firstpicsetsub"
-                />
-              </div>
-              <div className="grid-cols-1">
-                <img
-                  src="././assets/firstsetimagesub2.png"
-                  id="firstpicsetsub"
-                />
+                <Link href={"/marketplace"}>
+                  <img
+                    // src={nftImgUrl}
+                    src="././assets/ape3.png"
+                    id="firstpicsetsub"
+                  />
+                </Link>
               </div>
               <div className="grid-cols-1" id="firstpicsetsubtext">
-                1025+
+                896+
               </div>
             </div>
             <div style={{ fontSize: "120%", fontWeight: "bold" }}>
-              Disco Machines
-            </div>
-            <div className="grid grid-cols-5">
-              <div className="grid-col-1">
-                <img
-                  src="././assets/finegirl.png"
-                  className="rounded-full"
-                  id="smallestpics"
-                />
-              </div>
-              <div className="=grid-cols-4" style={{ marginLeft: "-30%" }}>
-                BeKind2Robots
-              </div>
+              Magic Ape
             </div>
           </div>
         </div>
@@ -970,298 +1082,151 @@ export default function Home() {
       <div
         className=""
         id="thirdhomesection"
-        style={{ paddingLeft: "12%", paddingRight: "12%", marginTop: "5%" }}
+        style={{ paddingLeft: "12%", paddingRight: "12%", marginTop: "7%" }}
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 mb-10 ">
           <div className="grid-cols-1" style={{ fontSize: "120%" }}>
             <div style={{ fontSize: "160%", fontWeight: "bold" }}>
               Top Creators
             </div>
-            <div>Checkout Top Rated Creators On The Nft Marketplace</div>
+            <div>Take a look at the NFT Marketplace&apos;s top creators.</div>
           </div>
           <div className="grid-cols-1" style={{}}>
-            <button
-              className="btn md:float-right lg:float-right py-3 mt-3 rounded-full px-8 font-bold"
-              type="submit"
-              id="homeButton"
-              style={{
-                border: "2px solid #a244ff",
-                transition: "1s ease-in-out",
-              }}
-            >
-              View Rankings
-            </button>
+            <Link href={"/marketplace"}>
+              {" "}
+              <button
+                className="btn md:float-right lg:float-right py-3 mt-3 rounded-full px-8 font-bold"
+                type="submit"
+                id="homeButton"
+                style={{
+                  border: "2px solid #a244ff",
+                  transition: "1s ease-in-out",
+                }}
+              >
+                View Rankings
+              </button>
+            </Link>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-1 gap-8 mb-8">
+        <div className="grid md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-1 gap-8 mb-4">
           <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
+            className="grid-cols-1"
+            id="fourthsectioncategories"
             style={{
               backgroundColor: "#444444",
               borderRadius: "8%",
-              paddingBottom: "6%", marginLeft:"5%", marginRight:"5%"
+              paddingBottom: "10%",
+              marginTop: "10%",
+              transition: "1s ease-in-out",
             }}
           >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
+            <Link href={"/profile"}>
+              {" "}
+              <img
+                src="././assets/ape.png"
+                style={{ height: "70%", width: "100%", borderRadius: "8%" }}
+              />
+            </Link>
             <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
+              style={{
+                fontSize: "120%",
+                fontWeight: "bold",
+                marginTop: "5%",
+                paddingLeft: "10%",
+              }}
             >
-              keepitreal
+              Joe
             </div>
-            <div>Total Sales: 34.53 ETH</div>
+            <p style={{ paddingLeft: "10%" }}>Total sales: 4.5 ETH</p>
           </div>
           <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
+            className="grid-cols-1"
+            id="fourthsectioncategories"
             style={{
               backgroundColor: "#444444",
               borderRadius: "8%",
-              paddingBottom: "6%",
+              paddingBottom: "10%",
+              marginTop: "10%",
+              transition: "1s ease-in-out",
             }}
           >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
+            <Link href={"/profile"}>
+              {" "}
+              <img
+                src="././assets/4.png"
+                style={{ height: "70%", width: "100%", borderRadius: "8%" }}
+              />
+            </Link>
             <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
+              style={{
+                fontSize: "130%",
+                fontWeight: "bold",
+                marginTop: "5%",
+                paddingLeft: "10%",
+              }}
             >
-              keepitreal
+              Bayley
             </div>
-            <div>Total Sales: 34.53 ETH</div>
+            <p style={{ paddingLeft: "10%" }}>Total sales: 3.5 ETH</p>
           </div>
           <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
+            className="grid-cols-1"
+            id="fourthsectioncategories"
             style={{
               backgroundColor: "#444444",
               borderRadius: "8%",
-              paddingBottom: "6%",
+              paddingBottom: "10%",
+              marginTop: "10%",
+              transition: "1s ease-in-out",
             }}
           >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
+            <Link href={"/profile"}>
+              <img
+                src="././assets/IceCreamApe.png"
+                style={{ width: "100%", borderRadius: "8%" }}
+              />
+            </Link>
             <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
+              style={{
+                fontSize: "130%",
+                fontWeight: "bold",
+                marginTop: "5%",
+                paddingLeft: "10%",
+              }}
             >
-              keepitreal
+              Holmes
             </div>
-            <div>Total Sales: 34.53 ETH</div>
+            <p style={{ paddingLeft: "10%" }}>Total sales: 7.0 ETH</p>
           </div>
           <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
+            className="grid-cols-1"
+            id="fourthsectioncategories"
             style={{
               backgroundColor: "#444444",
               borderRadius: "8%",
-              paddingBottom: "6%",
+              paddingBottom: "10%",
+              marginTop: "10%",
+              transition: "1s ease-in-out",
             }}
           >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
+            <Link href={"/profile"}>
+              <img
+                src="././assets/finegirl.png"
+                style={{ width: "100%", borderRadius: "8%" }}
+              />
+            </Link>
             <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
+              style={{
+                fontSize: "130%",
+                fontWeight: "bold",
+                marginTop: "5%",
+                paddingLeft: "10%",
+              }}
             >
-              keepitreal
+              Becky
             </div>
-            <div>Total Sales: 34.53 ETH</div>
-          </div>
-        </div>
-        <div className="grid md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-1 gap-8 mb-8">
-          <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "6%",
-            }}
-          >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
-            <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
-            >
-              keepitreal
-            </div>
-            <div>Total Sales: 34.53 ETH</div>
-          </div>
-          <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "6%",
-            }}
-          >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
-            <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
-            >
-              keepitreal
-            </div>
-            <div>Total Sales: 34.53 ETH</div>
-          </div>
-          <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "6%",
-            }}
-          >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
-            <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
-            >
-              keepitreal
-            </div>
-            <div>Total Sales: 34.53 ETH</div>
-          </div>
-          <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "6%",
-            }}
-          >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
-            <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
-            >
-              keepitreal
-            </div>
-            <div>Total Sales: 34.53 ETH</div>
-          </div>
-        </div>
-        <div className="grid md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-1 gap-8 mb-8">
-          <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "6%",
-            }}
-          >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
-            <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
-            >
-              keepitreal
-            </div>
-            <div>Total Sales: 34.53 ETH</div>
-          </div>
-          <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "6%",
-            }}
-          >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
-            <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
-            >
-              keepitreal
-            </div>
-            <div>Total Sales: 34.53 ETH</div>
-          </div>
-          <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "6%",
-            }}
-          >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
-            <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
-            >
-              keepitreal
-            </div>
-            <div>Total Sales: 34.53 ETH</div>
-          </div>
-          <div
-            className="grid-cols-1 text-center"
-            id="thirdsectiontopcreators"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "6%",
-            }}
-          >
-            <img
-              src="././assets/firstsetimagesub1.png"
-              className="rounded-full sm:ml-4"
-              style={{ transform: "scale3d(0.6,0.6,0.6)", marginTop: "-7%" }}
-            />
-            <div
-              className="font-bold"
-              style={{ fontSize: "130%", marginTop: "-10%" }}
-            >
-              keepitreal
-            </div>
-            <div>Total Sales: 34.53 ETH</div>
+            <p style={{ paddingLeft: "10%" }}>Total sales: 3.1 ETH</p>
           </div>
         </div>
       </div>
@@ -1286,17 +1251,20 @@ export default function Home() {
               transition: "1s ease-in-out",
             }}
           >
-            <img src="././assets/DistantGalaxy.png" />
-            <div
-              style={{
-                fontSize: "130%",
-                fontWeight: "bold",
-                marginTop: "5%",
-                paddingLeft: "10%",
-              }}
-            >
-              Art
-            </div>
+            <Link href={"/marketplace"}>
+              {" "}
+              <img src="././assets/1.png" style={{ borderRadius: "8%" }} />
+              <div
+                style={{
+                  fontSize: "130%",
+                  fontWeight: "bold",
+                  marginTop: "5%",
+                  paddingLeft: "10%",
+                }}
+              >
+                Art
+              </div>
+            </Link>
           </div>
           <div
             className="grid-cols-1"
@@ -1309,17 +1277,20 @@ export default function Home() {
               transition: "1s ease-in-out",
             }}
           >
-            <img src="././assets/DistantGalaxy.png" />
-            <div
-              style={{
-                fontSize: "130%",
-                fontWeight: "bold",
-                marginTop: "5%",
-                paddingLeft: "10%",
-              }}
-            >
-              Collectibles
-            </div>
+            <Link href={"/marketplace"}>
+              {" "}
+              <img src="././assets/5.png" style={{ borderRadius: "8%" }} />
+              <div
+                style={{
+                  fontSize: "130%",
+                  fontWeight: "bold",
+                  marginTop: "5%",
+                  paddingLeft: "10%",
+                }}
+              >
+                Collectibles
+              </div>
+            </Link>
           </div>
           <div
             className="grid-cols-1"
@@ -1332,17 +1303,23 @@ export default function Home() {
               transition: "1s ease-in-out",
             }}
           >
-            <img src="././assets/DistantGalaxy.png" />
-            <div
-              style={{
-                fontSize: "130%",
-                fontWeight: "bold",
-                marginTop: "5%",
-                paddingLeft: "10%",
-              }}
-            >
-              Music
-            </div>
+            <Link href={"/marketplace"}>
+              {" "}
+              <img
+                src="././assets/standup.png"
+                style={{ borderRadius: "8%" }}
+              />
+              <div
+                style={{
+                  fontSize: "130%",
+                  fontWeight: "bold",
+                  marginTop: "5%",
+                  paddingLeft: "10%",
+                }}
+              >
+                Music
+              </div>
+            </Link>
           </div>
           <div
             className="grid-cols-1"
@@ -1355,111 +1332,20 @@ export default function Home() {
               transition: "1s ease-in-out",
             }}
           >
-            <img src="././assets/DistantGalaxy.png" />
-            <div
-              style={{
-                fontSize: "130%",
-                fontWeight: "bold",
-                marginTop: "5%",
-                paddingLeft: "10%",
-              }}
-            >
-              Photography
-            </div>
-          </div>
-        </div>
-        <div className="grid md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-1 gap-8 mb-4">
-          <div
-            className="grid-cols-1"
-            id="fourthsectioncategories"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "10%",
-              marginTop: "10%",
-              transition: "1s ease-in-out",
-            }}
-          >
-            <img src="././assets/DistantGalaxy.png" />
-            <div
-              style={{
-                fontSize: "130%",
-                fontWeight: "bold",
-                marginTop: "5%",
-                paddingLeft: "10%",
-              }}
-            >
-              Art
-            </div>
-          </div>
-          <div
-            className="grid-cols-1"
-            id="fourthsectioncategories"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "10%",
-              marginTop: "10%",
-              transition: "1s ease-in-out",
-            }}
-          >
-            <img src="././assets/DistantGalaxy.png" />
-            <div
-              style={{
-                fontSize: "130%",
-                fontWeight: "bold",
-                marginTop: "5%",
-                paddingLeft: "10%",
-              }}
-            >
-              Collectibles
-            </div>
-          </div>
-          <div
-            className="grid-cols-1"
-            id="fourthsectioncategories"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "10%",
-              marginTop: "10%",
-              transition: "1s ease-in-out",
-            }}
-          >
-            <img src="././assets/DistantGalaxy.png" />
-            <div
-              style={{
-                fontSize: "130%",
-                fontWeight: "bold",
-                marginTop: "5%",
-                paddingLeft: "10%",
-              }}
-            >
-              Music
-            </div>
-          </div>
-          <div
-            className="grid-cols-1"
-            id="fourthsectioncategories"
-            style={{
-              backgroundColor: "#444444",
-              borderRadius: "8%",
-              paddingBottom: "10%",
-              marginTop: "10%",
-              transition: "1s ease-in-out",
-            }}
-          >
-            <img src="././assets/DistantGalaxy.png" />
-            <div
-              style={{
-                fontSize: "130%",
-                fontWeight: "bold",
-                marginTop: "5%",
-                paddingLeft: "10%",
-              }}
-            >
-              Photography
-            </div>
+            <Link href={"/marketplace"}>
+              {" "}
+              <img src="././assets/dog1.png" style={{ borderRadius: "8%" }} />
+              <div
+                style={{
+                  fontSize: "130%",
+                  fontWeight: "bold",
+                  marginTop: "5%",
+                  paddingLeft: "10%",
+                }}
+              >
+                Photography
+              </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -1472,22 +1358,27 @@ export default function Home() {
         <div className="grid md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 mb-10">
           <div className="grid-cols-1" style={{ fontSize: "120%" }}>
             <div style={{ fontSize: "160%", fontWeight: "bold" }}>
-              Discover More Nfts
+              Discover the NiFT Launchpad
             </div>
-            <div>Explore New Trending Nfts</div>
+            <div>
+              Explore our Launchpad to see ongoing and upcoming Launchpad sales.
+            </div>
           </div>
           <div className="grid-cols-1" style={{}}>
-            <button
-              className="btn md:float-right lg:float-right py-3 mt-3 rounded-full px-8 font-bold"
-              type="submit"
-              id="homeButton"
-              style={{
-                border: "2px solid #a244ff",
-                transition: "1s ease-in-out",
-              }}
-            >
-              See All
-            </button>
+            <Link href={"/launchpad"}>
+              {" "}
+              <button
+                className="btn md:float-right lg:float-right py-3 mt-3 rounded-full px-8 font-bold"
+                type="submit"
+                id="homeButton"
+                style={{
+                  border: "2px solid #a244ff",
+                  transition: "1s ease-in-out",
+                }}
+              >
+                View Launchpads
+              </button>
+            </Link>
           </div>
         </div>
         <div className="grid md:grid-cols-3 lg:grid-cols-3 sm:grid-cols-1 gap-8 mb-4">
@@ -1502,7 +1393,10 @@ export default function Home() {
               transition: "1s ease-in-out",
             }}
           >
-            <img src="././assets/finegirl.png" style={{width:"100%"}} />
+            <Link href={"/launchpad"}>
+              {" "}
+              <img src="././assets/finegirl.png" style={{ width: "100%" }} />
+            </Link>
             <div
               style={{
                 fontSize: "130%",
@@ -1511,26 +1405,29 @@ export default function Home() {
                 paddingLeft: "10%",
               }}
             >
-              Distant Galaxy
+              Astronomy
             </div>
-            <div
-              className="grid grid-cols-4"
-              style={{ marginTop: "2%", paddingLeft: "10%" }}
-            >
-              <div className="grid-cols-1">
-                <img
-                  src="././assets/Avatar.png"
-                  className="rounded-full"
-                  style={{ height: "100%", width: "50%", transform: "" }}
-                />
-              </div>
+            <Link href={"/profile"}>
+              {" "}
               <div
-                className="grid-cols-3"
-                style={{ marginLeft: "-25%", marginTop: "10%" }}
+                className="grid grid-cols-4"
+                style={{ marginTop: "2%", paddingLeft: "10%" }}
               >
-                MoonDancer
+                <div className="grid-cols-1">
+                  <img
+                    src="././assets/Avatar.png"
+                    className="rounded-full"
+                    style={{ height: "100%", width: "50%", transform: "" }}
+                  />
+                </div>
+                <div
+                  className="grid-cols-3"
+                  style={{ marginLeft: "-25%", marginTop: "10%" }}
+                >
+                  MoonDancer
+                </div>
               </div>
-            </div>
+            </Link>
             <div
               className="grid grid-cols-2"
               style={{
@@ -1549,7 +1446,7 @@ export default function Home() {
                 >
                   Price
                 </div>
-                <div>1.63 ETH</div>
+                <div>1.5 ETH</div>
               </div>
               <div className="grid-cols-1">
                 <div
@@ -1560,10 +1457,10 @@ export default function Home() {
                     fontFamily: "georgia",
                   }}
                 >
-                  Highest Bid
+                  Sold
                 </div>
                 <br></br>
-                <div style={{ float: "right" }}>0.33 wETH</div>
+                <div style={{ float: "right" }}>43.5 ETH</div>
               </div>
             </div>
           </div>
@@ -1578,7 +1475,10 @@ export default function Home() {
               transition: "1s ease-in-out",
             }}
           >
-            <img src="././assets/SpaceTales.png" style={{width:"100%"}}/>
+            <Link href={"/launchpad"}>
+              {" "}
+              <img src="././assets/SpaceTales.png" style={{ width: "100%" }} />
+            </Link>
             <div
               style={{
                 fontSize: "130%",
@@ -1589,24 +1489,27 @@ export default function Home() {
             >
               Economy
             </div>
-            <div
-              className="grid grid-cols-4"
-              style={{ marginTop: "2%", paddingLeft: "10%" }}
-            >
-              <div className="grid-cols-1">
-                <img
-                  src="././assets/Avatar.png"
-                  className="rounded-full"
-                  style={{ height: "100%", width: "50%", transform: "" }}
-                />
-              </div>
+            <Link href={"/profile"}>
+              {" "}
               <div
-                className="grid-cols-3"
-                style={{ marginLeft: "-25%", marginTop: "10%" }}
+                className="grid grid-cols-4"
+                style={{ marginTop: "2%", paddingLeft: "10%" }}
               >
-                Spaceone
+                <div className="grid-cols-1">
+                  <img
+                    src="././assets/Avatar.png"
+                    className="rounded-full"
+                    style={{ height: "100%", width: "50%", transform: "" }}
+                  />
+                </div>
+                <div
+                  className="grid-cols-3"
+                  style={{ marginLeft: "-25%", marginTop: "10%" }}
+                >
+                  Spaceone
+                </div>
               </div>
-            </div>
+            </Link>
             <div
               className="grid grid-cols-2"
               style={{
@@ -1625,7 +1528,7 @@ export default function Home() {
                 >
                   Price
                 </div>
-                <div>1.63 ETH</div>
+                <div>1.1 ETH</div>
               </div>
               <div className="grid-cols-1">
                 <div
@@ -1636,10 +1539,10 @@ export default function Home() {
                     fontFamily: "georgia",
                   }}
                 >
-                  Highest Bid
+                  Ongoing
                 </div>
                 <br></br>
-                <div style={{ float: "right" }}>0.33 wETH</div>
+                <div style={{ float: "right" }}>22.0 ETH</div>
               </div>
             </div>
           </div>
@@ -1654,7 +1557,10 @@ export default function Home() {
               transition: "1s ease-in-out",
             }}
           >
-            <img src="././assets/CherryGirl.png" style={{width:"100%"}}/>
+            <Link href={"/launchpad"}>
+              {" "}
+              <img src="././assets/CherryGirl.png" style={{ width: "100%" }} />
+            </Link>
             <div
               style={{
                 fontSize: "130%",
@@ -1663,26 +1569,28 @@ export default function Home() {
                 paddingLeft: "10%",
               }}
             >
-              Astrofiction
+              Fantasage
             </div>
-            <div
-              className="grid grid-cols-4"
-              style={{ marginTop: "2%", paddingLeft: "10%" }}
-            >
-              <div className="grid-cols-1">
-                <img
-                  src="././assets/Avatar.png"
-                  className="rounded-full"
-                  style={{ height: "100%", width: "50%", transform: "" }}
-                />
-              </div>
+            <Link href={"/profile"}>
               <div
-                className="grid-cols-3"
-                style={{ marginLeft: "-25%", marginTop: "10%" }}
+                className="grid grid-cols-4"
+                style={{ marginTop: "2%", paddingLeft: "10%" }}
               >
-                Fantasy
+                <div className="grid-cols-1">
+                  <img
+                    src="././assets/Avatar.png"
+                    className="rounded-full"
+                    style={{ height: "100%", width: "50%", transform: "" }}
+                  />
+                </div>
+                <div
+                  className="grid-cols-3"
+                  style={{ marginLeft: "-25%", marginTop: "10%" }}
+                >
+                  Fantasy
+                </div>
               </div>
-            </div>
+            </Link>
             <div
               className="grid grid-cols-2"
               style={{
@@ -1701,7 +1609,7 @@ export default function Home() {
                 >
                   Price
                 </div>
-                <div>1.63 ETH</div>
+                <div>0.7 ETH</div>
               </div>
               <div className="grid-cols-1">
                 <div
@@ -1712,10 +1620,10 @@ export default function Home() {
                     fontFamily: "georgia",
                   }}
                 >
-                  Highest Bid
+                  Upcoming
                 </div>
                 <br></br>
-                <div style={{ float: "right" }}>0.33 wETH</div>
+                <div style={{ float: "right" }}>0 ETH</div>
               </div>
             </div>
           </div>
@@ -1738,39 +1646,48 @@ export default function Home() {
           style={{ paddingRight: "12%", paddingLeft: "12%" }}
         >
           <div className="grid-cols-1">
-            <button
-              className="btn py-3 mt-3 px-10 rounded-full font-bold"
-              type="submit"
-              style={{
-                transition: "1s ease-in-out",
-                color: "white",
-                background: "#444444",
-              }}
-            >
-              David
-            </button>
+            <Link href={"/profile"}>
+              {" "}
+              <button
+                className="btn py-3 mt-3 px-10 rounded-full font-bold"
+                type="submit"
+                style={{
+                  transition: "1s ease-in-out",
+                  color: "white",
+                  background: "#444444",
+                }}
+              >
+                David
+              </button>
+            </Link>
             <div
               className="mt-3"
               style={{ fontSize: "300%", fontWeight: "bold" }}
             >
-              Magic Mashrooms Auction
+              Lost Magic Auction
             </div>
-            <button
-              className="btn py-3 mt-3 px-12 rounded-full font-bold"
-              type="submit"
-              id="homeButton"
-              style={{
-                transition: "1s ease-in-out",
-                color: "black",
-                background: "white",
-              }}
-            >
-              See NFT
-            </button>
+            <Link href={"/launchpad"}>
+              <button
+                className="btn py-3 mt-3 px-12 rounded-full font-bold"
+                type="submit"
+                id="homeButton"
+                style={{
+                  transition: "1s ease-in-out",
+                  color: "black",
+                  background: "white",
+                }}
+              >
+                See NFT
+              </button>
+            </Link>
           </div>
           <div className="grid-cols-1">
-            <div className="md:float-right lg:float-right" style={{fontSize:"250%"}} id="timerparagraph">
-              <div id="countdown">1 day 24 hours</div>
+            <div
+              className="md:float-right lg:float-right"
+              style={{ fontSize: "250%" }}
+              id="timerparagraph"
+            >
+              <div id="countdown">5 days 24 hours</div>
             </div>
           </div>
         </div>
@@ -1788,11 +1705,14 @@ export default function Home() {
       >
         <div className="" style={{ fontSize: "120%" }}>
           <div style={{ fontSize: "160%", fontWeight: "bold" }}>
-            How It Works
+            How It Functions
           </div>
-          <div>Find Out How To Get Started</div>
+          <div>Discover the starting point.</div>
         </div>
-        <div className="grid md:grid-cols-3 lg:grid-cols-3 sm:grid-cols-1 gap-8" style={{ marginTop: "4%" }}>
+        <div
+          className="grid md:grid-cols-3 lg:grid-cols-3 sm:grid-cols-1 gap-8"
+          style={{ marginTop: "4%" }}
+        >
           <div
             className="grid-cols-1"
             style={{
@@ -1811,11 +1731,12 @@ export default function Home() {
               style={{ transform: "scale3D(0.9,0.9,0.9)" }}
             />
             <div style={{ fontSize: "120%", fontWeight: "bold" }}>
-              Setup Your Wallet
+              Setup your Wallet
             </div>
             <div style={{ paddingTop: "3%" }}>
-              Set up your wallet of choice. Connect it to the Animarket by
-              clicking the wallet icon in the top right corner.
+              Set up your preferred wallet. By selecting the wallet icon in the
+              top right corner, you can link it to the NiFT marketplace and
+              launchpad.
             </div>
           </div>
           <div
@@ -1836,11 +1757,11 @@ export default function Home() {
               style={{ transform: "scale3D(0.9,0.9,0.9)" }}
             />
             <div style={{ fontSize: "120%", fontWeight: "bold" }}>
-              Create Collection
+              Create a Collection
             </div>
             <div style={{ paddingTop: "3%" }}>
-              Upload your work and setup your collection. Add a description,
-              social links and floor price.
+              Set up your collection and upload your work. Include a floor price
+              and a description.
             </div>
           </div>
           <div
@@ -1861,11 +1782,12 @@ export default function Home() {
               style={{ transform: "scale3D(0.9,0.9,0.9)" }}
             />
             <div style={{ fontSize: "120%", fontWeight: "bold" }}>
-              Start Earning
+              Begin to Earn
             </div>
             <div style={{ paddingTop: "3%" }}>
-              Choose between auctions and fixed-price listings. Start earning by
-              selling your NFTs or trading others.
+              From a plethora of launchpads and marketplace items, begin earning
+              on NiFT by selling your listed NFTs or NFTs created by other
+              artists.
             </div>
           </div>
         </div>

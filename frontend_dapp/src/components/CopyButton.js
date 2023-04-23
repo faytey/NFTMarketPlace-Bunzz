@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { toast, ToastContainer } from "react-toastify";
 
 const CopyButton = ({ arg }) => {
   const handleClick = () => {

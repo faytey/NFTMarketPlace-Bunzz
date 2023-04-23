@@ -1,37 +1,29 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useState } from "react";
 
-const NFTImage = memo(
-  ({
-    imageURI,
-  }) => {
+const NFTImage = memo(({ imageURI }) => {
+  const [nftImgUrl, setNftImgUrl] = useState();
 
-    const [nftImgUrl, setNftImgUrl] = useState();
+  const baseIpfs = "https://ipfs.io/ipfs/";
 
-    const baseIpfs = "https://ipfs.io/ipfs/";
+  async function getImgUrl(imageURI) {
+    var url = `${baseIpfs}${imageURI?.slice(7)}`;
+    setNftImgUrl(url);
+  }
 
-    async function getImgUrl(imageURI) {
-        var url = `${baseIpfs}${imageURI?.slice(7)}`
-        setNftImgUrl(url)
-    }
-
-    useState(
-      () => {
-        getImgUrl(imageURI);
-      },
-      [nftImgUrl]
-    )
-
-    
+  useState(() => {
+    getImgUrl(imageURI);
+  }, [nftImgUrl]);
 
   return (
     <div>
-        <img
+      <img
         className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full h-[330px] object-cover rounded-3xl"
         alt=""
-        src= {imageURI}
-         />
+        src={imageURI}
+      />
     </div>
-  )
-})
+  );
+});
 
-export default NFTImage
+export default NFTImage;
+NFTImage.displayName = "NFTImage";
