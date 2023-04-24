@@ -33,11 +33,11 @@ const CollectionInfoTemplate = memo(({ collectionName, collectionAddress }) => {
   return (
     <div className="self-stretch bg-background flex flex-col py-10 px-0 items-center text-2xl font-h5-space-mono">
       <div className="flex flex-row">
-        <div className="shrink-0 flex flex-col gap-8">
+        <div className="shrink-0 flex flex-col gap-3">
           <div className="relative text-32xl leading-[110%] capitalize font-semibold font-caption-work-sans flex items-center">
             {collectionName ?? <p>Loading...</p>}
           </div>
-          <div className="rounded-xl flex flex-row gap-16 text-7xl">
+          <div className="rounded-xl flex flex-row gap-3 text-7xl">
             <div className="flex-1 rounded-xl flex flex-col items-start">
               <b className="self-stretch relative leading-[140%] capitalize">
                 250k+
@@ -97,7 +97,7 @@ const CollectionInfoTemplate = memo(({ collectionName, collectionAddress }) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-start justify-end text-center text-base font-caption-work-sans gap-8">
+        <div className="flex flex-row items-start justify-end text-center text-base font-caption-work-sans gap-3">
           <div className="rounded-xl bg-[#A259FF] h-[60px] shrink-0 flex flex-row py-0 px-[50px] box-border items-center justify-center gap-2">
             <BiCopy
               className="relative w-5 h-5 shrink-0 hover:cursor-pointer active:translate-y-1"
