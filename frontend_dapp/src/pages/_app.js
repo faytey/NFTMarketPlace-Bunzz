@@ -1,17 +1,14 @@
-import '@/styles/globals.css'
-import '@rainbow-me/rainbowkit/styles.css';
-import {
-  getDefaultWallets,
-  RainbowKitProvider,
-} from '@rainbow-me/rainbowkit';
-import { configureChains, createClient, sepolia, WagmiConfig } from 'wagmi';
-import { mainnet, polygon, optimism, arbitrum, bscTestnet } from 'wagmi/chains';
-import { alchemyProvider } from 'wagmi/providers/alchemy';
-import { publicProvider } from 'wagmi/providers/public';
-import Layout from '@/components/Layout';
+import "@/styles/globals.css";
+import "@rainbow-me/rainbowkit/styles.css";
+import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { sepolia } from "wagmi/chains";
+import { alchemyProvider } from "wagmi/providers/alchemy";
+import { publicProvider } from "wagmi/providers/public";
+import Layout from "@/components/Layout";
 
 const { chains, provider } = configureChains(
-  [ bscTestnet, mainnet, polygon, optimism, arbitrum, sepolia],
+  [sepolia],
   [
     //alchemyProvider({ apiKey: process.env.ALCHEMY_ID }),
     alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID1 }),
