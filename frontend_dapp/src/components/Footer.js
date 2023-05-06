@@ -42,7 +42,7 @@ export default function Footer() {
     >
       <div className="flex flex-col md:flex-row pl-[4rem] gap-4 items-start justify-between">
         <div className="w-full shrink-0 flex flex-col py-0 pr-3 pl-0 md:box-border items-start justify-start gap-2 text-base text-lightgray font-caption-work-sans">
-          <Link href={"/"}>BUNZZ</Link>
+          <Link href={"/"}>NIFT</Link>
           <div className="flex flex-col items-start justify-start gap-2">
             <div className="relative leading-[140%] inline-block w-full">
               NFT marketplace
@@ -81,14 +81,10 @@ export default function Footer() {
             >
               Marketplace
             </div>
-            <div
-              className="relative leading-[140%] cursor-pointer"
-            >
+            <div className="relative leading-[140%] cursor-pointer">
               Rankings
             </div>
-            <div
-              className="relative leading-[140%] cursor-pointer"
-            >
+            <div className="relative leading-[140%] cursor-pointer">
               Connect a wallet
             </div>
           </div>
